@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Evita que buscadores (Google, etc.) indexen o listen esta página -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Panel del Fondo</title>
+
+<!-- Chart.js vía CDN (no requiere instalación) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<style>
+  /* ===================== PALETA Y BASE ===================== */
+  :root {
+    --azul:    #1F3864;   /* azul oscuro principal */
+    --azul-2:  #2F6DB4;   /* azul medio */
+    --azul-3:  #7FB3D5;   /* azul claro */
+    --verde:   #2E7D46;   /* positivo */
+    --verde-b: #e5f3ea;   /* fondo positivo */
+    --rojo:    #C0392B;   /* negativo */
+    --rojo-b:  #fbe9e7;   /* fondo negativo */
+    --gris-1:  #f4f6f9;   /* fondo página */
+    --gris-2:  #e6eaf0;   /* bordes */
+    --gris-3:  #6b7480;   /* texto secundario */
+    --tinta:   #1a1f26;   /* texto principal */
+    --blanco:  #ffffff;
+    --sombra:  0 1px 2px rgba(31,56,100,.05), 0 6px 20px rgba(31,56,100,.07);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--gris-1);
+    color: var(--tinta);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 22px 16px 56px; }
+
+  /* ===================== ENCABEZADO ===================== */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 18px; flex-wrap: wrap; margin-bottom: 22px;
+  }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .logo {
+    width: 46px; height: 46px; border-radius: 12px; flex: none;
+    background: linear-gradient(135deg, var(--azul), #12213f);
+    display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 19px; letter-spacing: -1px;
+  }
+  .brand h1 { margin: 0; font-size: 22px; font-weight: 750; letter-spacing: -.4px; color: var(--azul); }
+  .brand p  { margin: 2px 0 0; font-size: 13px; color: var(--gris-3); }
+
+  .selector { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .selector label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--gris-3); font-weight: 700; }
+  .selector select {
+    font: inherit; font-size: 14px; font-weight: 650; color: var(--azul);
+    background: var(--blanco); border: 1.5px solid var(--gris-2); border-radius: 10px;
+    padding: 9px 14px; cursor: pointer; box-shadow: var(--sombra); min-width: 150px;
+  }
+  .selector select:focus-visible { outline: 2px solid var(--azul-2); outline-offset: 1px; }
+
+  /* ===================== SECCIONES ===================== */
+  .sec-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gris-3); font-weight: 750; margin: 30px 2px 12px; }
+
+  .card {
+    background: var(--blanco); border: 1px solid var(--gris-2);
+    border-radius: 14px; box-shadow: var(--sombra);
+  }
+
+  /* ===================== KPIs ===================== */
+  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .kpi { padding: 15px 16px 14px; }
+  .kpi .k-label { font-size: 12px; color: var(--gris-3); font-weight: 600; margin-bottom: 9px; }
+  .kpi .k-value { font-size: 21px; font-weight: 760; letter-spacing: -.5px; line-height: 1.1; color: var(--azul); }
+  .kpi.count .k-value { font-size: 26px; }
+  .k-var { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; font-weight: 700; margin-top: 9px; padding: 2px 7px; border-radius: 6px; }
+  .k-var.up   { color: var(--verde); background: var(--verde-b); }
+  .k-var.down { color: var(--rojo);  background: var(--rojo-b); }
+  .k-var.flat { color: var(--gris-3); background: var(--gris-1); }
+  .k-var .arrow { font-size: 11px; }
+
+  /* ===================== GRID DE 2 COLUMNAS ===================== */
+  .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; align-items: start; }
+  .pad { padding: 18px; }
+  .card h3 { margin: 0 0 14px; font-size: 15px; font-weight: 700; color: var(--azul); }
+
+  /* ===================== TABLA ===================== */
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--gris-3); font-weight: 750; padding: 0 8px 9px; border-bottom: 1px solid var(--gris-2); }
+  th.num, td.num { text-align: right; }
+  td { padding: 10px 8px; border-bottom: 1px solid var(--gris-2); font-size: 13.5px; }
+  tbody tr:last-child td { border-bottom: none; }
+  .who { display: flex; align-items: center; gap: 9px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+  .who b { font-weight: 650; }
+  td.num { font-weight: 650; }
+  .var-cell { font-size: 12px; font-weight: 700; }
+  .var-cell.up { color: var(--verde); }
+  .var-cell.down { color: var(--rojo); }
+  .var-cell.flat { color: var(--gris-3); }
+  tfoot td { font-weight: 800; font-size: 13.5px; padding-top: 12px; border-top: 2px solid var(--gris-2); color: var(--azul); }
+
+  .chart-box { position: relative; width: 100%; }
+  .chart-box.doughnut { height: 260px; }
+  .chart-box.bars { height: 300px; }
+
+  /* Reparto de ganancia (nota bajo la tabla) */
+  .ganancia { margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    background: var(--gris-1); border-radius: 10px; padding: 12px 14px; }
+  .ganancia .g-lbl { font-size: 12.5px; color: var(--gris-3); font-weight: 600; }
+  .ganancia .g-val { font-size: 18px; font-weight: 750; color: var(--azul); }
+
+  .foot-note { text-align: center; font-size: 11.5px; color: var(--gris-3); margin-top: 26px; }
+
+  /* ===================== RESPONSIVE (MOBILE) ===================== */
+  @media (max-width: 860px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 460px) {
+    .kpis { grid-template-columns: 1fr 1fr; }
+    header { flex-direction: column; align-items: stretch; }
+    .selector { align-items: stretch; }
+    .selector select { width: 100%; }
+    .brand h1 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       DATA: ÚNICO LUGAR QUE HAY QUE EDITAR CADA MES.
+       Para agregar un mes nuevo (ej. Agosto), copiá un bloque { ... }
+       del array "meses", pegalo al final y cambiá los números.
+       El resto del dashboard se actualiza solo.
+       ============================================================ -->
+  <script>
+  const DATA = {
+    // Cada elemento del array es UN MES. El orden importa:
+    // la variación se calcula contra el mes anterior del array.
+    meses: [
+      {
+        nombre: "Junio 2026",
+        fondoTotal:      471484836,   // fondo total ($)
+        cajaLiquida:     159582298,   // caja líquida ($)
+        capitalAutos:    311902538,   // capital en autos / stock ($)
+        autosStock:      22,          // cantidad de autos en stock
+        autosVendidos:   9,           // autos vendidos en el mes
+        repartoGanancia: 8583306,     // ganancia repartida a inversores en el mes ($)
+        inversores: [
+          { nombre: "Francisco", capital: 306398699, pct: 64.99 },
+          { nombre: "Mauro",     capital: 62691641,  pct: 13.30 },
+          { nombre: "Gastón",    capital: 46517959,  pct: 9.87  },
+          { nombre: "Gerard",    capital: 40006417,  pct: 8.49  },
+          { nombre: "Fernando",  capital: 15870119,  pct: 3.37  },
+        ]
+      },
+      {
+        nombre: "Julio 2026",
+        fondoTotal:      461909191,
+        cajaLiquida:     232888116,
+        capitalAutos:    229021075,
+        autosStock:      16,
+        autosVendidos:   6,
+        repartoGanancia: 3424355,
+        inversores: [
+          { nombre: "Francisco", capital: 308687145, pct: 66.83 },
+          { nombre: "Mauro",     capital: 63159876,  pct: 13.67 },
+          { nombre: "Gastón",    capital: 46865395,  pct: 10.15 },
+          { nombre: "Gerard",    capital: 32245468,  pct: 6.98  },
+          { nombre: "Fernando",  capital: 10951306,  pct: 2.37  },
+        ]
+      }
+      // 👉 Para AGOSTO: copiá el bloque de arriba, pegalo acá y cambiá los valores.
+    ]
+  };
+
+  // Colores para cada inversor (mismo orden que aparecen). Se usan en tabla y torta.
+  const COLORES = ["#1F3864", "#2F6DB4", "#4F9D69", "#E1A54B", "#B0555E"];
+  </script>
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header>
+    <div class="brand">
+      <div class="logo">GI</div>
+      <div>
+        <h1>Grupo Inversores</h1>
+        <p>Resumen mensual del fondo</p>
+      </div>
+    </div>
+    <div class="selector">
+      <label for="mesSel">Mes</label>
+      <select id="mesSel"></select>
+    </div>
+  </header>
+
+  <!-- ===================== KPIs ===================== -->
+  <div class="sec-title" id="kpiTitle">Indicadores del fondo</div>
+  <div class="kpis" id="kpis"></div>
+
+  <!-- ===================== GRUPO / PARTICIPACIÓN ===================== -->
+  <div class="sec-title">Formación del grupo y participación</div>
+  <div class="grid-2">
+    <div class="card pad">
+      <h3>Inversores</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th class="num">Capital</th>
+            <th class="num">%</th>
+            <th class="num">Var. %</th>
+          </tr>
+        </thead>
+        <tbody id="tablaInv"></tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td class="num" id="totCap">—</td>
+            <td class="num" id="totPct">—</td>
+            <td class="num"></td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="ganancia">
+        <span class="g-lbl">Reparto de ganancia del mes</span>
+        <span class="g-val" id="repVal">—</span>
+      </div>
+    </div>
+    <div class="card pad">
+      <h3>Participación (%)</h3>
+      <div class="chart-box doughnut"><canvas id="chartTorta"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ===================== COMPOSICIÓN DEL PATRIMONIO ===================== -->
+  <div class="sec-title">Composición del patrimonio · líquido vs autos</div>
+  <div class="card pad">
+    <div class="chart-box bars"><canvas id="chartComposicion"></canvas></div>
+  </div>
+
+  <!-- ===================== AUTOS ===================== -->
+  <div class="sec-title">Autos · stock y ventas</div>
+  <div class="card pad">
+    <div class="chart-box bars"><canvas id="chartAutos"></canvas></div>
+  </div>
+
+  <p class="foot-note">Montos en pesos argentinos. Variaciones calculadas contra el mes anterior.</p>
+</div>
+
+<script>
+  /* ===================== HELPERS DE FORMATO ===================== */
+  // $461.909.191  (separador de miles con puntos, sin decimales)
+  const fmt$ = n => "$" + Math.round(n || 0).toLocaleString("es-AR");
+  // 66.83%  (dos decimales)
+  const fmtPct = n => (n || 0).toFixed(2) + "%";
+  // versión corta para ejes de gráficos:  $232,9M
+  const fmtCorto = n => "$" + (n / 1e6).toLocaleString("es-AR", { maximumFractionDigits: 1 }) + "M";
+
+  // Devuelve HTML de la variación (flecha + valor + color) para las KPIs.
+  // esMoneda = true → formatea como $ ; si no, número entero.
+  function chipVariacion(actual, anterior, esMoneda) {
+    if (anterior === null || anterior === undefined) return '<span class="k-var flat">— sin mes previo</span>';
+    const d = actual - anterior;
+    const pct = anterior ? (d / anterior * 100) : 0;
+    const clase = d > 0 ? "up" : d < 0 ? "down" : "flat";
+    const flecha = d > 0 ? "▲" : d < 0 ? "▼" : "–";
+    const valor = esMoneda ? fmt$(Math.abs(d)) : Math.abs(d);
+    const signo = d > 0 ? "+" : d < 0 ? "−" : "";
+    const pctTxt = anterior ? ` (${signo}${Math.abs(pct).toFixed(1)}%)` : "";
+    return `<span class="k-var ${clase}"><span class="arrow">${flecha}</span>${signo}${valor}${pctTxt}</span>`;
+  }
+
+  // Variación de puntos porcentuales para la tabla (columna Var. %)
+  function chipPuntos(actual, anterior) {
+    if (anterior === null || anterior === undefined) return '<span class="var-cell flat">—</span>';
+    const d = actual - anterior;
+    const clase = d > 0 ? "up" : d < 0 ? "down" : "flat";
+    const flecha = d > 0 ? "▲" : d < 0 ? "▼" : "–";
+    if (Math.abs(d) < 0.005) return '<span class="var-cell flat">–</span>';
+    return `<span class="var-cell ${clase}">${flecha} ${Math.abs(d).toFixed(2)}</span>`;
+  }
+
+  /* ===================== ESTADO ===================== */
+  let idxActual = DATA.meses.length - 1;   // por defecto, el mes más reciente
+  let chartTorta, chartComposicion, chartAutos;
+
+  const mesEn = i => (i >= 0 && i < DATA.meses.length) ? DATA.meses[i] : null;
+
+  /* ===================== POBLAR SELECTOR ===================== */
+  const sel = document.getElementById("mesSel");
+  DATA.meses.forEach((m, i) => {
+    const opt = document.createElement("option");
+    opt.value = i; opt.textContent = m.nombre;
+    sel.appendChild(opt);
+  });
+  sel.value = idxActual;
+  sel.addEventListener("change", e => { idxActual = +e.target.value; render(); });
+
+  /* ===================== RENDER PRINCIPAL ===================== */
+  function render() {
+    const mes = mesEn(idxActual);
+    const prev = mesEn(idxActual - 1);   // mes anterior (o null si es el primero)
+
+    document.getElementById("kpiTitle").textContent = "Indicadores del fondo · " + mes.nombre;
+
+    /* ---- KPIs ---- */
+    const kpis = [
+      { label: "Fondo total",         val: fmt$(mes.fondoTotal),        v: chipVariacion(mes.fondoTotal,   prev && prev.fondoTotal,   true),  count: false },
+      { label: "Caja líquida",        val: fmt$(mes.cajaLiquida),       v: chipVariacion(mes.cajaLiquida,  prev && prev.cajaLiquida,  true),  count: false },
+      { label: "Capital en autos",    val: fmt$(mes.capitalAutos),      v: chipVariacion(mes.capitalAutos, prev && prev.capitalAutos, true),  count: false },
+      { label: "Autos en stock",      val: mes.autosStock,              v: chipVariacion(mes.autosStock,   prev && prev.autosStock,   false), count: true },
+      { label: "Autos vendidos",      val: mes.autosVendidos,           v: chipVariacion(mes.autosVendidos,prev && prev.autosVendidos,false), count: true },
+    ];
+    document.getElementById("kpis").innerHTML = kpis.map(k => `
+      <div class="card kpi ${k.count ? "count" : ""}">
+        <div class="k-label">${k.label}</div>
+        <div class="k-value">${k.val}</div>
+        <div>${k.v}</div>
+      </div>`).join("");
+
+    /* ---- Tabla de inversores ---- */
+    const cuerpo = document.getElementById("tablaInv");
+    cuerpo.innerHTML = mes.inversores.map((inv, i) => {
+      // buscar el mismo inversor en el mes anterior para la variación de %
+      const antInv = prev ? prev.inversores.find(x => x.nombre === inv.nombre) : null;
+      return `<tr>
+        <td><div class="who"><span class="swatch" style="background:${COLORES[i % COLORES.length]}"></span><b>${inv.nombre}</b></div></td>
+        <td class="num">${fmt$(inv.capital)}</td>
+        <td class="num">${fmtPct(inv.pct)}</td>
+        <td class="num">${chipPuntos(inv.pct, antInv ? antInv.pct : null)}</td>
+      </tr>`;
+    }).join("");
+    const sumaCap = mes.inversores.reduce((a, b) => a + b.capital, 0);
+    const sumaPct = mes.inversores.reduce((a, b) => a + b.pct, 0);
+    document.getElementById("totCap").textContent = fmt$(sumaCap);
+    document.getElementById("totPct").textContent = fmtPct(sumaPct);
+    document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
+
+    /* ---- Gráficos ---- */
+    dibujarTorta(mes);
+    dibujarComposicion(mes, prev);
+    dibujarAutos(mes, prev);
+  }
+
+  /* ===================== GRÁFICO 1: TORTA (participación) ===================== */
+  function dibujarTorta(mes) {
+    const datos = {
+      labels: mes.inversores.map(i => i.nombre),
+      datasets: [{
+        data: mes.inversores.map(i => i.pct),
+        backgroundColor: mes.inversores.map((_, i) => COLORES[i % COLORES.length]),
+        borderColor: "#fff", borderWidth: 2,
+      }]
+    };
+    if (chartTorta) chartTorta.destroy();
+    chartTorta = new Chart(document.getElementById("chartTorta"), {
+      type: "doughnut",
+      data: datos,
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: "58%",
+        plugins: {
+          legend: { position: "bottom", labels: { boxWidth: 12, padding: 12, font: { size: 12 } } },
+          tooltip: { callbacks: { label: c => ` ${c.label}: ${c.parsed.toFixed(2)}%` } }
+        }
+      }
+    });
+  }
+
+  /* ===================== GRÁFICO 2: COMPOSICIÓN (líquido vs autos, apilado) ===================== */
+  function dibujarComposicion(mes, prev) {
+    // eje X: mes anterior (si existe) y mes actual; barras apiladas Caja + Autos
+    const etiquetas = [], caja = [], autos = [];
+    if (prev) { etiquetas.push(prev.nombre); caja.push(prev.cajaLiquida); autos.push(prev.capitalAutos); }
+    etiquetas.push(mes.nombre); caja.push(mes.cajaLiquida); autos.push(mes.capitalAutos);
+
+    if (chartComposicion) chartComposicion.destroy();
+    chartComposicion = new Chart(document.getElementById("chartComposicion"), {
+      type: "bar",
+      data: {
+        labels: etiquetas,
+        datasets: [
+          { label: "Caja líquida",   data: caja,  backgroundColor: "#2F6DB4", borderRadius: 5, maxBarThickness: 90 },
+          { label: "Capital en autos", data: autos, backgroundColor: "#1F3864", borderRadius: 5, maxBarThickness: 90 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+          x: { stacked: true, grid: { display: false } },
+          y: { stacked: true, ticks: { callback: v => fmtCorto(v) }, grid: { color: "#eef1f6" } }
+        },
+        plugins: {
+          legend: { position: "bottom", labels: { boxWidth: 12, padding: 14, font: { size: 12 } } },
+          tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${fmt$(c.parsed.y)}` } }
+        }
+      }
+    });
+  }
+
+  /* ===================== GRÁFICO 3: AUTOS (stock y ventas) ===================== */
+  function dibujarAutos(mes, prev) {
+    const series = [];
+    if (prev) series.push({ label: prev.nombre, datos: [prev.autosStock, prev.autosVendidos], color: "#7FB3D5" });
+    series.push({ label: mes.nombre, datos: [mes.autosStock, mes.autosVendidos], color: "#1F3864" });
+
+    if (chartAutos) chartAutos.destroy();
+    chartAutos = new Chart(document.getElementById("chartAutos"), {
+      type: "bar",
+      data: {
+        labels: ["Autos en stock", "Autos vendidos"],
+        datasets: series.map(s => ({
+          label: s.label, data: s.datos, backgroundColor: s.color, borderRadius: 5, maxBarThickness: 70
+        }))
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: "#eef1f6" } }
+        },
+        plugins: {
+          legend: { position: "bottom", labels: { boxWidth: 12, padding: 14, font: { size: 12 } } },
+          tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}` } }
+        }
+      }
+    });
+  }
+
+  /* ===================== ARRANQUE ===================== */
+  render();
+</script>
+
+<!-- COMO ACTUALIZAR: editar el objeto DATA de arriba y agregar un mes nuevo al array meses -->
+</body>
+</html>
