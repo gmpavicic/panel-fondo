@@ -128,76 +128,32 @@
     .selector select { width: 100%; }
     .brand h1 { font-size: 19px; }
   }
+
+  /* ===================== BADGE "PROVISORIO" Y REPARTO ATENUADO ===================== */
+  .badge-prov {
+    display: inline-block; vertical-align: middle; margin-left: 8px;
+    font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: none;
+    color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  }
+  .ganancia.dim { opacity: .6; }
+  .ganancia.dim .g-val { font-size: 12.5px; font-weight: 650; color: var(--gris-3); }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <!-- ============================================================
-       DATA: ÚNICO LUGAR QUE HAY QUE EDITAR CADA MES.
-       Para agregar un mes nuevo (ej. Agosto), copiá un bloque { ... }
-       del array "meses", pegalo al final y cambiá los números.
-       El resto del dashboard se actualiza solo.
+       LOS DATOS VIVEN EN  data.json  (mismo directorio que este archivo).
+       Para actualizar el mes: abrí data.json, reemplazá el array "meses"
+       por el bloque nuevo y guardá. El dashboard lo lee solo al cargar.
+       NO hace falta tocar este index.html.
        ============================================================ -->
   <script>
-  const DATA = {
-    // Cada elemento del array es UN MES. El orden importa:
-    // la variación se calcula contra el mes anterior del array.
-    meses: [
-      {
-        nombre: "Junio 2026",
-        fondoTotal:      471484836,   // fondo total ($)
-        cajaLiquida:     159582298,   // caja líquida ($)
-        capitalAutos:    311902538,   // capital en autos / stock ($)
-        autosStock:      22,          // cantidad de autos en stock
-        autosVendidos:   9,           // autos vendidos en el mes
-        repartoGanancia: 8583306,     // ganancia repartida a inversores en el mes ($)
-        inversores: [
-          { nombre: "Francisco", capital: 306398699, pct: 64.99 },
-          { nombre: "Mauro",     capital: 62691641,  pct: 13.30 },
-          { nombre: "Gastón",    capital: 46517959,  pct: 9.87  },
-          { nombre: "Gerard",    capital: 40006417,  pct: 8.49  },
-          { nombre: "Fernando",  capital: 15870119,  pct: 3.37  },
-        ]
-      },
-      {
-        nombre: "Julio 2026",
-        fondoTotal:      461909191,
-        cajaLiquida:     232888116,
-        capitalAutos:    229021075,
-        autosStock:      16,
-        autosVendidos:   6,
-        repartoGanancia: 3424355,
-        inversores: [
-          { nombre: "Francisco", capital: 308687145, pct: 66.83 },
-          { nombre: "Mauro",     capital: 63159876,  pct: 13.67 },
-          { nombre: "Gastón",    capital: 46865395,  pct: 10.15 },
-          { nombre: "Gerard",    capital: 32245468,  pct: 6.98  },
-          { nombre: "Fernando",  capital: 10951306,  pct: 2.37  },
-        ]
-      },
-      {
-        nombre: "Agosto 2026 (provisorio)",
-        fondoTotal:      406782209,
-        cajaLiquida:     177761134,
-        capitalAutos:    229021075,
-        autosStock:      16,
-        autosVendidos:   8,
-        repartoGanancia: 0,
-        inversores: [
-          { nombre: "Francisco", capital: 308687145, pct: 66.83 },
-          { nombre: "Mauro",     capital: 63159876,  pct: 13.67 },
-          { nombre: "Gastón",    capital: 46865395,  pct: 10.15 },
-          { nombre: "Gerard",    capital: 32245468,  pct: 6.98  },
-          { nombre: "Fernando",  capital: 10951306,  pct: 2.37  },
-        ]
-      }
-      // 👉 Para el mes que viene: copiá el bloque de arriba, pegalo acá y cambiá los valores.
-    ]
-  };
-
   // Colores para cada inversor (mismo orden que aparecen). Se usan en tabla y torta.
   const COLORES = ["#1F3864", "#2F6DB4", "#4F9D69", "#E1A54B", "#B0555E"];
+  // Se completa al leer data.json (ver "ARRANQUE" al final del archivo).
+  let DATA = { meses: [] };
   </script>
 
   <!-- ===================== ENCABEZADO ===================== -->
@@ -243,7 +199,7 @@
           </tr>
         </tfoot>
       </table>
-      <div class="ganancia">
+      <div class="ganancia" id="ganancia">
         <span class="g-lbl">Reparto de ganancia del mes</span>
         <span class="g-val" id="repVal">—</span>
       </div>
@@ -303,27 +259,37 @@
   }
 
   /* ===================== ESTADO ===================== */
-  let idxActual = DATA.meses.length - 1;   // por defecto, el mes más reciente
+  let idxActual = 0;                        // se ajusta al mes más reciente al cargar
   let chartTorta, chartComposicion, chartAutos;
 
   const mesEn = i => (i >= 0 && i < DATA.meses.length) ? DATA.meses[i] : null;
+  // ¿El nombre del mes contiene "provisorio"? → mes en curso, sin cerrar.
+  const esProvisorio = mes => /provisorio/i.test(mes.nombre);
+
+  const sel = document.getElementById("mesSel");
+  sel.addEventListener("change", e => { idxActual = +e.target.value; render(); });
 
   /* ===================== POBLAR SELECTOR ===================== */
-  const sel = document.getElementById("mesSel");
-  DATA.meses.forEach((m, i) => {
-    const opt = document.createElement("option");
-    opt.value = i; opt.textContent = m.nombre;
-    sel.appendChild(opt);
-  });
-  sel.value = idxActual;
-  sel.addEventListener("change", e => { idxActual = +e.target.value; render(); });
+  function poblarSelector() {
+    sel.innerHTML = "";
+    DATA.meses.forEach((m, i) => {
+      const opt = document.createElement("option");
+      opt.value = i; opt.textContent = m.nombre;
+      sel.appendChild(opt);
+    });
+    sel.value = idxActual;
+  }
 
   /* ===================== RENDER PRINCIPAL ===================== */
   function render() {
     const mes = mesEn(idxActual);
     const prev = mesEn(idxActual - 1);   // mes anterior (o null si es el primero)
+    const prov = esProvisorio(mes);      // mes en curso / provisorio
 
-    document.getElementById("kpiTitle").textContent = "Indicadores del fondo · " + mes.nombre;
+    // Título + badge "EN CURSO — provisorio" si corresponde
+    document.getElementById("kpiTitle").innerHTML =
+      "Indicadores del fondo · " + mes.nombre +
+      (prov ? ' <span class="badge-prov">EN CURSO — provisorio</span>' : "");
 
     /* ---- KPIs ---- */
     const kpis = [
@@ -356,7 +322,16 @@
     const sumaPct = mes.inversores.reduce((a, b) => a + b.pct, 0);
     document.getElementById("totCap").textContent = fmt$(sumaCap);
     document.getElementById("totPct").textContent = fmtPct(sumaPct);
-    document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
+
+    // Reparto de ganancia: si el mes es provisorio (o todavía es 0), lo atenuamos
+    const gananciaBox = document.getElementById("ganancia");
+    if (prov) {
+      gananciaBox.classList.add("dim");
+      document.getElementById("repVal").textContent = "En curso — se define al cierre";
+    } else {
+      gananciaBox.classList.remove("dim");
+      document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
+    }
 
     /* ---- Gráficos ---- */
     dibujarTorta(mes);
@@ -448,10 +423,26 @@
     });
   }
 
-  /* ===================== ARRANQUE ===================== */
-  render();
+  /* ===================== ARRANQUE: leer data.json ===================== */
+  fetch("data.json?v=" + Date.now())   // el ?v= evita que el navegador use una copia vieja
+    .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(json => {
+      DATA = json;
+      idxActual = DATA.meses.length - 1;   // por defecto, el mes más reciente
+      poblarSelector();
+      render();
+    })
+    .catch(err => {
+      document.getElementById("kpis").innerHTML =
+        '<div class="card kpi" style="grid-column:1/-1">' +
+        '<div class="k-label">No se pudo cargar data.json</div>' +
+        '<div class="k-value" style="font-size:16px">' + err.message + '</div>' +
+        '<div style="font-size:12px;color:var(--gris-3);margin-top:8px;line-height:1.5">' +
+        'Si abriste el archivo con doble clic (file://), el navegador bloquea la lectura de data.json. ' +
+        'Vé el dashboard online desde la URL de GitHub Pages.</div></div>';
+    });
 </script>
 
-<!-- COMO ACTUALIZAR: editar el objeto DATA de arriba y agregar un mes nuevo al array meses -->
+<!-- COMO ACTUALIZAR: editar data.json (reemplazar el array "meses"). NO se toca este archivo. -->
 </body>
 </html>

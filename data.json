@@ -1,0 +1,52 @@
+{
+  "meses": [
+    {
+      "nombre": "Junio 2026",
+      "fondoTotal": 471484836,
+      "cajaLiquida": 159582298,
+      "capitalAutos": 311902538,
+      "autosStock": 22,
+      "autosVendidos": 9,
+      "repartoGanancia": 8583306,
+      "inversores": [
+        {"nombre": "Francisco", "capital": 306398699, "pct": 64.99},
+        {"nombre": "Mauro", "capital": 62691641, "pct": 13.30},
+        {"nombre": "Gaston", "capital": 46517959, "pct": 9.87},
+        {"nombre": "Gerard", "capital": 40006417, "pct": 8.49},
+        {"nombre": "Fernando", "capital": 15870119, "pct": 3.37}
+      ]
+    },
+    {
+      "nombre": "Julio 2026",
+      "fondoTotal": 474909190,
+      "cajaLiquida": 245888115,
+      "capitalAutos": 229021075,
+      "autosStock": 16,
+      "autosVendidos": 6,
+      "repartoGanancia": 3424355,
+      "inversores": [
+        {"nombre": "Francisco", "capital": 308624047, "pct": 64.99},
+        {"nombre": "Mauro", "capital": 63146964, "pct": 13.30},
+        {"nombre": "Gaston", "capital": 46855816, "pct": 9.87},
+        {"nombre": "Gerard", "capital": 40296980, "pct": 8.49},
+        {"nombre": "Fernando", "capital": 15985383, "pct": 3.37}
+      ]
+    },
+    {
+      "nombre": "Agosto 2026 (provisorio)",
+      "fondoTotal": 447909190,
+      "cajaLiquida": 158057837,
+      "capitalAutos": 289851353,
+      "autosStock": 21,
+      "autosVendidos": 6,
+      "repartoGanancia": 0,
+      "inversores": [
+        {"nombre": "Francisco", "capital": 308624047, "pct": 68.90},
+        {"nombre": "Mauro", "capital": 63146964, "pct": 14.10},
+        {"nombre": "Gaston", "capital": 34855816, "pct": 7.78},
+        {"nombre": "Gerard", "capital": 32296980, "pct": 7.21},
+        {"nombre": "Fernando", "capital": 8985383, "pct": 2.01}
+      ]
+    }
+  ]
+}
