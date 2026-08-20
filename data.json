@@ -2,6 +2,7 @@
   "meses": [
     {
       "nombre": "Junio 2026",
+      "dolar": 1520,
       "fondoTotal": 471484836,
       "cajaLiquida": 159582298,
       "capitalAutos": 311902538,
@@ -18,6 +19,7 @@
     },
     {
       "nombre": "Julio 2026",
+      "dolar": 1520,
       "fondoTotal": 474909190,
       "cajaLiquida": 245888115,
       "capitalAutos": 229021075,
@@ -34,6 +36,7 @@
     },
     {
       "nombre": "Agosto 2026 (provisorio)",
+      "dolar": 1520,
       "fondoTotal": 447909190,
       "cajaLiquida": 158057837,
       "capitalAutos": 289851353,

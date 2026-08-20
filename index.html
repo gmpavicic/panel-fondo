@@ -185,7 +185,7 @@
   <div class="sec-title">Formación del grupo y participación</div>
   <div class="grid-2">
     <div class="card pad">
-      <h3>Inversores <span class="usd-rate">· dólar a $1.520</span></h3>
+      <h3>Inversores <span class="usd-rate" id="usdRate"></span></h3>
       <div class="tabla-scroll">
       <table>
         <thead>
@@ -237,12 +237,12 @@
 
 <script>
   /* ===================== HELPERS DE FORMATO ===================== */
-  // 👉 Cotización del dólar. Si cambia, editá solo este número.
-  const USD_ARS = 1520;   // pesos por 1 dólar
+  // Cotización de respaldo, por si algún mes de data.json no trae "dolar".
+  const USD_ARS_DEFAULT = 1520;   // pesos por 1 dólar
   // $461.909.191  (separador de miles con puntos, sin decimales)
   const fmt$ = n => "$" + Math.round(n || 0).toLocaleString("es-AR");
-  // US$303.006  (convierte pesos a dólares usando USD_ARS)
-  const fmtUSD = pesos => "US$" + Math.round((pesos || 0) / USD_ARS).toLocaleString("es-AR");
+  // US$303.006  (convierte pesos a dólares usando la cotización del mes)
+  const fmtUSD = (pesos, dolar) => "US$" + Math.round((pesos || 0) / (dolar || USD_ARS_DEFAULT)).toLocaleString("es-AR");
   // 66.83%  (dos decimales)
   const fmtPct = n => (n || 0).toFixed(2) + "%";
   // versión corta para ejes de gráficos:  $232,9M
@@ -299,6 +299,10 @@
     const mes = mesEn(idxActual);
     const prev = mesEn(idxActual - 1);   // mes anterior (o null si es el primero)
     const prov = esProvisorio(mes);      // mes en curso / provisorio
+    const dolar = mes.dolar || USD_ARS_DEFAULT;   // cotización del dólar de ESTE mes
+
+    // Etiqueta de cotización al lado del título "Inversores"
+    document.getElementById("usdRate").textContent = "· dólar a $" + dolar.toLocaleString("es-AR");
 
     // Título + badge "EN CURSO — provisorio" si corresponde
     document.getElementById("kpiTitle").innerHTML =
@@ -328,7 +332,7 @@
       return `<tr>
         <td><div class="who"><span class="swatch" style="background:${COLORES[i % COLORES.length]}"></span><b>${inv.nombre}</b></div></td>
         <td class="num">${fmt$(inv.capital)}</td>
-        <td class="num usd">${fmtUSD(inv.capital)}</td>
+        <td class="num usd">${fmtUSD(inv.capital, dolar)}</td>
         <td class="num">${fmtPct(inv.pct)}</td>
         <td class="num">${chipPuntos(inv.pct, antInv ? antInv.pct : null)}</td>
       </tr>`;
@@ -336,7 +340,7 @@
     const sumaCap = mes.inversores.reduce((a, b) => a + b.capital, 0);
     const sumaPct = mes.inversores.reduce((a, b) => a + b.pct, 0);
     document.getElementById("totCap").textContent = fmt$(sumaCap);
-    document.getElementById("totUsd").textContent = fmtUSD(sumaCap);
+    document.getElementById("totUsd").textContent = fmtUSD(sumaCap, dolar);
     document.getElementById("totPct").textContent = fmtPct(sumaPct);
 
     // Reparto de ganancia: si el mes es provisorio (o todavía es 0), lo atenuamos
