@@ -300,6 +300,11 @@
   // ¿El nombre del mes contiene "provisorio"? → mes en curso, sin cerrar.
   const esProvisorio = mes => /provisorio/i.test(mes.nombre);
 
+  // Conteo de autos: si la lista tiene items, se cuenta de ahí (siempre coincide);
+  // si la lista está vacía, usa el número cargado a mano como respaldo.
+  const contarStock    = mes => (mes.autosStockLista && mes.autosStockLista.length)       ? mes.autosStockLista.length    : (mes.autosStock || 0);
+  const contarVendidos = mes => (mes.autosVendidosLista && mes.autosVendidosLista.length) ? mes.autosVendidosLista.length : (mes.autosVendidos || 0);
+
   const sel = document.getElementById("mesSel");
   sel.addEventListener("change", e => { idxActual = +e.target.value; render(); });
 
@@ -334,8 +339,8 @@
       { label: "Fondo total",         val: fmt$(mes.fondoTotal),        v: "",  count: false },   // sin variación: el fondo se mueve por retiros (dato tendencioso)
       { label: "Caja líquida",        val: fmt$(mes.cajaLiquida),       v: chipVariacion(mes.cajaLiquida,  prev && prev.cajaLiquida,  true),  count: false },
       { label: "Capital en autos",    val: fmt$(mes.capitalAutos),      v: chipVariacion(mes.capitalAutos, prev && prev.capitalAutos, true),  count: false },
-      { label: "Autos en stock",      val: mes.autosStock,              v: chipVariacion(mes.autosStock,   prev && prev.autosStock,   false), count: true },
-      { label: "Autos vendidos",      val: mes.autosVendidos,           v: chipVariacion(mes.autosVendidos,prev && prev.autosVendidos,false), count: true },
+      { label: "Autos en stock",      val: contarStock(mes),            v: chipVariacion(contarStock(mes),    prev && contarStock(prev),    false), count: true },
+      { label: "Autos vendidos",      val: contarVendidos(mes),         v: chipVariacion(contarVendidos(mes), prev && contarVendidos(prev), false), count: true },
     ];
     document.getElementById("kpis").innerHTML = kpis.map(k => `
       <div class="card kpi ${k.count ? "count" : ""}">
@@ -457,8 +462,8 @@
   /* ===================== GRÁFICO 3: AUTOS (stock y ventas) ===================== */
   function dibujarAutos(mes, prev) {
     const series = [];
-    if (prev) series.push({ label: prev.nombre, datos: [prev.autosStock, prev.autosVendidos], color: "#7FB3D5" });
-    series.push({ label: mes.nombre, datos: [mes.autosStock, mes.autosVendidos], color: "#1F3864" });
+    if (prev) series.push({ label: prev.nombre, datos: [contarStock(prev), contarVendidos(prev)], color: "#7FB3D5" });
+    series.push({ label: mes.nombre, datos: [contarStock(mes), contarVendidos(mes)], color: "#1F3864" });
 
     if (chartAutos) chartAutos.destroy();
     chartAutos = new Chart(document.getElementById("chartAutos"), {
