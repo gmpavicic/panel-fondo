@@ -2,7 +2,6 @@
   "meses": [
     {
       "nombre": "Junio 2026",
-      "dolar": 1520,
       "fondoTotal": 471484836,
       "cajaLiquida": 159582298,
       "capitalAutos": 311902538,
@@ -10,18 +9,15 @@
       "autosVendidos": 9,
       "repartoGanancia": 8583306,
       "inversores": [
-        {"nombre": "Francisco", "capital": 306398699, "pct": 64.99},
-        {"nombre": "Mauro", "capital": 62691641, "pct": 13.30},
-        {"nombre": "Gaston", "capital": 46517959, "pct": 9.87},
-        {"nombre": "Gerard", "capital": 40006417, "pct": 8.49},
-        {"nombre": "Fernando", "capital": 15870119, "pct": 3.37}
-      ],
-      "autosStockLista": [],
-      "autosVendidosLista": []
+        { "nombre": "Francisco", "capital": 306398699, "pct": 64.99 },
+        { "nombre": "Mauro", "capital": 62691641, "pct": 13.30 },
+        { "nombre": "Gaston", "capital": 46517959, "pct": 9.87 },
+        { "nombre": "Gerard", "capital": 40006417, "pct": 8.49 },
+        { "nombre": "Fernando", "capital": 15870119, "pct": 3.37 }
+      ]
     },
     {
       "nombre": "Julio 2026",
-      "dolar": 1520,
       "fondoTotal": 474909190,
       "cajaLiquida": 245888115,
       "capitalAutos": 229021075,
@@ -29,18 +25,15 @@
       "autosVendidos": 6,
       "repartoGanancia": 3424355,
       "inversores": [
-        {"nombre": "Francisco", "capital": 308624047, "pct": 64.99},
-        {"nombre": "Mauro", "capital": 63146964, "pct": 13.30},
-        {"nombre": "Gaston", "capital": 46855816, "pct": 9.87},
-        {"nombre": "Gerard", "capital": 40296980, "pct": 8.49},
-        {"nombre": "Fernando", "capital": 15985383, "pct": 3.37}
-      ],
-      "autosStockLista": [],
-      "autosVendidosLista": []
+        { "nombre": "Francisco", "capital": 308624047, "pct": 64.99 },
+        { "nombre": "Mauro", "capital": 63146964, "pct": 13.30 },
+        { "nombre": "Gaston", "capital": 46855816, "pct": 9.87 },
+        { "nombre": "Gerard", "capital": 40296980, "pct": 8.49 },
+        { "nombre": "Fernando", "capital": 15985383, "pct": 3.37 }
+      ]
     },
     {
       "nombre": "Agosto 2026 (provisorio)",
-      "dolar": 1520,
       "fondoTotal": 447909190,
       "cajaLiquida": 11747126,
       "capitalAutos": 436162064,
@@ -48,14 +41,55 @@
       "autosVendidos": 6,
       "repartoGanancia": 0,
       "inversores": [
-        {"nombre": "Francisco", "capital": 308624047, "pct": 68.90},
-        {"nombre": "Mauro", "capital": 63146964, "pct": 14.10},
-        {"nombre": "Gaston", "capital": 34855816, "pct": 7.78},
-        {"nombre": "Gerard", "capital": 32296980, "pct": 7.21},
-        {"nombre": "Fernando", "capital": 8985383, "pct": 2.01}
-      ],
-      "autosStockLista": [],
-      "autosVendidosLista": []
+        { "nombre": "Francisco", "capital": 308624047, "pct": 68.90 },
+        { "nombre": "Mauro", "capital": 63146964, "pct": 14.10 },
+        { "nombre": "Gaston", "capital": 34855816, "pct": 7.78 },
+        { "nombre": "Gerard", "capital": 32296980, "pct": 7.21 },
+        { "nombre": "Fernando", "capital": 8985383, "pct": 2.01 }
+      ]
     }
+  ],
+  "autosEnStock": [
+    {"codigo": 989,  "modelo": "Chery QQ",            "anio": "",     "patente": "JWV094",  "estado": "en proceso"},
+    {"codigo": 1125, "modelo": "VW Gol Trend",        "anio": "",     "patente": "AD981YT", "estado": "en proceso"},
+    {"codigo": 1140, "modelo": "VW T-Cross",          "anio": "",     "patente": "",        "estado": "libre"},
+    {"codigo": 1146, "modelo": "Jeep Renegade",       "anio": "",     "patente": "AD475NC", "estado": "en proceso"},
+    {"codigo": 1171, "modelo": "Toyota Corolla",      "anio": "",     "patente": "AE576WD", "estado": "libre"},
+    {"codigo": 1208, "modelo": "Peugeot 207",         "anio": "2011", "patente": "JRR412",  "estado": "libre"},
+    {"codigo": 1212, "modelo": "Citroen C3 Aircross", "anio": "2016", "patente": "AA103TO", "estado": "libre"},
+    {"codigo": 1213, "modelo": "Chevrolet Onix",      "anio": "2017", "patente": "AB408PH", "estado": "libre"},
+    {"codigo": 1215, "modelo": "Ford Ecosport",       "anio": "2021", "patente": "AE976NX", "estado": "libre"},
+    {"codigo": 1216, "modelo": "Peugeot 208",         "anio": "2017", "patente": "AB847JB", "estado": "libre"},
+    {"codigo": 1222, "modelo": "Citroen C3",          "anio": "2018", "patente": "AD241JW", "estado": "libre"},
+    {"codigo": 1223, "modelo": "Peugeot 207",         "anio": "2009", "patente": "IIR233",  "estado": "libre"},
+    {"codigo": 1224, "modelo": "Peugeot 308",         "anio": "2017", "patente": "AA997SB", "estado": "libre"},
+    {"codigo": 1225, "modelo": "Kia Picanto",         "anio": "2013", "patente": "NGF682",  "estado": "libre"},
+    {"codigo": 1229, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "PBK848",  "estado": "libre"},
+    {"codigo": 1243, "modelo": "VW Fox",              "anio": "2013", "patente": "MQX772",  "estado": "libre"},
+    {"codigo": 1248, "modelo": "Renault Sandero",     "anio": "2025", "patente": "AH926ZF", "estado": "libre"},
+    {"codigo": 1250, "modelo": "Chevrolet Tracker",   "anio": "2020", "patente": "AE541BW", "estado": "libre"},
+    {"codigo": 1251, "modelo": "Toyota RAV4",         "anio": "2010", "patente": "IKV736",  "estado": "libre"},
+    {"codigo": 1253, "modelo": "VW Saveiro",          "anio": "2016", "patente": "AA104PT", "estado": "libre"},
+    {"codigo": 1259, "modelo": "Toyota RAV4",         "anio": "2010", "patente": "IPN935",  "estado": "libre"},
+    {"codigo": 1260, "modelo": "Moto Rouser/Tornado", "anio": "2018", "patente": "A0710ZV", "estado": "libre"},
+    {"codigo": 1265, "modelo": "Fiat Siena",          "anio": "2015", "patente": "OTC592",  "estado": "libre"},
+    {"codigo": 1266, "modelo": "Fiat 500",            "anio": "2014", "patente": "NZX523",  "estado": "libre"},
+    {"codigo": 1267, "modelo": "Citroen C3 Aircross", "anio": "2017", "patente": "AC107FR", "estado": "libre"},
+    {"codigo": 1269, "modelo": "Fiat Siena",          "anio": "2013", "patente": "MFO411",  "estado": "libre"},
+    {"codigo": 1271, "modelo": "Honda Fit",           "anio": "2012", "patente": "KZB453",  "estado": "libre"},
+    {"codigo": 1272, "modelo": "Ford Kuga",           "anio": "2012", "patente": "KVV147",  "estado": "libre"},
+    {"codigo": 1273, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "OXY910",  "estado": "libre"},
+    {"codigo": 1277, "modelo": "Peugeot Partner",     "anio": "2017", "patente": "AB218MV", "estado": "libre"},
+    {"codigo": 1278, "modelo": "VW UP",               "anio": "2016", "patente": "AA383TN", "estado": "libre"},
+    {"codigo": 1279, "modelo": "VW Suran",            "anio": "2017", "patente": "AB351YF", "estado": "libre"},
+    {"codigo": 1280, "modelo": "Toyota Yaris",        "anio": "2018", "patente": "AC618VM", "estado": "libre"}
+  ],
+  "autosVendidos": [
+    {"codigo": 906,  "modelo": "Citroen C3",     "anio": "",     "patente": "LPI685"},
+    {"codigo": 1078, "modelo": "Peugeot 2008",   "anio": "",     "patente": "AF284KZ"},
+    {"codigo": 1192, "modelo": "Fiat Palio",     "anio": "2015", "patente": "PBU283"},
+    {"codigo": 1199, "modelo": "Nissan March",   "anio": "2017", "patente": "AB748WP"},
+    {"codigo": 1210, "modelo": "Ford Focus",     "anio": "2019", "patente": "AE041BL"},
+    {"codigo": 1220, "modelo": "Chevrolet Spin", "anio": "2025", "patente": "AH508FW"}
   ]
 }

@@ -7,23 +7,16 @@
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <title>Panel del Fondo</title>
 
-<!-- Chart.js vía CDN (no requiere instalación) -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-
 <style>
   /* ===================== PALETA Y BASE ===================== */
   :root {
-    --azul:    #1F3864;   /* azul oscuro principal */
-    --azul-2:  #2F6DB4;   /* azul medio */
-    --azul-3:  #7FB3D5;   /* azul claro */
-    --verde:   #2E7D46;   /* positivo */
-    --verde-b: #e5f3ea;   /* fondo positivo */
-    --rojo:    #C0392B;   /* negativo */
-    --rojo-b:  #fbe9e7;   /* fondo negativo */
-    --gris-1:  #f4f6f9;   /* fondo página */
-    --gris-2:  #e6eaf0;   /* bordes */
-    --gris-3:  #6b7480;   /* texto secundario */
-    --tinta:   #1a1f26;   /* texto principal */
+    --azul:    #1F3864;
+    --azul-2:  #2F6DB4;
+    --verde:   #2E7D46;
+    --gris-1:  #f4f6f9;
+    --gris-2:  #e6eaf0;
+    --gris-3:  #6b7480;
+    --tinta:   #1a1f26;
     --blanco:  #ffffff;
     --sombra:  0 1px 2px rgba(31,56,100,.05), 0 6px 20px rgba(31,56,100,.07);
   }
@@ -65,30 +58,19 @@
 
   /* ===================== SECCIONES ===================== */
   .sec-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gris-3); font-weight: 750; margin: 30px 2px 12px; }
-
-  .card {
-    background: var(--blanco); border: 1px solid var(--gris-2);
-    border-radius: 14px; box-shadow: var(--sombra);
-  }
-
-  /* ===================== KPIs ===================== */
-  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-  .kpi { padding: 15px 16px 14px; }
-  .kpi .k-label { font-size: 12px; color: var(--gris-3); font-weight: 600; margin-bottom: 9px; }
-  .kpi .k-value { font-size: 21px; font-weight: 760; letter-spacing: -.5px; line-height: 1.1; color: var(--azul); }
-  .kpi.count .k-value { font-size: 26px; }
-  .k-var { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; font-weight: 700; margin-top: 9px; padding: 2px 7px; border-radius: 6px; }
-  .k-var.up   { color: var(--verde); background: var(--verde-b); }
-  .k-var.down { color: var(--rojo);  background: var(--rojo-b); }
-  .k-var.flat { color: var(--gris-3); background: var(--gris-1); }
-  .k-var .arrow { font-size: 11px; }
-
-  /* ===================== GRID DE 2 COLUMNAS ===================== */
-  .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; align-items: start; }
+  .card { background: var(--blanco); border: 1px solid var(--gris-2); border-radius: 14px; box-shadow: var(--sombra); }
   .pad { padding: 18px; }
   .card h3 { margin: 0 0 14px; font-size: 15px; font-weight: 700; color: var(--azul); }
 
-  /* ===================== TABLA ===================== */
+  /* ===================== KPIs ===================== */
+  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .kpi { padding: 16px 16px 15px; }
+  .kpi .k-label { font-size: 12px; color: var(--gris-3); font-weight: 600; margin-bottom: 10px; }
+  .kpi .k-value { font-size: 21px; font-weight: 760; letter-spacing: -.5px; line-height: 1.1; color: var(--azul); }
+  .kpi.count .k-value { font-size: 26px; }
+
+  /* ===================== TABLAS ===================== */
+  .tabla-scroll { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; }
   th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--gris-3); font-weight: 750; padding: 0 8px 9px; border-bottom: 1px solid var(--gris-2); }
   th.num, td.num { text-align: right; }
@@ -98,29 +80,42 @@
   .swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
   .who b { font-weight: 650; }
   td.num { font-weight: 650; }
-  .var-cell { font-size: 12px; font-weight: 700; }
-  .var-cell.up { color: var(--verde); }
-  .var-cell.down { color: var(--rojo); }
-  .var-cell.flat { color: var(--gris-3); }
   tfoot td { font-weight: 800; font-size: 13.5px; padding-top: 12px; border-top: 2px solid var(--gris-2); color: var(--azul); }
 
-  .chart-box { position: relative; width: 100%; }
-  .chart-box.doughnut { height: 260px; }
-  .chart-box.bars { height: 300px; }
+  /* Columna USD y cotización */
+  td.usd { color: var(--verde); font-weight: 650; }
+  tfoot td#totUsd { color: var(--verde); }
+  .usd-rate { font-size: 11.5px; font-weight: 600; color: var(--gris-3); }
 
-  /* Reparto de ganancia (nota bajo la tabla) */
+  /* Reparto de ganancia */
   .ganancia { margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     background: var(--gris-1); border-radius: 10px; padding: 12px 14px; }
   .ganancia .g-lbl { font-size: 12.5px; color: var(--gris-3); font-weight: 600; }
   .ganancia .g-val { font-size: 18px; font-weight: 750; color: var(--azul); }
+  .ganancia.dim { opacity: .6; }
+  .ganancia.dim .g-val { font-size: 12.5px; font-weight: 650; color: var(--gris-3); }
+
+  /* Badge provisorio */
+  .badge-prov {
+    display: inline-block; vertical-align: middle; margin-left: 8px;
+    font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: none;
+    color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  }
+
+  /* Listas de autos */
+  .cuenta { font-size: 11px; font-weight: 700; color: var(--azul-2); margin-left: 4px; }
+  .autos-tabla td { white-space: nowrap; }
+  .autos-tabla td.patente { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .5px; font-weight: 650; }
+  .sin-datos { text-align: center; color: var(--gris-3); font-style: italic; padding: 20px 8px; }
+  .pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .pill.libre   { color: #12683e; background: #e2f4ec; border: 1px solid #b7e0c9; }
+  .pill.proceso { color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674; }
 
   .foot-note { text-align: center; font-size: 11.5px; color: var(--gris-3); margin-top: 26px; }
 
   /* ===================== RESPONSIVE (MOBILE) ===================== */
-  @media (max-width: 860px) {
-    .kpis { grid-template-columns: repeat(2, 1fr); }
-    .grid-2 { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 460px) {
     .kpis { grid-template-columns: 1fr 1fr; }
     header { flex-direction: column; align-items: stretch; }
@@ -128,28 +123,6 @@
     .selector select { width: 100%; }
     .brand h1 { font-size: 19px; }
   }
-
-  /* ===================== BADGE "PROVISORIO" Y REPARTO ATENUADO ===================== */
-  .badge-prov {
-    display: inline-block; vertical-align: middle; margin-left: 8px;
-    font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: none;
-    color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674;
-    padding: 3px 9px; border-radius: 999px; white-space: nowrap;
-  }
-  .ganancia.dim { opacity: .6; }
-  .ganancia.dim .g-val { font-size: 12.5px; font-weight: 650; color: var(--gris-3); }
-
-  /* Columna USD y cotización */
-  .tabla-scroll { overflow-x: auto; }
-  td.usd { color: var(--verde); font-weight: 650; }
-  tfoot td#totUsd { color: var(--verde); }
-  .usd-rate { font-size: 11.5px; font-weight: 600; color: var(--gris-3); }
-
-  /* Listas de autos (stock / vendidos) */
-  .cuenta { font-size: 11px; font-weight: 700; color: var(--azul-2); margin-left: 4px; }
-  .autos-tabla td.patente { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .5px; font-weight: 650; }
-  .autos-tabla td { white-space: nowrap; }
-  .sin-datos { text-align: center; color: var(--gris-3); font-style: italic; padding: 20px 8px; }
 </style>
 </head>
 <body>
@@ -157,15 +130,15 @@
 
   <!-- ============================================================
        LOS DATOS VIVEN EN  data.json  (mismo directorio que este archivo).
-       Para actualizar el mes: abrí data.json, reemplazá el array "meses"
-       por el bloque nuevo y guardá. El dashboard lo lee solo al cargar.
-       NO hace falta tocar este index.html.
+       - "meses": indicadores del fondo + inversores, por mes.
+       - "autosEnStock" y "autosVendidos": listado actual de autos.
+       Para actualizar: pegar el JSON nuevo en data.json. NO se toca este archivo.
        ============================================================ -->
   <script>
-  // Colores para cada inversor (mismo orden que aparecen). Se usan en tabla y torta.
+  // Colores para cada inversor (mismo orden que aparecen).
   const COLORES = ["#1F3864", "#2F6DB4", "#4F9D69", "#E1A54B", "#B0555E"];
   // Se completa al leer data.json (ver "ARRANQUE" al final del archivo).
-  let DATA = { meses: [] };
+  let DATA = { meses: [], autosEnStock: [], autosVendidos: [] };
   </script>
 
   <!-- ===================== ENCABEZADO ===================== -->
@@ -189,10 +162,9 @@
 
   <!-- ===================== GRUPO / PARTICIPACIÓN ===================== -->
   <div class="sec-title">Formación del grupo y participación</div>
-  <div class="grid-2">
-    <div class="card pad">
-      <h3>Inversores <span class="usd-rate" id="usdRate"></span></h3>
-      <div class="tabla-scroll">
+  <div class="card pad">
+    <h3>Inversores <span class="usd-rate" id="usdRate"></span></h3>
+    <div class="tabla-scroll">
       <table>
         <thead>
           <tr>
@@ -212,37 +184,20 @@
           </tr>
         </tfoot>
       </table>
-      </div>
-      <div class="ganancia" id="ganancia">
-        <span class="g-lbl">Reparto de ganancia del mes</span>
-        <span class="g-val" id="repVal">—</span>
-      </div>
     </div>
-    <div class="card pad">
-      <h3>Participación (%)</h3>
-      <div class="chart-box doughnut"><canvas id="chartTorta"></canvas></div>
+    <div class="ganancia" id="ganancia">
+      <span class="g-lbl">Reparto de ganancia del mes</span>
+      <span class="g-val" id="repVal">—</span>
     </div>
-  </div>
-
-  <!-- ===================== COMPOSICIÓN DEL PATRIMONIO ===================== -->
-  <div class="sec-title">Composición del patrimonio · líquido vs autos</div>
-  <div class="card pad">
-    <div class="chart-box bars"><canvas id="chartComposicion"></canvas></div>
-  </div>
-
-  <!-- ===================== AUTOS ===================== -->
-  <div class="sec-title">Autos · stock y ventas</div>
-  <div class="card pad">
-    <div class="chart-box bars"><canvas id="chartAutos"></canvas></div>
   </div>
 
   <!-- ===================== LISTA AUTOS EN STOCK ===================== -->
-  <div class="sec-title">Autos en stock · detalle <span class="cuenta" id="cuentaStock"></span></div>
+  <div class="sec-title">Autos en stock <span class="cuenta" id="cuentaStock"></span></div>
   <div class="card pad">
     <div class="tabla-scroll">
       <table class="autos-tabla">
         <thead>
-          <tr><th>Código</th><th>Modelo</th><th class="num">Año</th><th>Patente</th></tr>
+          <tr><th>Código</th><th>Modelo</th><th class="num">Año</th><th>Patente</th><th>Estado</th></tr>
         </thead>
         <tbody id="listaStock"></tbody>
       </table>
@@ -250,7 +205,7 @@
   </div>
 
   <!-- ===================== LISTA AUTOS VENDIDOS ===================== -->
-  <div class="sec-title">Autos vendidos en el mes · detalle <span class="cuenta" id="cuentaVendidos"></span></div>
+  <div class="sec-title">Autos vendidos en el mes <span class="cuenta" id="cuentaVendidos"></span></div>
   <div class="card pad">
     <div class="tabla-scroll">
       <table class="autos-tabla">
@@ -262,48 +217,21 @@
     </div>
   </div>
 
-  <p class="foot-note">Montos en pesos argentinos.</p>
+  <p class="foot-note">Montos en pesos argentinos. El listado de autos refleja el inventario actual.</p>
 </div>
 
 <script>
   /* ===================== HELPERS DE FORMATO ===================== */
-  // Cotización de respaldo, por si algún mes de data.json no trae "dolar".
-  const USD_ARS_DEFAULT = 1520;   // pesos por 1 dólar
-  // $461.909.191  (separador de miles con puntos, sin decimales)
-  const fmt$ = n => "$" + Math.round(n || 0).toLocaleString("es-AR");
-  // US$303.006  (convierte pesos a dólares usando la cotización del mes)
+  const USD_ARS_DEFAULT = 1520;   // pesos por 1 dólar (respaldo si el mes no trae "dolar")
+  const fmt$   = n => "$" + Math.round(n || 0).toLocaleString("es-AR");
   const fmtUSD = (pesos, dolar) => "US$" + Math.round((pesos || 0) / (dolar || USD_ARS_DEFAULT)).toLocaleString("es-AR");
-  // 66.83%  (dos decimales)
   const fmtPct = n => (n || 0).toFixed(2) + "%";
-  // versión corta para ejes de gráficos:  $232,9M
-  const fmtCorto = n => "$" + (n / 1e6).toLocaleString("es-AR", { maximumFractionDigits: 1 }) + "M";
-
-  // Devuelve HTML de la variación (flecha + valor + color) para las KPIs.
-  // esMoneda = true → formatea como $ ; si no, número entero.
-  function chipVariacion(actual, anterior, esMoneda) {
-    if (anterior === null || anterior === undefined) return '<span class="k-var flat">— sin mes previo</span>';
-    const d = actual - anterior;
-    const pct = anterior ? (d / anterior * 100) : 0;
-    const clase = d > 0 ? "up" : d < 0 ? "down" : "flat";
-    const flecha = d > 0 ? "▲" : d < 0 ? "▼" : "–";
-    const valor = esMoneda ? fmt$(Math.abs(d)) : Math.abs(d);
-    const signo = d > 0 ? "+" : d < 0 ? "−" : "";
-    const pctTxt = anterior ? ` (${signo}${Math.abs(pct).toFixed(1)}%)` : "";
-    return `<span class="k-var ${clase}"><span class="arrow">${flecha}</span>${signo}${valor}${pctTxt}</span>`;
-  }
+  const oGuion = v => (v === "" || v === null || v === undefined) ? "—" : v;
 
   /* ===================== ESTADO ===================== */
-  let idxActual = 0;                        // se ajusta al mes más reciente al cargar
-  let chartTorta, chartComposicion, chartAutos;
-
+  let idxActual = 0;   // se ajusta al mes más reciente al cargar
   const mesEn = i => (i >= 0 && i < DATA.meses.length) ? DATA.meses[i] : null;
-  // ¿El nombre del mes contiene "provisorio"? → mes en curso, sin cerrar.
   const esProvisorio = mes => /provisorio/i.test(mes.nombre);
-
-  // Conteo de autos: si la lista tiene items, se cuenta de ahí (siempre coincide);
-  // si la lista está vacía, usa el número cargado a mano como respaldo.
-  const contarStock    = mes => (mes.autosStockLista && mes.autosStockLista.length)       ? mes.autosStockLista.length    : (mes.autosStock || 0);
-  const contarVendidos = mes => (mes.autosVendidosLista && mes.autosVendidosLista.length) ? mes.autosVendidosLista.length : (mes.autosVendidos || 0);
 
   const sel = document.getElementById("mesSel");
   sel.addEventListener("change", e => { idxActual = +e.target.value; render(); });
@@ -319,53 +247,46 @@
     sel.value = idxActual;
   }
 
-  /* ===================== RENDER PRINCIPAL ===================== */
+  /* ===================== RENDER (indicadores + inversores, por mes) ===================== */
   function render() {
     const mes = mesEn(idxActual);
-    const prev = mesEn(idxActual - 1);   // mes anterior (o null si es el primero)
-    const prov = esProvisorio(mes);      // mes en curso / provisorio
-    const dolar = mes.dolar || USD_ARS_DEFAULT;   // cotización del dólar de ESTE mes
+    const prov = esProvisorio(mes);
+    const dolar = mes.dolar || USD_ARS_DEFAULT;
 
-    // Etiqueta de cotización al lado del título "Inversores"
     document.getElementById("usdRate").textContent = "· dólar a $" + dolar.toLocaleString("es-AR");
-
-    // Título + badge "EN CURSO — provisorio" si corresponde
     document.getElementById("kpiTitle").innerHTML =
       "Indicadores del fondo · " + mes.nombre +
       (prov ? ' <span class="badge-prov">EN CURSO — provisorio</span>' : "");
 
-    /* ---- KPIs ---- */
+    /* ---- KPIs (solo número, sin variación) ---- */
     const kpis = [
-      { label: "Fondo total",         val: fmt$(mes.fondoTotal),        v: "",  count: false },   // sin variación: el fondo se mueve por retiros (dato tendencioso)
-      { label: "Caja líquida",        val: fmt$(mes.cajaLiquida),       v: chipVariacion(mes.cajaLiquida,  prev && prev.cajaLiquida,  true),  count: false },
-      { label: "Capital en autos",    val: fmt$(mes.capitalAutos),      v: chipVariacion(mes.capitalAutos, prev && prev.capitalAutos, true),  count: false },
-      { label: "Autos en stock",      val: contarStock(mes),            v: chipVariacion(contarStock(mes),    prev && contarStock(prev),    false), count: true },
-      { label: "Autos vendidos",      val: contarVendidos(mes),         v: chipVariacion(contarVendidos(mes), prev && contarVendidos(prev), false), count: true },
+      { label: "Fondo total",      val: fmt$(mes.fondoTotal),   count: false },
+      { label: "Caja líquida",     val: fmt$(mes.cajaLiquida),  count: false },
+      { label: "Capital en autos", val: fmt$(mes.capitalAutos), count: false },
+      { label: "Autos en stock",   val: mes.autosStock,         count: true },
+      { label: "Autos vendidos",   val: mes.autosVendidos,      count: true },
     ];
     document.getElementById("kpis").innerHTML = kpis.map(k => `
       <div class="card kpi ${k.count ? "count" : ""}">
         <div class="k-label">${k.label}</div>
         <div class="k-value">${k.val}</div>
-        ${k.v ? `<div>${k.v}</div>` : ""}
       </div>`).join("");
 
     /* ---- Tabla de inversores ---- */
-    const cuerpo = document.getElementById("tablaInv");
-    cuerpo.innerHTML = mes.inversores.map((inv, i) => {
-      return `<tr>
+    document.getElementById("tablaInv").innerHTML = mes.inversores.map((inv, i) => `
+      <tr>
         <td><div class="who"><span class="swatch" style="background:${COLORES[i % COLORES.length]}"></span><b>${inv.nombre}</b></div></td>
         <td class="num">${fmt$(inv.capital)}</td>
         <td class="num usd">${fmtUSD(inv.capital, dolar)}</td>
         <td class="num">${fmtPct(inv.pct)}</td>
-      </tr>`;
-    }).join("");
+      </tr>`).join("");
     const sumaCap = mes.inversores.reduce((a, b) => a + b.capital, 0);
     const sumaPct = mes.inversores.reduce((a, b) => a + b.pct, 0);
     document.getElementById("totCap").textContent = fmt$(sumaCap);
     document.getElementById("totUsd").textContent = fmtUSD(sumaCap, dolar);
     document.getElementById("totPct").textContent = fmtPct(sumaPct);
 
-    // Reparto de ganancia: si el mes es provisorio (o todavía es 0), lo atenuamos
+    /* ---- Reparto de ganancia ---- */
     const gananciaBox = document.getElementById("ganancia");
     if (prov) {
       gananciaBox.classList.add("dim");
@@ -374,118 +295,39 @@
       gananciaBox.classList.remove("dim");
       document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
     }
-
-    /* ---- Listas de autos (stock y vendidos) ---- */
-    renderAutos("listaStock", "cuentaStock", mes.autosStockLista);
-    renderAutos("listaVendidos", "cuentaVendidos", mes.autosVendidosLista);
-
-    /* ---- Gráficos ---- */
-    dibujarTorta(mes);
-    dibujarComposicion(mes, prev);
-    dibujarAutos(mes, prev);
   }
 
-  /* ===================== LISTAS DE AUTOS (stock / vendidos) ===================== */
-  // lista = array de objetos { codigo, modelo, anio, patente }. Si no hay, muestra aviso.
-  function renderAutos(idTabla, idCuenta, lista) {
+  /* ===================== LISTAS DE AUTOS (inventario actual) ===================== */
+  function pillEstado(estado) {
+    if (!estado) return "";
+    const cls = /libre/i.test(estado) ? "libre" : "proceso";
+    return `<span class="pill ${cls}">${estado}</span>`;
+  }
+
+  // lista = array { codigo, modelo, anio, patente, estado? }. conEstado agrega la 5ª columna.
+  function renderAutos(idTabla, idCuenta, lista, conEstado) {
     const tb = document.getElementById(idTabla);
     const cta = document.getElementById(idCuenta);
+    const cols = conEstado ? 5 : 4;
     if (!lista || !lista.length) {
       cta.textContent = "";
-      tb.innerHTML = '<tr><td colspan="4" class="sin-datos">Sin autos cargados para este mes</td></tr>';
+      tb.innerHTML = `<tr><td colspan="${cols}" class="sin-datos">Sin autos cargados</td></tr>`;
       return;
     }
     cta.textContent = "(" + lista.length + ")";
-    tb.innerHTML = lista.map(a => `<tr>
-      <td><b>${a.codigo ?? "—"}</b></td>
-      <td>${a.modelo ?? "—"}</td>
-      <td class="num">${a.anio ?? "—"}</td>
-      <td class="patente">${a.patente ?? "—"}</td>
-    </tr>`).join("");
+    tb.innerHTML = lista.map(a => `
+      <tr>
+        <td><b>${oGuion(a.codigo)}</b></td>
+        <td>${oGuion(a.modelo)}</td>
+        <td class="num">${oGuion(a.anio)}</td>
+        <td class="patente">${oGuion(a.patente)}</td>
+        ${conEstado ? `<td>${pillEstado(a.estado)}</td>` : ""}
+      </tr>`).join("");
   }
 
-  /* ===================== GRÁFICO 1: TORTA (participación) ===================== */
-  function dibujarTorta(mes) {
-    const datos = {
-      labels: mes.inversores.map(i => i.nombre),
-      datasets: [{
-        data: mes.inversores.map(i => i.pct),
-        backgroundColor: mes.inversores.map((_, i) => COLORES[i % COLORES.length]),
-        borderColor: "#fff", borderWidth: 2,
-      }]
-    };
-    if (chartTorta) chartTorta.destroy();
-    chartTorta = new Chart(document.getElementById("chartTorta"), {
-      type: "doughnut",
-      data: datos,
-      options: {
-        responsive: true, maintainAspectRatio: false, cutout: "58%",
-        plugins: {
-          legend: { position: "bottom", labels: { boxWidth: 12, padding: 12, font: { size: 12 } } },
-          tooltip: { callbacks: { label: c => ` ${c.label}: ${c.parsed.toFixed(2)}%` } }
-        }
-      }
-    });
-  }
-
-  /* ===================== GRÁFICO 2: COMPOSICIÓN (líquido vs autos, apilado) ===================== */
-  function dibujarComposicion(mes, prev) {
-    // eje X: mes anterior (si existe) y mes actual; barras apiladas Caja + Autos
-    const etiquetas = [], caja = [], autos = [];
-    if (prev) { etiquetas.push(prev.nombre); caja.push(prev.cajaLiquida); autos.push(prev.capitalAutos); }
-    etiquetas.push(mes.nombre); caja.push(mes.cajaLiquida); autos.push(mes.capitalAutos);
-
-    if (chartComposicion) chartComposicion.destroy();
-    chartComposicion = new Chart(document.getElementById("chartComposicion"), {
-      type: "bar",
-      data: {
-        labels: etiquetas,
-        datasets: [
-          { label: "Caja líquida",   data: caja,  backgroundColor: "#2F6DB4", borderRadius: 5, maxBarThickness: 90 },
-          { label: "Capital en autos", data: autos, backgroundColor: "#1F3864", borderRadius: 5, maxBarThickness: 90 },
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        scales: {
-          x: { stacked: true, grid: { display: false } },
-          y: { stacked: true, ticks: { callback: v => fmtCorto(v) }, grid: { color: "#eef1f6" } }
-        },
-        plugins: {
-          legend: { position: "bottom", labels: { boxWidth: 12, padding: 14, font: { size: 12 } } },
-          tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${fmt$(c.parsed.y)}` } }
-        }
-      }
-    });
-  }
-
-  /* ===================== GRÁFICO 3: AUTOS (stock y ventas) ===================== */
-  function dibujarAutos(mes, prev) {
-    const series = [];
-    if (prev) series.push({ label: prev.nombre, datos: [contarStock(prev), contarVendidos(prev)], color: "#7FB3D5" });
-    series.push({ label: mes.nombre, datos: [contarStock(mes), contarVendidos(mes)], color: "#1F3864" });
-
-    if (chartAutos) chartAutos.destroy();
-    chartAutos = new Chart(document.getElementById("chartAutos"), {
-      type: "bar",
-      data: {
-        labels: ["Autos en stock", "Autos vendidos"],
-        datasets: series.map(s => ({
-          label: s.label, data: s.datos, backgroundColor: s.color, borderRadius: 5, maxBarThickness: 70
-        }))
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        scales: {
-          x: { grid: { display: false } },
-          y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: "#eef1f6" } }
-        },
-        plugins: {
-          legend: { position: "bottom", labels: { boxWidth: 12, padding: 14, font: { size: 12 } } },
-          tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}` } }
-        }
-      }
-    });
+  function renderListados() {
+    renderAutos("listaStock", "cuentaStock", DATA.autosEnStock, true);
+    renderAutos("listaVendidos", "cuentaVendidos", DATA.autosVendidos, false);
   }
 
   /* ===================== ARRANQUE: leer data.json ===================== */
@@ -496,6 +338,7 @@
       idxActual = DATA.meses.length - 1;   // por defecto, el mes más reciente
       poblarSelector();
       render();
+      renderListados();
     })
     .catch(err => {
       document.getElementById("kpis").innerHTML =
@@ -508,6 +351,6 @@
     });
 </script>
 
-<!-- COMO ACTUALIZAR: editar data.json (reemplazar el array "meses"). NO se toca este archivo. -->
+<!-- COMO ACTUALIZAR: pegar el JSON nuevo en data.json (meses + autosEnStock + autosVendidos). NO se toca este archivo. -->
 </body>
 </html>
