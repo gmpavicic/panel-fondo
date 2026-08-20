@@ -15,7 +15,9 @@
         {"nombre": "Gaston", "capital": 46517959, "pct": 9.87},
         {"nombre": "Gerard", "capital": 40006417, "pct": 8.49},
         {"nombre": "Fernando", "capital": 15870119, "pct": 3.37}
-      ]
+      ],
+      "autosStockLista": [],
+      "autosVendidosLista": []
     },
     {
       "nombre": "Julio 2026",
@@ -32,7 +34,9 @@
         {"nombre": "Gaston", "capital": 46855816, "pct": 9.87},
         {"nombre": "Gerard", "capital": 40296980, "pct": 8.49},
         {"nombre": "Fernando", "capital": 15985383, "pct": 3.37}
-      ]
+      ],
+      "autosStockLista": [],
+      "autosVendidosLista": []
     },
     {
       "nombre": "Agosto 2026 (provisorio)",
@@ -49,7 +53,9 @@
         {"nombre": "Gaston", "capital": 34855816, "pct": 7.78},
         {"nombre": "Gerard", "capital": 32296980, "pct": 7.21},
         {"nombre": "Fernando", "capital": 8985383, "pct": 2.01}
-      ]
+      ],
+      "autosStockLista": [],
+      "autosVendidosLista": []
     }
   ]
 }

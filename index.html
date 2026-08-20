@@ -144,6 +144,12 @@
   td.usd { color: var(--verde); font-weight: 650; }
   tfoot td#totUsd { color: var(--verde); }
   .usd-rate { font-size: 11.5px; font-weight: 600; color: var(--gris-3); }
+
+  /* Listas de autos (stock / vendidos) */
+  .cuenta { font-size: 11px; font-weight: 700; color: var(--azul-2); margin-left: 4px; }
+  .autos-tabla td.patente { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .5px; font-weight: 650; }
+  .autos-tabla td { white-space: nowrap; }
+  .sin-datos { text-align: center; color: var(--gris-3); font-style: italic; padding: 20px 8px; }
 </style>
 </head>
 <body>
@@ -194,7 +200,6 @@
             <th class="num">Capital</th>
             <th class="num">Capital (USD)</th>
             <th class="num">%</th>
-            <th class="num">Var. %</th>
           </tr>
         </thead>
         <tbody id="tablaInv"></tbody>
@@ -204,7 +209,6 @@
             <td class="num" id="totCap">—</td>
             <td class="num" id="totUsd">—</td>
             <td class="num" id="totPct">—</td>
-            <td class="num"></td>
           </tr>
         </tfoot>
       </table>
@@ -232,7 +236,33 @@
     <div class="chart-box bars"><canvas id="chartAutos"></canvas></div>
   </div>
 
-  <p class="foot-note">Montos en pesos argentinos. Variaciones calculadas contra el mes anterior.</p>
+  <!-- ===================== LISTA AUTOS EN STOCK ===================== -->
+  <div class="sec-title">Autos en stock · detalle <span class="cuenta" id="cuentaStock"></span></div>
+  <div class="card pad">
+    <div class="tabla-scroll">
+      <table class="autos-tabla">
+        <thead>
+          <tr><th>Código</th><th>Modelo</th><th class="num">Año</th><th>Patente</th></tr>
+        </thead>
+        <tbody id="listaStock"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== LISTA AUTOS VENDIDOS ===================== -->
+  <div class="sec-title">Autos vendidos en el mes · detalle <span class="cuenta" id="cuentaVendidos"></span></div>
+  <div class="card pad">
+    <div class="tabla-scroll">
+      <table class="autos-tabla">
+        <thead>
+          <tr><th>Código</th><th>Modelo</th><th class="num">Año</th><th>Patente</th></tr>
+        </thead>
+        <tbody id="listaVendidos"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="foot-note">Montos en pesos argentinos.</p>
 </div>
 
 <script>
@@ -260,16 +290,6 @@
     const signo = d > 0 ? "+" : d < 0 ? "−" : "";
     const pctTxt = anterior ? ` (${signo}${Math.abs(pct).toFixed(1)}%)` : "";
     return `<span class="k-var ${clase}"><span class="arrow">${flecha}</span>${signo}${valor}${pctTxt}</span>`;
-  }
-
-  // Variación de puntos porcentuales para la tabla (columna Var. %)
-  function chipPuntos(actual, anterior) {
-    if (anterior === null || anterior === undefined) return '<span class="var-cell flat">—</span>';
-    const d = actual - anterior;
-    const clase = d > 0 ? "up" : d < 0 ? "down" : "flat";
-    const flecha = d > 0 ? "▲" : d < 0 ? "▼" : "–";
-    if (Math.abs(d) < 0.005) return '<span class="var-cell flat">–</span>';
-    return `<span class="var-cell ${clase}">${flecha} ${Math.abs(d).toFixed(2)}</span>`;
   }
 
   /* ===================== ESTADO ===================== */
@@ -311,7 +331,7 @@
 
     /* ---- KPIs ---- */
     const kpis = [
-      { label: "Fondo total",         val: fmt$(mes.fondoTotal),        v: chipVariacion(mes.fondoTotal,   prev && prev.fondoTotal,   true),  count: false },
+      { label: "Fondo total",         val: fmt$(mes.fondoTotal),        v: "",  count: false },   // sin variación: el fondo se mueve por retiros (dato tendencioso)
       { label: "Caja líquida",        val: fmt$(mes.cajaLiquida),       v: chipVariacion(mes.cajaLiquida,  prev && prev.cajaLiquida,  true),  count: false },
       { label: "Capital en autos",    val: fmt$(mes.capitalAutos),      v: chipVariacion(mes.capitalAutos, prev && prev.capitalAutos, true),  count: false },
       { label: "Autos en stock",      val: mes.autosStock,              v: chipVariacion(mes.autosStock,   prev && prev.autosStock,   false), count: true },
@@ -321,20 +341,17 @@
       <div class="card kpi ${k.count ? "count" : ""}">
         <div class="k-label">${k.label}</div>
         <div class="k-value">${k.val}</div>
-        <div>${k.v}</div>
+        ${k.v ? `<div>${k.v}</div>` : ""}
       </div>`).join("");
 
     /* ---- Tabla de inversores ---- */
     const cuerpo = document.getElementById("tablaInv");
     cuerpo.innerHTML = mes.inversores.map((inv, i) => {
-      // buscar el mismo inversor en el mes anterior para la variación de %
-      const antInv = prev ? prev.inversores.find(x => x.nombre === inv.nombre) : null;
       return `<tr>
         <td><div class="who"><span class="swatch" style="background:${COLORES[i % COLORES.length]}"></span><b>${inv.nombre}</b></div></td>
         <td class="num">${fmt$(inv.capital)}</td>
         <td class="num usd">${fmtUSD(inv.capital, dolar)}</td>
         <td class="num">${fmtPct(inv.pct)}</td>
-        <td class="num">${chipPuntos(inv.pct, antInv ? antInv.pct : null)}</td>
       </tr>`;
     }).join("");
     const sumaCap = mes.inversores.reduce((a, b) => a + b.capital, 0);
@@ -353,10 +370,33 @@
       document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
     }
 
+    /* ---- Listas de autos (stock y vendidos) ---- */
+    renderAutos("listaStock", "cuentaStock", mes.autosStockLista);
+    renderAutos("listaVendidos", "cuentaVendidos", mes.autosVendidosLista);
+
     /* ---- Gráficos ---- */
     dibujarTorta(mes);
     dibujarComposicion(mes, prev);
     dibujarAutos(mes, prev);
+  }
+
+  /* ===================== LISTAS DE AUTOS (stock / vendidos) ===================== */
+  // lista = array de objetos { codigo, modelo, anio, patente }. Si no hay, muestra aviso.
+  function renderAutos(idTabla, idCuenta, lista) {
+    const tb = document.getElementById(idTabla);
+    const cta = document.getElementById(idCuenta);
+    if (!lista || !lista.length) {
+      cta.textContent = "";
+      tb.innerHTML = '<tr><td colspan="4" class="sin-datos">Sin autos cargados para este mes</td></tr>';
+      return;
+    }
+    cta.textContent = "(" + lista.length + ")";
+    tb.innerHTML = lista.map(a => `<tr>
+      <td><b>${a.codigo ?? "—"}</b></td>
+      <td>${a.modelo ?? "—"}</td>
+      <td class="num">${a.anio ?? "—"}</td>
+      <td class="patente">${a.patente ?? "—"}</td>
+    </tr>`).join("");
   }
 
   /* ===================== GRÁFICO 1: TORTA (participación) ===================== */
