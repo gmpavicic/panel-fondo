@@ -37,8 +37,8 @@
       "fondoTotal": 447909190,
       "cajaLiquida": 59183217,
       "capitalAutos": 388725973,
-      "autosStock": 34,
-      "autosVendidos": 9,
+      "autosStock": 31,
+      "autosVendidos": 7,
       "repartoGanancia": 0,
       "inversores": [
         { "nombre": "Francisco", "capital": 308624047, "pct": 68.90 },
@@ -85,12 +85,10 @@
   "autosVendidos": [
     {"codigo": 906,  "modelo": "Citroen C3",     "anio": "",     "patente": "LPI685"},
     {"codigo": 1078, "modelo": "Peugeot 2008",   "anio": "",     "patente": "AF284KZ"},
-    {"codigo": 1125, "modelo": "VW Gol Trend",   "anio": "",     "patente": "AD981YT"},
     {"codigo": 1192, "modelo": "Fiat Palio",     "anio": "2015", "patente": "PBU283"},
     {"codigo": 1199, "modelo": "Nissan March",   "anio": "2017", "patente": "AB748WP"},
     {"codigo": 1210, "modelo": "Ford Focus",     "anio": "2019", "patente": "AE041BL"},
     {"codigo": 1215, "modelo": "Ford Ecosport",  "anio": "2021", "patente": "AE976NX"},
-    {"codigo": 1218, "modelo": "",               "anio": "",     "patente": ""},
     {"codigo": 1220, "modelo": "Chevrolet Spin", "anio": "2025", "patente": "AH508FW"}
   ]
 }
