@@ -35,10 +35,10 @@
     {
       "nombre": "Agosto 2026 (provisorio)",
       "fondoTotal": 447909190,
-      "cajaLiquida": 11747126,
-      "capitalAutos": 436162064,
-      "autosStock": 33,
-      "autosVendidos": 6,
+      "cajaLiquida": 59183217,
+      "capitalAutos": 388725973,
+      "autosStock": 31,
+      "autosVendidos": 9,
       "repartoGanancia": 0,
       "inversores": [
         { "nombre": "Francisco", "capital": 308624047, "pct": 68.90 },
@@ -51,14 +51,12 @@
   ],
   "autosEnStock": [
     {"codigo": 989,  "modelo": "Chery QQ",            "anio": "",     "patente": "JWV094",  "estado": "en proceso"},
-    {"codigo": 1125, "modelo": "VW Gol Trend",        "anio": "",     "patente": "AD981YT", "estado": "en proceso"},
     {"codigo": 1140, "modelo": "VW T-Cross",          "anio": "",     "patente": "",        "estado": "libre"},
     {"codigo": 1146, "modelo": "Jeep Renegade",       "anio": "",     "patente": "AD475NC", "estado": "en proceso"},
     {"codigo": 1171, "modelo": "Toyota Corolla",      "anio": "",     "patente": "AE576WD", "estado": "libre"},
     {"codigo": 1208, "modelo": "Peugeot 207",         "anio": "2011", "patente": "JRR412",  "estado": "libre"},
     {"codigo": 1212, "modelo": "Citroen C3 Aircross", "anio": "2016", "patente": "AA103TO", "estado": "libre"},
     {"codigo": 1213, "modelo": "Chevrolet Onix",      "anio": "2017", "patente": "AB408PH", "estado": "libre"},
-    {"codigo": 1215, "modelo": "Ford Ecosport",       "anio": "2021", "patente": "AE976NX", "estado": "libre"},
     {"codigo": 1216, "modelo": "Peugeot 208",         "anio": "2017", "patente": "AB847JB", "estado": "libre"},
     {"codigo": 1222, "modelo": "Citroen C3",          "anio": "2018", "patente": "AD241JW", "estado": "libre"},
     {"codigo": 1223, "modelo": "Peugeot 207",         "anio": "2009", "patente": "IIR233",  "estado": "libre"},
@@ -87,9 +85,12 @@
   "autosVendidos": [
     {"codigo": 906,  "modelo": "Citroen C3",     "anio": "",     "patente": "LPI685"},
     {"codigo": 1078, "modelo": "Peugeot 2008",   "anio": "",     "patente": "AF284KZ"},
+    {"codigo": 1125, "modelo": "VW Gol Trend",   "anio": "",     "patente": "AD981YT"},
     {"codigo": 1192, "modelo": "Fiat Palio",     "anio": "2015", "patente": "PBU283"},
     {"codigo": 1199, "modelo": "Nissan March",   "anio": "2017", "patente": "AB748WP"},
     {"codigo": 1210, "modelo": "Ford Focus",     "anio": "2019", "patente": "AE041BL"},
+    {"codigo": 1215, "modelo": "Ford Ecosport",  "anio": "2021", "patente": "AE976NX"},
+    {"codigo": 1218, "modelo": "",               "anio": "",     "patente": ""},
     {"codigo": 1220, "modelo": "Chevrolet Spin", "anio": "2025", "patente": "AH508FW"}
   ]
 }
