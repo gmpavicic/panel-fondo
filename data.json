@@ -36,6 +36,8 @@
       "nombre": "Agosto 2026 (provisorio)",
       "fondoTotal": 447909190,
       "cajaLiquida": 106307450,
+      "comisionEstimadaAgencia": 17289965,
+      "cajaLiquidaNeta": 89017485,
       "capitalAutos": 341601740,
       "autosStock": 29,
       "autosVendidos": 10,

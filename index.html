@@ -13,6 +13,7 @@
     --azul:    #1F3864;
     --azul-2:  #2F6DB4;
     --verde:   #2E7D46;
+    --rojo:    #C0392B;
     --gris-1:  #f4f6f9;
     --gris-2:  #e6eaf0;
     --gris-3:  #6b7480;
@@ -68,6 +69,26 @@
   .kpi .k-label { font-size: 12px; color: var(--gris-3); font-weight: 600; margin-bottom: 10px; }
   .kpi .k-value { font-size: 21px; font-weight: 760; letter-spacing: -.5px; line-height: 1.1; color: var(--azul); }
   .kpi.count .k-value { font-size: 26px; }
+
+  /* ===================== BANDA DE CAJA (bruta − comisión = neta) ===================== */
+  .caja-band {
+    margin-top: 12px; background: var(--blanco); border: 1px solid var(--gris-2);
+    border-radius: 14px; box-shadow: var(--sombra); padding: 15px 20px;
+    display: flex; align-items: center; gap: 14px 22px; flex-wrap: wrap;
+    border-left: 4px solid var(--verde);
+  }
+  .caja-band .cb-item { display: flex; flex-direction: column; gap: 3px; }
+  .caja-band .cb-lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .5px; color: var(--gris-3); font-weight: 700; }
+  .caja-band .cb-val { font-size: 19px; font-weight: 760; color: var(--azul); letter-spacing: -.3px; }
+  .caja-band .cb-val.neg { color: var(--rojo); }
+  .caja-band .cb-op { font-size: 20px; font-weight: 700; color: var(--gris-3); align-self: center; }
+  .caja-band .cb-item.net { margin-left: auto; text-align: right; }
+  .caja-band .cb-item.net .cb-lbl { color: var(--verde); }
+  .caja-band .cb-item.net .cb-val { color: var(--verde); font-size: 23px; }
+  @media (max-width: 620px) {
+    .caja-band { gap: 10px 16px; }
+    .caja-band .cb-item.net { margin-left: 0; text-align: left; width: 100%; padding-top: 4px; border-top: 1px dashed var(--gris-2); }
+  }
 
   /* ===================== TABLAS ===================== */
   .tabla-scroll { overflow-x: auto; }
@@ -159,6 +180,15 @@
   <!-- ===================== KPIs ===================== -->
   <div class="sec-title" id="kpiTitle">Indicadores del fondo</div>
   <div class="kpis" id="kpis"></div>
+
+  <!-- Caja: bruta − comisión agencia = disponible neto (solo si el mes trae esos datos) -->
+  <div class="caja-band" id="cajaBand" style="display:none">
+    <div class="cb-item"><span class="cb-lbl">Caja bruta</span><span class="cb-val" id="cbBruta">—</span></div>
+    <span class="cb-op">−</span>
+    <div class="cb-item"><span class="cb-lbl">Comisión agencia (60%)</span><span class="cb-val neg" id="cbComision">—</span></div>
+    <span class="cb-op">=</span>
+    <div class="cb-item net"><span class="cb-lbl">Disponible neto p/ comprar</span><span class="cb-val" id="cbNeta">—</span></div>
+  </div>
 
   <!-- ===================== GRUPO / PARTICIPACIÓN ===================== -->
   <div class="sec-title">Formación del grupo y participación</div>
@@ -271,6 +301,17 @@
         <div class="k-label">${k.label}</div>
         <div class="k-value">${k.val}</div>
       </div>`).join("");
+
+    /* ---- Banda de caja: bruta − comisión = neta (solo si el mes trae los datos) ---- */
+    const band = document.getElementById("cajaBand");
+    if (mes.comisionEstimadaAgencia != null && mes.cajaLiquidaNeta != null) {
+      document.getElementById("cbBruta").textContent = fmt$(mes.cajaLiquida);
+      document.getElementById("cbComision").textContent = "−" + fmt$(mes.comisionEstimadaAgencia);
+      document.getElementById("cbNeta").textContent = fmt$(mes.cajaLiquidaNeta);
+      band.style.display = "flex";
+    } else {
+      band.style.display = "none";
+    }
 
     /* ---- Tabla de inversores ---- */
     document.getElementById("tablaInv").innerHTML = mes.inversores.map((inv, i) => `
