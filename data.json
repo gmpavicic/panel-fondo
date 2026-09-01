@@ -35,10 +35,10 @@
     {
       "nombre": "Agosto 2026 (provisorio)",
       "fondoTotal": 447909190,
-      "cajaLiquida": 59183217,
-      "capitalAutos": 388725973,
-      "autosStock": 31,
-      "autosVendidos": 7,
+      "cajaLiquida": 106307450,
+      "capitalAutos": 341601740,
+      "autosStock": 29,
+      "autosVendidos": 10,
       "repartoGanancia": 0,
       "inversores": [
         { "nombre": "Francisco", "capital": 308624047, "pct": 68.90 },
@@ -64,7 +64,6 @@
     {"codigo": 1225, "modelo": "Kia Picanto",         "anio": "2013", "patente": "NGF682",  "estado": "libre"},
     {"codigo": 1229, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "PBK848",  "estado": "libre"},
     {"codigo": 1243, "modelo": "VW Fox",              "anio": "2013", "patente": "MQX772",  "estado": "libre"},
-    {"codigo": 1248, "modelo": "Renault Sandero",     "anio": "2025", "patente": "AH926ZF", "estado": "libre"},
     {"codigo": 1250, "modelo": "Chevrolet Tracker",   "anio": "2020", "patente": "AE541BW", "estado": "libre"},
     {"codigo": 1251, "modelo": "Toyota RAV4",         "anio": "2010", "patente": "IKV736",  "estado": "libre"},
     {"codigo": 1253, "modelo": "VW Saveiro",          "anio": "2016", "patente": "AA104PT", "estado": "libre"},
@@ -75,7 +74,6 @@
     {"codigo": 1267, "modelo": "Citroen C3 Aircross", "anio": "2017", "patente": "AC107FR", "estado": "libre"},
     {"codigo": 1269, "modelo": "Fiat Siena",          "anio": "2013", "patente": "MFO411",  "estado": "libre"},
     {"codigo": 1271, "modelo": "Honda Fit",           "anio": "2012", "patente": "KZB453",  "estado": "libre"},
-    {"codigo": 1272, "modelo": "Ford Kuga",           "anio": "2012", "patente": "KVV147",  "estado": "libre"},
     {"codigo": 1273, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "OXY910",  "estado": "libre"},
     {"codigo": 1277, "modelo": "Peugeot Partner",     "anio": "2017", "patente": "AB218MV", "estado": "libre"},
     {"codigo": 1278, "modelo": "VW UP",               "anio": "2016", "patente": "AA383TN", "estado": "libre"},
@@ -83,12 +81,15 @@
     {"codigo": 1280, "modelo": "Toyota Yaris",        "anio": "2018", "patente": "AC618VM", "estado": "libre"}
   ],
   "autosVendidos": [
-    {"codigo": 906,  "modelo": "Citroen C3",     "anio": "",     "patente": "LPI685"},
-    {"codigo": 1078, "modelo": "Peugeot 2008",   "anio": "",     "patente": "AF284KZ"},
-    {"codigo": 1192, "modelo": "Fiat Palio",     "anio": "2015", "patente": "PBU283"},
-    {"codigo": 1199, "modelo": "Nissan March",   "anio": "2017", "patente": "AB748WP"},
-    {"codigo": 1210, "modelo": "Ford Focus",     "anio": "2019", "patente": "AE041BL"},
-    {"codigo": 1215, "modelo": "Ford Ecosport",  "anio": "2021", "patente": "AE976NX"},
-    {"codigo": 1220, "modelo": "Chevrolet Spin", "anio": "2025", "patente": "AH508FW"}
+    {"codigo": 906,  "modelo": "Citroen C3",      "anio": "",     "patente": "LPI685"},
+    {"codigo": 1078, "modelo": "Peugeot 2008",    "anio": "",     "patente": "AF284KZ"},
+    {"codigo": 1125, "modelo": "VW Gol Trend",    "anio": "",     "patente": "AD981YT"},
+    {"codigo": 1192, "modelo": "Fiat Palio",      "anio": "2015", "patente": "PBU283"},
+    {"codigo": 1199, "modelo": "Nissan March",    "anio": "2017", "patente": "AB748WP"},
+    {"codigo": 1210, "modelo": "Ford Focus",      "anio": "2019", "patente": "AE041BL"},
+    {"codigo": 1215, "modelo": "Ford Ecosport",   "anio": "2021", "patente": "AE976NX"},
+    {"codigo": 1220, "modelo": "Chevrolet Spin",  "anio": "2025", "patente": "AH508FW"},
+    {"codigo": 1248, "modelo": "Renault Sandero", "anio": "2025", "patente": "AH926ZF"},
+    {"codigo": 1272, "modelo": "Ford Kuga",       "anio": "2012", "patente": "KVV147"}
   ]
 }
