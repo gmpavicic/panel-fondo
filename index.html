@@ -126,6 +126,13 @@
     color: #1b6b3a; background: #e2f4ec; border: 1px solid #b7e0c9;
     padding: 3px 9px; border-radius: 999px; white-space: nowrap;
   }
+  /* Badge mes cerrado pero provisorio (a revisar) — ámbar */
+  .badge-cerrado-prov {
+    display: inline-block; vertical-align: middle; margin-left: 8px;
+    font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: none;
+    color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  }
   /* Filas positivas de la banda (ganancia) */
   .caja-band .cb-row.pos .cb-val { color: var(--verde); }
   /* Columna "Ganancia mes" en la tabla de inversores (oculta salvo mes cerrado) */
@@ -305,7 +312,9 @@
   /* ===================== ESTADO ===================== */
   let idxActual = 0;   // se ajusta al mes más reciente al cargar
   const mesEn = i => (i >= 0 && i < DATA.meses.length) ? DATA.meses[i] : null;
-  const esProvisorio = mes => /provisorio/i.test(mes.nombre);
+  const esCerrado = mes => /cerrado/i.test(mes.nombre);
+  // "En curso" = mes abierto ("en curso" o "provisorio" en el nombre, y NO cerrado)
+  const enCursoMes = mes => !esCerrado(mes) && /en curso|provisorio/i.test(mes.nombre);
 
   const sel = document.getElementById("mesSel");
   sel.addEventListener("change", e => { idxActual = +e.target.value; render(); });
@@ -324,12 +333,15 @@
   /* ===================== RENDER (indicadores + inversores, por mes) ===================== */
   function render() {
     const mes = mesEn(idxActual);
-    const prov = esProvisorio(mes);
+    const cerrado = esCerrado(mes);
+    const provis = /provisorio/i.test(mes.nombre);
+    const enCurso = enCursoMes(mes);
     const dolar = mes.dolar || USD_ARS_DEFAULT;
 
     document.getElementById("usdRate").textContent = "· dólar a $" + dolar.toLocaleString("es-AR");
-    const badge = prov ? ' <span class="badge-prov">EN CURSO — provisorio</span>'
-                : /cerrado/i.test(mes.nombre) ? ' <span class="badge-cerrado">✓ CERRADO</span>' : '';
+    const badge = cerrado
+      ? (provis ? ' <span class="badge-cerrado-prov">CERRADO · provisorio (a revisar)</span>' : ' <span class="badge-cerrado">✓ CERRADO</span>')
+      : enCurso ? ` <span class="badge-prov">EN CURSO${provis ? " — provisorio" : ""}</span>` : '';
     document.getElementById("kpiTitle").innerHTML = "Indicadores del fondo · " + mes.nombre + badge;
 
     /* ---- KPIs (solo número, sin variación) ---- */
@@ -418,7 +430,7 @@
     const gananciaBox = document.getElementById("ganancia");
     if (esCierre) {
       gananciaBox.style.display = "none";
-    } else if (prov) {
+    } else if (enCurso) {
       gananciaBox.style.display = "flex";
       gananciaBox.classList.add("dim");
       document.getElementById("repVal").textContent = "En curso — se define al cierre";
@@ -427,6 +439,9 @@
       gananciaBox.classList.remove("dim");
       document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
     }
+
+    /* ---- Listados de autos (inventario global + vendidos del mes) ---- */
+    renderListados(mes);
   }
 
   /* ===================== LISTAS DE AUTOS (inventario actual) ===================== */
@@ -457,9 +472,11 @@
       </tr>`).join("");
   }
 
-  function renderListados() {
+  // Inventario = lista global (actual). Vendidos = lista del mes (o global como respaldo).
+  function renderListados(mes) {
     renderAutos("listaStock", "cuentaStock", DATA.autosEnStock, true);
-    renderAutos("listaVendidos", "cuentaVendidos", DATA.autosVendidos, false);
+    const vendidos = (mes && mes.autosVendidosLista) ? mes.autosVendidosLista : (DATA.autosVendidos || []);
+    renderAutos("listaVendidos", "cuentaVendidos", vendidos, false);
   }
 
   /* ===================== ARRANQUE: leer data.json ===================== */
@@ -470,7 +487,6 @@
       idxActual = DATA.meses.length - 1;   // por defecto, el mes más reciente
       poblarSelector();
       render();
-      renderListados();
     })
     .catch(err => {
       document.getElementById("kpis").innerHTML =

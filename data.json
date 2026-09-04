@@ -33,9 +33,11 @@
       ]
     },
     {
-      "nombre": "Agosto 2026 (cerrado)",
+      "nombre": "Agosto 2026 (cerrado provisorio)",
       "fondoAnterior": 447909190,
       "fondoTotal": 455549627,
+      "cajaLiquida": 113947887,
+      "capitalAutos": 341601740,
       "gananciaGrupoBruta": 9040437,
       "sueldoPablo": 1400000,
       "gananciaGrupoNeta": 7640437,
@@ -51,7 +53,39 @@
         { "nombre": "Gaston", "capital": 35450242, "pct": 7.78, "gananciaMes": 594426 },
         { "nombre": "Gerard", "capital": 32847856, "pct": 7.21, "gananciaMes": 550876 },
         { "nombre": "Fernando", "capital": 9138956, "pct": 2.01, "gananciaMes": 153573 }
+      ],
+      "autosVendidosLista": [
+        {"codigo": 906,  "modelo": "Citroen C3",       "anio": "",     "patente": "LPI685"},
+        {"codigo": 1078, "modelo": "Peugeot 2008",     "anio": "",     "patente": "AF284KZ"},
+        {"codigo": 1125, "modelo": "VW Gol Trend",     "anio": "",     "patente": "AD981YT"},
+        {"codigo": 1192, "modelo": "Fiat Palio",       "anio": "2015", "patente": "PBU283"},
+        {"codigo": 1199, "modelo": "Nissan March",     "anio": "2017", "patente": "AB748WP"},
+        {"codigo": 1210, "modelo": "Ford Focus",       "anio": "2019", "patente": "AE041BL"},
+        {"codigo": 1212, "modelo": "Citroen C3 Aircross","anio": "2016","patente": "AA103TO"},
+        {"codigo": 1215, "modelo": "Ford Ecosport",    "anio": "2021", "patente": "AE976NX"},
+        {"codigo": 1220, "modelo": "Chevrolet Spin",   "anio": "2025", "patente": "AH508FW"},
+        {"codigo": 1223, "modelo": "Peugeot 207",      "anio": "2009", "patente": "IIR233"},
+        {"codigo": 1248, "modelo": "Renault Sandero",  "anio": "2025", "patente": "AH926ZF"},
+        {"codigo": 1272, "modelo": "Ford Kuga",        "anio": "2012", "patente": "KVV147"}
       ]
+    },
+    {
+      "nombre": "Septiembre 2026 (en curso)",
+      "fondoTotal": 455549627,
+      "cajaLiquida": 113947887,
+      "capitalAutos": 341601740,
+      "autosStock": 23,
+      "autosEnProceso": 4,
+      "autosVendidos": 0,
+      "repartoGanancia": 0,
+      "inversores": [
+        { "nombre": "Francisco", "capital": 313888308, "pct": 68.90 },
+        { "nombre": "Mauro", "capital": 64224266, "pct": 14.10 },
+        { "nombre": "Gaston", "capital": 35450242, "pct": 7.78 },
+        { "nombre": "Gerard", "capital": 32847856, "pct": 7.21 },
+        { "nombre": "Fernando", "capital": 9138956, "pct": 2.01 }
+      ],
+      "autosVendidosLista": []
     }
   ],
   "autosEnStock": [
@@ -82,19 +116,5 @@
     {"codigo": 1278, "modelo": "VW UP",               "anio": "2016", "patente": "AA383TN", "estado": "libre"},
     {"codigo": 1279, "modelo": "VW Suran",            "anio": "2017", "patente": "AB351YF", "estado": "libre"},
     {"codigo": 1280, "modelo": "Toyota Yaris",        "anio": "2018", "patente": "AC618VM", "estado": "libre"}
-  ],
-  "autosVendidos": [
-    {"codigo": 906,  "modelo": "Citroen C3",      "anio": "",     "patente": "LPI685"},
-    {"codigo": 1078, "modelo": "Peugeot 2008",    "anio": "",     "patente": "AF284KZ"},
-    {"codigo": 1125, "modelo": "VW Gol Trend",    "anio": "",     "patente": "AD981YT"},
-    {"codigo": 1192, "modelo": "Fiat Palio",      "anio": "2015", "patente": "PBU283"},
-    {"codigo": 1199, "modelo": "Nissan March",    "anio": "2017", "patente": "AB748WP"},
-    {"codigo": 1210, "modelo": "Ford Focus",         "anio": "2019", "patente": "AE041BL"},
-    {"codigo": 1212, "modelo": "Citroen C3 Aircross", "anio": "2016", "patente": "AA103TO"},
-    {"codigo": 1215, "modelo": "Ford Ecosport",      "anio": "2021", "patente": "AE976NX"},
-    {"codigo": 1220, "modelo": "Chevrolet Spin",     "anio": "2025", "patente": "AH508FW"},
-    {"codigo": 1223, "modelo": "Peugeot 207",        "anio": "2009", "patente": "IIR233"},
-    {"codigo": 1248, "modelo": "Renault Sandero",    "anio": "2025", "patente": "AH926ZF"},
-    {"codigo": 1272, "modelo": "Ford Kuga",          "anio": "2012", "patente": "KVV147"}
   ]
 }
