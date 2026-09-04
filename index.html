@@ -91,6 +91,7 @@
   .caja-band .cb-row.growth { margin-top: 4px; background: var(--gris-1); border-radius: 8px; padding: 8px 12px; }
   .caja-band .cb-row.growth .cb-lbl { font-weight: 650; }
   .caja-band .cb-row.growth .cb-val { color: var(--verde); }
+  .caja-band .cb-caption { font-size: 11px; color: var(--gris-3); line-height: 1.5; padding: 8px 2px 2px; }
 
   /* ===================== TABLAS ===================== */
   .tabla-scroll { overflow-x: auto; }
@@ -191,6 +192,7 @@
     <div class="cb-row neg" id="cbAgenciaRow"><span class="cb-lbl">− Comisión agencia (60%)</span><span class="cb-val" id="cbAgencia">—</span></div>
     <div class="cb-row net"><span class="cb-lbl">= Caja líquida NETA · disponible p/ comprar</span><span class="cb-val" id="cbNeta">—</span></div>
     <div class="cb-row growth" id="cbGrowthRow"><span class="cb-lbl">📈 Crecimiento del fondo (mes)</span><span class="cb-val" id="cbGrowth">—</span></div>
+    <div class="cb-caption" id="cbCaption">El % es el rendimiento del fondo en el mes — comparable a un plazo fijo, Mercado Pago o el costo de pedir plata prestada.</div>
   </div>
 
   <!-- ===================== GRUPO / PARTICIPACIÓN ===================== -->
@@ -331,11 +333,17 @@
       // Crecimiento del mes: con signo (+/−), fila solo si viene el dato
       const cre = mes.crecimientoEstimadoMes;
       const filaCre = document.getElementById("cbGrowthRow");
+      const caption = document.getElementById("cbCaption");
       if (cre != null) {
         const signo = cre > 0 ? "+" : cre < 0 ? "−" : "";
-        document.getElementById("cbGrowth").textContent = signo + fmt$(Math.abs(cre));
+        // % de crecimiento del mes: explícito (crecimientoPctMes) o crecimiento ÷ fondo total
+        const pct = mes.crecimientoPctMes != null ? mes.crecimientoPctMes
+                  : (mes.fondoTotal ? cre / mes.fondoTotal * 100 : null);
+        const pctTxt = pct != null ? "  ·  " + signo + Math.abs(pct).toFixed(2).replace(".", ",") + "%" : "";
+        document.getElementById("cbGrowth").textContent = signo + fmt$(Math.abs(cre)) + pctTxt;
         filaCre.style.display = "flex";
-      } else { filaCre.style.display = "none"; }
+        caption.style.display = (pct != null) ? "block" : "none";
+      } else { filaCre.style.display = "none"; caption.style.display = "none"; }
       band.style.display = "block";
     } else {
       band.style.display = "none";
