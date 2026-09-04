@@ -14,6 +14,7 @@
     --azul-2:  #2F6DB4;
     --verde:   #2E7D46;
     --rojo:    #C0392B;
+    --ambar:   #B26A00;
     --gris-1:  #f4f6f9;
     --gris-2:  #e6eaf0;
     --gris-3:  #6b7480;
@@ -64,11 +65,13 @@
   .card h3 { margin: 0 0 14px; font-size: 15px; font-weight: 700; color: var(--azul); }
 
   /* ===================== KPIs ===================== */
-  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-  .kpi { padding: 16px 16px 15px; }
+  .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .kpi { padding: 16px 15px 15px; }
   .kpi .k-label { font-size: 12px; color: var(--gris-3); font-weight: 600; margin-bottom: 10px; }
-  .kpi .k-value { font-size: 21px; font-weight: 760; letter-spacing: -.5px; line-height: 1.1; color: var(--azul); }
+  .kpi .k-value { font-size: 20px; font-weight: 760; letter-spacing: -.5px; line-height: 1.1; color: var(--azul); }
   .kpi.count .k-value { font-size: 26px; }
+  .kpi .k-value.verde { color: var(--verde); }
+  .kpi .k-value.ambar { color: var(--ambar); }
 
   /* ===================== BANDA DE LIQUIDEZ (desglose vertical) ===================== */
   .caja-band {
@@ -135,8 +138,8 @@
   .foot-note { text-align: center; font-size: 11.5px; color: var(--gris-3); margin-top: 26px; }
 
   /* ===================== RESPONSIVE (MOBILE) ===================== */
-  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 460px) {
+  @media (max-width: 980px) { .kpis { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) {
     .kpis { grid-template-columns: 1fr 1fr; }
     header { flex-direction: column; align-items: stretch; }
     .selector { align-items: stretch; }
@@ -222,7 +225,7 @@
   </div>
 
   <!-- ===================== LISTA AUTOS EN STOCK ===================== -->
-  <div class="sec-title">Autos en stock <span class="cuenta" id="cuentaStock"></span></div>
+  <div class="sec-title">Autos en inventario · stock + en proceso <span class="cuenta" id="cuentaStock"></span></div>
   <div class="card pad">
     <div class="tabla-scroll">
       <table class="autos-tabla">
@@ -305,12 +308,15 @@
       { label: "Caja líquida",     val: fmt$(mes.cajaLiquida),  count: false },
       { label: "Capital en autos", val: fmt$(mes.capitalAutos), count: false },
       { label: "Autos en stock",   val: mes.autosStock,         count: true },
-      { label: "Autos vendidos",   val: mes.autosVendidos,      count: true },
     ];
+    // Tarjeta "En proceso" (ámbar), solo si el mes trae el dato
+    if (mes.autosEnProceso != null) kpis.push({ label: "En proceso", val: mes.autosEnProceso, count: true, color: "ambar" });
+    kpis.push({ label: "Autos vendidos", val: mes.autosVendidos, count: true, color: "verde" });
+
     document.getElementById("kpis").innerHTML = kpis.map(k => `
       <div class="card kpi ${k.count ? "count" : ""}">
         <div class="k-label">${k.label}</div>
-        <div class="k-value">${k.val}</div>
+        <div class="k-value ${k.color || ""}">${k.val}</div>
       </div>`).join("");
 
     /* ---- Banda de liquidez: bruta − comisiones = neta, + crecimiento (solo si hay datos) ---- */
