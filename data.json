@@ -33,24 +33,24 @@
       ]
     },
     {
-      "nombre": "Agosto 2026 (provisorio)",
-      "fondoTotal": 447909190,
-      "cajaLiquida": 106307450,
-      "comisionVendedorEstimada": 3395718,
-      "comisionAgenciaEstimada": 10587365,
-      "cajaLiquidaNeta": 92324367,
-      "capitalAutos": 341601740,
+      "nombre": "Agosto 2026 (cerrado)",
+      "fondoAnterior": 447909190,
+      "fondoTotal": 455549627,
+      "gananciaGrupoBruta": 9040437,
+      "sueldoPablo": 1400000,
+      "gananciaGrupoNeta": 7640437,
+      "rendimientoMensualPct": 1.71,
+      "rendimientoAnualPct": 20.5,
       "autosStock": 23,
       "autosEnProceso": 4,
       "autosVendidos": 12,
-      "crecimientoEstimadoMes": 5658243,
-      "repartoGanancia": 0,
+      "repartoGanancia": 7640437,
       "inversores": [
-        { "nombre": "Francisco", "capital": 308624047, "pct": 68.90 },
-        { "nombre": "Mauro", "capital": 63146964, "pct": 14.10 },
-        { "nombre": "Gaston", "capital": 34855816, "pct": 7.78 },
-        { "nombre": "Gerard", "capital": 32296980, "pct": 7.21 },
-        { "nombre": "Fernando", "capital": 8985383, "pct": 2.01 }
+        { "nombre": "Francisco", "capital": 313888308, "pct": 68.90, "gananciaMes": 5264261 },
+        { "nombre": "Mauro", "capital": 64224266, "pct": 14.10, "gananciaMes": 1077302 },
+        { "nombre": "Gaston", "capital": 35450242, "pct": 7.78, "gananciaMes": 594426 },
+        { "nombre": "Gerard", "capital": 32847856, "pct": 7.21, "gananciaMes": 550876 },
+        { "nombre": "Fernando", "capital": 9138956, "pct": 2.01, "gananciaMes": 153573 }
       ]
     }
   ],

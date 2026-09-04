@@ -119,6 +119,20 @@
   .ganancia.dim { opacity: .6; }
   .ganancia.dim .g-val { font-size: 12.5px; font-weight: 650; color: var(--gris-3); }
 
+  /* Badge mes cerrado (verde) */
+  .badge-cerrado {
+    display: inline-block; vertical-align: middle; margin-left: 8px;
+    font-size: 10px; font-weight: 800; letter-spacing: .4px; text-transform: none;
+    color: #1b6b3a; background: #e2f4ec; border: 1px solid #b7e0c9;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  }
+  /* Filas positivas de la banda (ganancia) */
+  .caja-band .cb-row.pos .cb-val { color: var(--verde); }
+  /* Columna "Ganancia mes" en la tabla de inversores (oculta salvo mes cerrado) */
+  .col-gan { display: none; }
+  table.show-gan .col-gan { display: table-cell; }
+  td.col-gan { color: var(--verde); font-weight: 650; }
+
   /* Badge provisorio */
   .badge-prov {
     display: inline-block; vertical-align: middle; margin-left: 8px;
@@ -195,16 +209,29 @@
     <div class="cb-caption" id="cbCaption">El % es el rendimiento del fondo en el mes — comparable a un plazo fijo, Mercado Pago o el costo de pedir plata prestada.</div>
   </div>
 
+  <!-- Cierre del mes: fondo anterior + ganancia − sueldo = fondo nuevo; rendimiento (solo meses cerrados) -->
+  <div class="caja-band" id="cierreBand" style="display:none">
+    <div class="cb-title">Cierre del mes</div>
+    <div class="cb-row"><span class="cb-lbl">Fondo anterior</span><span class="cb-val" id="ceAnterior">—</span></div>
+    <div class="cb-row pos"><span class="cb-lbl">+ Ganancia bruta del grupo</span><span class="cb-val" id="ceBruta">—</span></div>
+    <div class="cb-row neg"><span class="cb-lbl">− Sueldo Pablo</span><span class="cb-val" id="ceSueldo">—</span></div>
+    <div class="cb-row pos"><span class="cb-lbl">= Ganancia neta (repartida al capital)</span><span class="cb-val" id="ceNeta">—</span></div>
+    <div class="cb-row net"><span class="cb-lbl">= Fondo nuevo</span><span class="cb-val" id="ceFondoNuevo">—</span></div>
+    <div class="cb-row growth"><span class="cb-lbl">📈 Rendimiento del mes</span><span class="cb-val" id="ceRend">—</span></div>
+    <div class="cb-caption">Rendimiento mensual del fondo — comparable a un plazo fijo, Mercado Pago o el costo de pedir plata prestada.</div>
+  </div>
+
   <!-- ===================== GRUPO / PARTICIPACIÓN ===================== -->
   <div class="sec-title">Formación del grupo y participación</div>
   <div class="card pad">
     <h3>Inversores <span class="usd-rate" id="usdRate"></span></h3>
     <div class="tabla-scroll">
-      <table>
+      <table id="tablaInvTable">
         <thead>
           <tr>
             <th>Nombre</th>
             <th class="num">Capital</th>
+            <th class="num col-gan">Ganancia mes</th>
             <th class="num">Capital (USD)</th>
             <th class="num">%</th>
           </tr>
@@ -214,6 +241,7 @@
           <tr>
             <td>Total</td>
             <td class="num" id="totCap">—</td>
+            <td class="num col-gan" id="totGan">—</td>
             <td class="num" id="totUsd">—</td>
             <td class="num" id="totPct">—</td>
           </tr>
@@ -300,18 +328,18 @@
     const dolar = mes.dolar || USD_ARS_DEFAULT;
 
     document.getElementById("usdRate").textContent = "· dólar a $" + dolar.toLocaleString("es-AR");
-    document.getElementById("kpiTitle").innerHTML =
-      "Indicadores del fondo · " + mes.nombre +
-      (prov ? ' <span class="badge-prov">EN CURSO — provisorio</span>' : "");
+    const badge = prov ? ' <span class="badge-prov">EN CURSO — provisorio</span>'
+                : /cerrado/i.test(mes.nombre) ? ' <span class="badge-cerrado">✓ CERRADO</span>' : '';
+    document.getElementById("kpiTitle").innerHTML = "Indicadores del fondo · " + mes.nombre + badge;
 
     /* ---- KPIs (solo número, sin variación) ---- */
-    const kpis = [
-      { label: "Fondo total",      val: fmt$(mes.fondoTotal),   count: false },
-      { label: "Caja líquida",     val: fmt$(mes.cajaLiquida),  count: false },
-      { label: "Capital en autos", val: fmt$(mes.capitalAutos), count: false },
-      { label: "Autos en stock",   val: mes.autosStock,         count: true },
-    ];
-    // Tarjeta "En proceso" (ámbar), solo si el mes trae el dato
+    const kpis = [ { label: "Fondo total", val: fmt$(mes.fondoTotal), count: false } ];
+    // Caja y capital en autos: solo en meses en curso (el cierre no los trae)
+    if (mes.cajaLiquida != null)  kpis.push({ label: "Caja líquida",     val: fmt$(mes.cajaLiquida),  count: false });
+    if (mes.capitalAutos != null) kpis.push({ label: "Capital en autos", val: fmt$(mes.capitalAutos), count: false });
+    // Rendimiento del mes: solo cuando el mes está cerrado y lo trae
+    if (mes.rendimientoMensualPct != null) kpis.push({ label: "Rendimiento (mes)", val: "+" + mes.rendimientoMensualPct.toFixed(2).replace(".", ",") + "%", count: true, color: "verde" });
+    kpis.push({ label: "Autos en stock", val: mes.autosStock, count: true });
     if (mes.autosEnProceso != null) kpis.push({ label: "En proceso", val: mes.autosEnProceso, count: true, color: "ambar" });
     kpis.push({ label: "Autos vendidos", val: mes.autosVendidos, count: true, color: "verde" });
 
@@ -349,26 +377,53 @@
       band.style.display = "none";
     }
 
-    /* ---- Tabla de inversores ---- */
+    /* ---- Tabla de inversores (con columna "Ganancia mes" solo si hay datos) ---- */
+    const hayGan = mes.inversores.some(x => x.gananciaMes != null);
+    document.getElementById("tablaInvTable").classList.toggle("show-gan", hayGan);
     document.getElementById("tablaInv").innerHTML = mes.inversores.map((inv, i) => `
       <tr>
         <td><div class="who"><span class="swatch" style="background:${COLORES[i % COLORES.length]}"></span><b>${inv.nombre}</b></div></td>
         <td class="num">${fmt$(inv.capital)}</td>
+        <td class="num col-gan">${inv.gananciaMes != null ? "+" + fmt$(inv.gananciaMes) : "—"}</td>
         <td class="num usd">${fmtUSD(inv.capital, dolar)}</td>
         <td class="num">${fmtPct(inv.pct)}</td>
       </tr>`).join("");
     const sumaCap = mes.inversores.reduce((a, b) => a + b.capital, 0);
     const sumaPct = mes.inversores.reduce((a, b) => a + b.pct, 0);
+    const sumaGan = mes.inversores.reduce((a, b) => a + (b.gananciaMes || 0), 0);
     document.getElementById("totCap").textContent = fmt$(sumaCap);
+    document.getElementById("totGan").textContent = hayGan ? "+" + fmt$(sumaGan) : "—";
     document.getElementById("totUsd").textContent = fmtUSD(sumaCap, dolar);
     document.getElementById("totPct").textContent = fmtPct(sumaPct);
 
-    /* ---- Reparto de ganancia ---- */
+    /* ---- Banda de cierre del mes (solo meses cerrados con ganancia del grupo) ---- */
+    const cierre = document.getElementById("cierreBand");
+    const esCierre = mes.gananciaGrupoNeta != null;
+    if (esCierre) {
+      const set = (id, v) => document.getElementById(id).textContent = v;
+      set("ceAnterior", fmt$(mes.fondoAnterior));
+      set("ceBruta", "+" + fmt$(mes.gananciaGrupoBruta));
+      set("ceSueldo", "−" + fmt$(mes.sueldoPablo));
+      set("ceNeta", "+" + fmt$(mes.gananciaGrupoNeta));
+      set("ceFondoNuevo", fmt$(mes.fondoTotal));
+      const mesP = mes.rendimientoMensualPct != null ? "+" + mes.rendimientoMensualPct.toFixed(2).replace(".", ",") + "% mensual" : "";
+      const anuP = mes.rendimientoAnualPct != null ? "  ·  +" + mes.rendimientoAnualPct.toFixed(1).replace(".", ",") + "% anual" : "";
+      set("ceRend", mesP + anuP);
+      cierre.style.display = "block";
+    } else {
+      cierre.style.display = "none";
+    }
+
+    /* ---- Reparto de ganancia (se oculta si ya se muestra el cierre) ---- */
     const gananciaBox = document.getElementById("ganancia");
-    if (prov) {
+    if (esCierre) {
+      gananciaBox.style.display = "none";
+    } else if (prov) {
+      gananciaBox.style.display = "flex";
       gananciaBox.classList.add("dim");
       document.getElementById("repVal").textContent = "En curso — se define al cierre";
     } else {
+      gananciaBox.style.display = "flex";
       gananciaBox.classList.remove("dim");
       document.getElementById("repVal").textContent = fmt$(mes.repartoGanancia);
     }
