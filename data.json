@@ -36,8 +36,8 @@
       "nombre": "Agosto 2026 (cerrado provisorio)",
       "fondoAnterior": 447909190,
       "fondoTotal": 455549627,
-      "cajaLiquida": 113947887,
-      "capitalAutos": 341601740,
+      "cajaLiquida": 130265083,
+      "capitalAutos": 325284544,
       "gananciaGrupoBruta": 9040437,
       "sueldoPablo": 1400000,
       "gananciaGrupoNeta": 7640437,
@@ -72,11 +72,14 @@
     {
       "nombre": "Septiembre 2026 (en curso)",
       "fondoTotal": 455549627,
-      "cajaLiquida": 113947887,
-      "capitalAutos": 341601740,
-      "autosStock": 23,
+      "cajaLiquida": 1215083,
+      "cajaLiquidaNota": "post-compras; faltan entrar USD de 1210/1192/1146 + prenda 989",
+      "capitalAutos": 454334544,
+      "autosStock": 31,
       "autosEnProceso": 4,
       "autosVendidos": 0,
+      "comprasMes": 9,
+      "montoComprasMes": 129050000,
       "repartoGanancia": 0,
       "inversores": [
         { "nombre": "Francisco", "capital": 313888308, "pct": 68.90 },
@@ -115,6 +118,15 @@
     {"codigo": 1277, "modelo": "Peugeot Partner",     "anio": "2017", "patente": "AB218MV", "estado": "en proceso"},
     {"codigo": 1278, "modelo": "VW UP",               "anio": "2016", "patente": "AA383TN", "estado": "libre"},
     {"codigo": 1279, "modelo": "VW Suran",            "anio": "2017", "patente": "AB351YF", "estado": "libre"},
-    {"codigo": 1280, "modelo": "Toyota Yaris",        "anio": "2018", "patente": "AC618VM", "estado": "libre"}
+    {"codigo": 1280, "modelo": "Toyota Yaris",        "anio": "2018", "patente": "AC618VM", "estado": "libre"},
+    {"codigo": 1281, "modelo": "Nissan Kicks",        "anio": "",     "patente": "AC892CS", "estado": "libre"},
+    {"codigo": 1283, "modelo": "Renault Duster",      "anio": "",     "patente": "AA855GY", "estado": "libre"},
+    {"codigo": 1284, "modelo": "VW Amarok",           "anio": "",     "patente": "AD217YM", "estado": "libre"},
+    {"codigo": 1287, "modelo": "Renault Sandero",     "anio": "",     "patente": "PDR967",  "estado": "libre"},
+    {"codigo": 1288, "modelo": "Fiat Pulse",          "anio": "",     "patente": "AF427YG", "estado": "libre"},
+    {"codigo": 1289, "modelo": "Renault Logan",       "anio": "",     "patente": "AF421JL", "estado": "libre"},
+    {"codigo": 1294, "modelo": "VW Voyage",           "anio": "",     "patente": "OIM009",  "estado": "libre"},
+    {"codigo": 1295, "modelo": "Ford Focus",          "anio": "",     "patente": "KSM015",  "estado": "libre"},
+    {"codigo": 1301, "modelo": "Ford Focus",          "anio": "",     "patente": "KLL183",  "estado": "libre"}
   ]
 }

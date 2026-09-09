@@ -133,6 +133,10 @@
     color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674;
     padding: 3px 9px; border-radius: 999px; white-space: nowrap;
   }
+  /* Nota del mes (compras / aclaración de caja) */
+  .mes-nota { margin-top: 12px; background: #fff8ec; border: 1px solid #f0c674; border-left: 4px solid #d99a2b;
+    border-radius: 12px; padding: 12px 16px; font-size: 12.5px; line-height: 1.55; color: #6b4e12; max-width: 620px; }
+  .mes-nota b { color: #4a3608; }
   /* Filas positivas de la banda (ganancia) */
   .caja-band .cb-row.pos .cb-val { color: var(--verde); }
   /* Columna "Ganancia mes" en la tabla de inversores (oculta salvo mes cerrado) */
@@ -227,6 +231,9 @@
     <div class="cb-row growth"><span class="cb-lbl">📈 Rendimiento del mes</span><span class="cb-val" id="ceRend">—</span></div>
     <div class="cb-caption">Rendimiento mensual del fondo — comparable a un plazo fijo, Mercado Pago o el costo de pedir plata prestada.</div>
   </div>
+
+  <!-- Nota del mes: compras y aclaración de caja (solo si el mes las trae) -->
+  <div class="mes-nota" id="mesNota" style="display:none"></div>
 
   <!-- ===================== GRUPO / PARTICIPACIÓN ===================== -->
   <div class="sec-title">Formación del grupo y participación</div>
@@ -425,6 +432,14 @@
     } else {
       cierre.style.display = "none";
     }
+
+    /* ---- Nota del mes: compras y aclaración de caja ---- */
+    const notaEl = document.getElementById("mesNota");
+    const notas = [];
+    if (mes.comprasMes) notas.push(`🛒 <b>Compras del mes:</b> ${mes.comprasMes} autos · ${fmt$(mes.montoComprasMes)} (entran a stock)`);
+    if (mes.cajaLiquidaNota) notas.push(`ℹ️ <b>Caja:</b> ${mes.cajaLiquidaNota}`);
+    if (notas.length) { notaEl.innerHTML = notas.join("<br>"); notaEl.style.display = "block"; }
+    else notaEl.style.display = "none";
 
     /* ---- Reparto de ganancia (se oculta si ya se muestra el cierre) ---- */
     const gananciaBox = document.getElementById("ganancia");
