@@ -53,24 +53,11 @@
         { "nombre": "Gaston", "capital": 35450242, "pct": 7.78, "gananciaMes": 594426 },
         { "nombre": "Gerard", "capital": 32847856, "pct": 7.21, "gananciaMes": 550876 },
         { "nombre": "Fernando", "capital": 9138956, "pct": 2.01, "gananciaMes": 153573 }
-      ],
-      "autosVendidosLista": [
-        {"codigo": 906,  "modelo": "Citroen C3",       "anio": "",     "patente": "LPI685"},
-        {"codigo": 1078, "modelo": "Peugeot 2008",     "anio": "",     "patente": "AF284KZ"},
-        {"codigo": 1125, "modelo": "VW Gol Trend",     "anio": "",     "patente": "AD981YT"},
-        {"codigo": 1192, "modelo": "Fiat Palio",       "anio": "2015", "patente": "PBU283"},
-        {"codigo": 1199, "modelo": "Nissan March",     "anio": "2017", "patente": "AB748WP"},
-        {"codigo": 1210, "modelo": "Ford Focus",       "anio": "2019", "patente": "AE041BL"},
-        {"codigo": 1212, "modelo": "Citroen C3 Aircross","anio": "2016","patente": "AA103TO"},
-        {"codigo": 1215, "modelo": "Ford Ecosport",    "anio": "2021", "patente": "AE976NX"},
-        {"codigo": 1220, "modelo": "Chevrolet Spin",   "anio": "2025", "patente": "AH508FW"},
-        {"codigo": 1223, "modelo": "Peugeot 207",      "anio": "2009", "patente": "IIR233"},
-        {"codigo": 1248, "modelo": "Renault Sandero",  "anio": "2025", "patente": "AH926ZF"},
-        {"codigo": 1272, "modelo": "Ford Kuga",        "anio": "2012", "patente": "KVV147"}
       ]
     },
     {
       "nombre": "Septiembre 2026 (en curso)",
+      "enCurso": true,
       "fondoTotal": 455549627,
       "cajaLiquida": 1215083,
       "cajaLiquidaNota": "post-compras; faltan entrar USD de 1210/1192/1146 + prenda 989",
@@ -87,20 +74,20 @@
         { "nombre": "Gaston", "capital": 35450242, "pct": 7.78 },
         { "nombre": "Gerard", "capital": 32847856, "pct": 7.21 },
         { "nombre": "Fernando", "capital": 9138956, "pct": 2.01 }
-      ],
-      "autosVendidosLista": []
+      ]
     }
   ],
   "autosEnStock": [
-    {"codigo": 989,  "modelo": "Chery QQ",            "anio": "",     "patente": "JWV094",  "estado": "en proceso"},
+    {"codigo": 989,  "modelo": "Chery QQ",            "anio": "",     "patente": "JWV094",  "estado": "en proceso", "pendiente": "prenda / cobro pendiente"},
     {"codigo": 1140, "modelo": "VW T-Cross",          "anio": "",     "patente": "",        "estado": "libre"},
-    {"codigo": 1146, "modelo": "Jeep Renegade",       "anio": "",     "patente": "AD475NC", "estado": "en proceso"},
+    {"codigo": 1146, "modelo": "Jeep Renegade",       "anio": "",     "patente": "AD475NC", "estado": "en proceso", "pendiente": "falta cobro en USD"},
     {"codigo": 1171, "modelo": "Toyota Corolla",      "anio": "",     "patente": "AE576WD", "estado": "libre"},
+    {"codigo": 1192, "modelo": "Fiat Palio",          "anio": "2015", "patente": "PBU283",  "estado": "en proceso", "pendiente": "a definir + cobro USD"},
     {"codigo": 1208, "modelo": "Peugeot 207",         "anio": "2011", "patente": "JRR412",  "estado": "libre"},
+    {"codigo": 1210, "modelo": "Ford Focus",          "anio": "2019", "patente": "AE041BL", "estado": "en proceso", "pendiente": "pérdida + cobro USD"},
     {"codigo": 1213, "modelo": "Chevrolet Onix",      "anio": "2017", "patente": "AB408PH", "estado": "libre"},
     {"codigo": 1216, "modelo": "Peugeot 208",         "anio": "2017", "patente": "AB847JB", "estado": "libre"},
     {"codigo": 1222, "modelo": "Citroen C3",          "anio": "2018", "patente": "AD241JW", "estado": "libre"},
-    {"codigo": 1224, "modelo": "Peugeot 308",         "anio": "2017", "patente": "AA997SB", "estado": "en proceso"},
     {"codigo": 1225, "modelo": "Kia Picanto",         "anio": "2013", "patente": "NGF682",  "estado": "libre"},
     {"codigo": 1229, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "PBK848",  "estado": "libre"},
     {"codigo": 1243, "modelo": "VW Fox",              "anio": "2013", "patente": "MQX772",  "estado": "libre"},
@@ -115,7 +102,6 @@
     {"codigo": 1269, "modelo": "Fiat Siena",          "anio": "2013", "patente": "MFO411",  "estado": "libre"},
     {"codigo": 1271, "modelo": "Honda Fit",           "anio": "2012", "patente": "KZB453",  "estado": "libre"},
     {"codigo": 1273, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "OXY910",  "estado": "libre"},
-    {"codigo": 1277, "modelo": "Peugeot Partner",     "anio": "2017", "patente": "AB218MV", "estado": "en proceso"},
     {"codigo": 1278, "modelo": "VW UP",               "anio": "2016", "patente": "AA383TN", "estado": "libre"},
     {"codigo": 1279, "modelo": "VW Suran",            "anio": "2017", "patente": "AB351YF", "estado": "libre"},
     {"codigo": 1280, "modelo": "Toyota Yaris",        "anio": "2018", "patente": "AC618VM", "estado": "libre"},
@@ -128,5 +114,65 @@
     {"codigo": 1294, "modelo": "VW Voyage",           "anio": "",     "patente": "OIM009",  "estado": "libre"},
     {"codigo": 1295, "modelo": "Ford Focus",          "anio": "",     "patente": "KSM015",  "estado": "libre"},
     {"codigo": 1301, "modelo": "Ford Focus",          "anio": "",     "patente": "KLL183",  "estado": "libre"}
+  ],
+  "ventasPorMes": [
+    { "mes": "Septiembre 2026", "enCurso": true, "autos": [] },
+    { "mes": "Agosto 2026", "enCurso": false, "autos": [
+      {"codigo": 906,  "modelo": "Citroen C3",           "patente": "LPI685",  "pendiente": null},
+      {"codigo": 1078, "modelo": "Peugeot 2008",         "patente": "AF284KZ", "pendiente": null},
+      {"codigo": 1125, "modelo": "VW Gol Trend",         "patente": "AD981YT", "pendiente": null},
+      {"codigo": 1199, "modelo": "Nissan March",         "patente": "AB748WP", "pendiente": null},
+      {"codigo": 1212, "modelo": "Citroen C3 Aircross",  "patente": "AA103TO", "pendiente": null},
+      {"codigo": 1215, "modelo": "Ford Ecosport",        "patente": "AE976NX", "pendiente": null},
+      {"codigo": 1220, "modelo": "Chevrolet Spin",       "patente": "AH508FW", "pendiente": null},
+      {"codigo": 1223, "modelo": "Peugeot 207",          "patente": "IIR233",  "pendiente": null},
+      {"codigo": 1224, "modelo": "Peugeot 308",          "patente": "AA997SB", "pendiente": null},
+      {"codigo": 1248, "modelo": "Renault Sandero",      "patente": "AH926ZF", "pendiente": null},
+      {"codigo": 1272, "modelo": "Ford Kuga",            "patente": "KVV147",  "pendiente": null},
+      {"codigo": 1277, "modelo": "Peugeot Partner",      "patente": "AB218MV", "pendiente": null}
+    ]},
+    { "mes": "Julio 2026", "enCurso": false, "autos": [
+      {"codigo": 993,  "modelo": "Fiat Palio",           "patente": "AA126UL", "pendiente": null},
+      {"codigo": 1097, "modelo": "Fiat Palio",           "patente": "NSU910",  "pendiente": null},
+      {"codigo": 1116, "modelo": "Nissan Kicks",         "patente": "AD870CJ", "pendiente": null},
+      {"codigo": 1169, "modelo": "Jeep Renegade",        "patente": "AD150FT", "pendiente": null},
+      {"codigo": 1172, "modelo": "Renault Sandero",      "patente": "AE535KI", "pendiente": null},
+      {"codigo": 1218, "modelo": "Fiat Palio",           "patente": "PQA047",  "pendiente": null}
+    ]},
+    { "mes": "Junio 2026", "enCurso": false, "autos": [
+      {"codigo": 1076, "modelo": "Peugeot 2008",         "patente": "AC687ZL", "pendiente": null},
+      {"codigo": 1098, "modelo": "Fiat Palio",           "patente": "OVO584",  "pendiente": null},
+      {"codigo": 1112, "modelo": "Nissan Kicks",         "patente": "AB897MJ", "pendiente": null},
+      {"codigo": 1126, "modelo": "VW Amarok",            "patente": "AG203AX", "pendiente": null},
+      {"codigo": 1135, "modelo": "Toyota Corolla",       "patente": "AE559BL", "pendiente": null},
+      {"codigo": 1157, "modelo": "Nissan Sentra",        "patente": "OOU611",  "pendiente": null},
+      {"codigo": 1202, "modelo": "Citroen C3",           "patente": "IQH223",  "pendiente": null},
+      {"codigo": 1207, "modelo": "Chevrolet Prisma",     "patente": "PEK498",  "pendiente": null},
+      {"codigo": 1209, "modelo": "Renault Logan",        "patente": "AF668HJ", "pendiente": null}
+    ]},
+    { "mes": "Mayo 2026", "enCurso": false, "autos": [
+      {"codigo": 1131, "modelo": "Renault Duster",       "patente": "AD546NB", "pendiente": null},
+      {"codigo": 1136, "modelo": "VW Polo",              "patente": "AG297XU", "pendiente": null},
+      {"codigo": 1138, "modelo": "Renault Captur",       "patente": "AE250XI", "pendiente": null},
+      {"codigo": 1149, "modelo": "Peugeot 208",          "patente": "PGB850",  "pendiente": null},
+      {"codigo": 1160, "modelo": "Fiat Cronos",          "patente": "AF218HH", "pendiente": null},
+      {"codigo": 1161, "modelo": "Peugeot 308",          "patente": "AD104RX", "pendiente": null},
+      {"codigo": 1168, "modelo": "Chery QQ",             "patente": "AC484FD", "pendiente": null}
+    ]},
+    { "mes": "Abril 2026", "enCurso": false, "autos": [
+      {"codigo": 1127, "modelo": "Citroen C3 Aircross",  "patente": "",        "pendiente": null}
+    ]},
+    { "mes": "Marzo 2026", "enCurso": false, "autos": [
+      {"codigo": 1102, "modelo": "Citroen C3",           "patente": "",        "pendiente": null},
+      {"codigo": 1103, "modelo": "Ford Ecosport",        "patente": "",        "pendiente": null},
+      {"codigo": 1046, "modelo": "Chery Tiggo",          "patente": "",        "pendiente": null},
+      {"codigo": 1049, "modelo": "Renault Sandero",      "patente": "",        "pendiente": null},
+      {"codigo": 1016, "modelo": "Peugeot 207",          "patente": "",        "pendiente": null},
+      {"codigo": 1023, "modelo": "Ford Fiesta",          "patente": "",        "pendiente": null},
+      {"codigo": 1072, "modelo": "Chery QQ",             "patente": "",        "pendiente": null},
+      {"codigo": 1119, "modelo": "Toyota Corolla",       "patente": "",        "pendiente": null},
+      {"codigo": 1121, "modelo": "VW Golf",              "patente": "",        "pendiente": null},
+      {"codigo": 1128, "modelo": "VW Fox",               "patente": "",        "pendiente": null}
+    ]}
   ]
 }

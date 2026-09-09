@@ -161,6 +161,29 @@
   .pill.libre   { color: #12683e; background: #e2f4ec; border: 1px solid #b7e0c9; }
   .pill.proceso { color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674; }
 
+  /* Asteriscos (operación con pendiente) y nota al pie */
+  .ast { color: var(--rojo); font-weight: 800; cursor: help; }
+  .autos-tabla tr.pend td { font-style: italic; color: var(--gris-3); }
+  .nota-ast { font-size: 11px; color: var(--gris-3); font-style: italic; padding: 10px 2px 2px; }
+
+  /* Historial de ventas por mes */
+  #historial { display: flex; flex-direction: column; gap: 12px; }
+  .hist-mes { background: var(--blanco); border: 1px solid var(--gris-2); border-radius: 12px; box-shadow: var(--sombra); padding: 14px 16px; }
+  .hist-mes.encurso { border-left: 3px solid var(--verde); }
+  .hist-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .hist-nombre { font-size: 14px; font-weight: 750; color: var(--azul); }
+  .badge-mini { font-size: 9px; font-weight: 800; letter-spacing: .4px; color: #9a5b00; background: #fff2d6; border: 1px solid #f0c674; padding: 2px 7px; border-radius: 999px; vertical-align: middle; margin-left: 4px; }
+  .hist-total { font-size: 11.5px; font-weight: 700; color: var(--gris-3); background: var(--gris-1); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .hist-lista { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .hist-item { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; padding: 4px 2px; border-bottom: 1px solid var(--gris-1); }
+  .hist-item .hi-cod { font-weight: 700; color: var(--azul); min-width: 46px; }
+  .hist-item .hi-mod { flex: 1; }
+  .hist-item .hi-pat { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11.5px; color: var(--gris-3); font-weight: 650; }
+  .hist-item.pend { font-style: italic; color: var(--gris-3); }
+  .hist-item.pend .hi-cod { color: var(--gris-3); }
+  .hist-vacio { font-size: 12.5px; color: var(--gris-3); font-style: italic; padding: 4px 2px; }
+  @media (max-width: 620px) { .hist-lista { grid-template-columns: 1fr; } }
+
   .foot-note { text-align: center; font-size: 11.5px; color: var(--gris-3); margin-top: 26px; }
 
   /* ===================== RESPONSIVE (MOBILE) ===================== */
@@ -268,7 +291,7 @@
     </div>
   </div>
 
-  <!-- ===================== LISTA AUTOS EN STOCK ===================== -->
+  <!-- ===================== INVENTARIO ===================== -->
   <div class="sec-title">Autos en inventario · stock + en proceso <span class="cuenta" id="cuentaStock"></span></div>
   <div class="card pad">
     <div class="tabla-scroll">
@@ -279,22 +302,31 @@
         <tbody id="listaStock"></tbody>
       </table>
     </div>
+    <div class="nota-ast" id="notaStock" hidden>* Operación no cerrada del todo (falta cobro en USD / prenda / seña).</div>
   </div>
 
-  <!-- ===================== LISTA AUTOS VENDIDOS ===================== -->
-  <div class="sec-title">Autos vendidos en el mes <span class="cuenta" id="cuentaVendidos"></span></div>
-  <div class="card pad">
-    <div class="tabla-scroll">
-      <table class="autos-tabla">
-        <thead>
-          <tr><th>Código</th><th>Modelo</th><th class="num">Año</th><th>Patente</th></tr>
-        </thead>
-        <tbody id="listaVendidos"></tbody>
-      </table>
+  <!-- ===================== VENDIDOS ESTE MES (solo mes en curso) ===================== -->
+  <div id="vendidosMesWrap" hidden>
+    <div class="sec-title">Vendidos este mes <span class="cuenta" id="cuentaVendidos"></span></div>
+    <div class="card pad">
+      <div class="tabla-scroll">
+        <table class="autos-tabla">
+          <thead>
+            <tr><th>Código</th><th>Modelo</th><th>Patente</th></tr>
+          </thead>
+          <tbody id="listaVendidos"></tbody>
+        </table>
+      </div>
+      <div class="nota-ast" id="notaVendidos" hidden>* Operación no cerrada del todo (falta cobro en USD / prenda / seña).</div>
     </div>
   </div>
 
-  <p class="foot-note">Montos en pesos argentinos. El listado de autos refleja el inventario actual.</p>
+  <!-- ===================== HISTORIAL DE VENTAS POR MES ===================== -->
+  <div class="sec-title">Historial de ventas por mes <span class="cuenta" id="cuentaHist"></span></div>
+  <div id="historial"></div>
+  <div class="nota-ast" id="notaHist" hidden style="text-align:center">* Operación no cerrada del todo (falta cobro en USD / prenda / seña).</div>
+
+  <p class="foot-note">Montos en pesos argentinos. El inventario refleja el estado actual.</p>
 </div>
 
 <script>
@@ -459,39 +491,93 @@
     renderListados(mes);
   }
 
-  /* ===================== LISTAS DE AUTOS (inventario actual) ===================== */
+  /* ===================== LISTAS DE AUTOS ===================== */
+  const escAttr = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  // Asterisco para autos con algo pendiente (tooltip = texto del pendiente)
+  const astPend = a => a.pendiente ? ` <span class="ast" title="${escAttr(a.pendiente)}">*</span>` : "";
+  // Nombre base del mes sin el "(en curso)" / "(cerrado...)": "Septiembre 2026 (en curso)" -> "Septiembre 2026"
+  const mesBase = nombre => nombre.replace(/\s*\(.*\)\s*$/, "").trim();
+
   function pillEstado(estado) {
     if (!estado) return "";
     const cls = /libre/i.test(estado) ? "libre" : "proceso";
     return `<span class="pill ${cls}">${estado}</span>`;
   }
-
-  // lista = array { codigo, modelo, anio, patente, estado? }. conEstado agrega la 5ª columna.
-  function renderAutos(idTabla, idCuenta, lista, conEstado) {
-    const tb = document.getElementById(idTabla);
-    const cta = document.getElementById(idCuenta);
-    const cols = conEstado ? 5 : 4;
-    if (!lista || !lista.length) {
-      cta.textContent = "";
-      tb.innerHTML = `<tr><td colspan="${cols}" class="sin-datos">Sin autos cargados</td></tr>`;
-      return;
-    }
-    cta.textContent = "(" + lista.length + ")";
-    tb.innerHTML = lista.map(a => `
-      <tr>
-        <td><b>${oGuion(a.codigo)}</b></td>
-        <td>${oGuion(a.modelo)}</td>
-        <td class="num">${oGuion(a.anio)}</td>
-        <td class="patente">${oGuion(a.patente)}</td>
-        ${conEstado ? `<td>${pillEstado(a.estado)}</td>` : ""}
-      </tr>`).join("");
+  // Muestra/oculta la nota al pie de asteriscos según haya autos con pendiente
+  function toggleNotaAst(id, lista) {
+    document.getElementById(id).hidden = !(lista && lista.some(a => a.pendiente));
   }
 
-  // Inventario = lista global (actual). Vendidos = lista del mes (o global como respaldo).
+  // Tabla de inventario: código(*) · modelo · año · patente · estado
+  function renderInventario(lista) {
+    const tb = document.getElementById("listaStock");
+    document.getElementById("cuentaStock").textContent = lista && lista.length ? "(" + lista.length + ")" : "";
+    tb.innerHTML = (!lista || !lista.length)
+      ? `<tr><td colspan="5" class="sin-datos">Sin autos cargados</td></tr>`
+      : lista.map(a => `
+        <tr class="${a.pendiente ? "pend" : ""}">
+          <td><b>${oGuion(a.codigo)}</b>${astPend(a)}</td>
+          <td>${oGuion(a.modelo)}</td>
+          <td class="num">${oGuion(a.anio)}</td>
+          <td class="patente">${oGuion(a.patente)}</td>
+          <td>${pillEstado(a.estado)}</td>
+        </tr>`).join("");
+    toggleNotaAst("notaStock", lista);
+  }
+
+  // Tabla de vendidos del mes: código(*) · modelo · patente. Si vacío → "Sin ventas todavía".
+  function renderVentasMes(autos) {
+    const tb = document.getElementById("listaVendidos");
+    document.getElementById("cuentaVendidos").textContent = autos && autos.length ? "(" + autos.length + ")" : "";
+    tb.innerHTML = (!autos || !autos.length)
+      ? `<tr><td colspan="3" class="sin-datos">Sin ventas todavía</td></tr>`
+      : autos.map(a => `
+        <tr class="${a.pendiente ? "pend" : ""}">
+          <td><b>${oGuion(a.codigo)}</b>${astPend(a)}</td>
+          <td>${oGuion(a.modelo)}</td>
+          <td class="patente">${oGuion(a.patente)}</td>
+        </tr>`).join("");
+    toggleNotaAst("notaVendidos", autos);
+  }
+
+  // Historial de ventas por mes (todos los meses de ventasPorMes, del más nuevo al más viejo)
+  function renderHistorial() {
+    const cont = document.getElementById("historial");
+    const meses = DATA.ventasPorMes || [];
+    let total = 0, hayPend = false;
+    cont.innerHTML = meses.map(m => {
+      const n = m.autos.length; total += n;
+      const items = n ? m.autos.map(a => {
+        if (a.pendiente) hayPend = true;
+        return `<div class="hist-item ${a.pendiente ? "pend" : ""}">
+          <span class="hi-cod"><b>${a.codigo}</b>${astPend(a)}</span>
+          <span class="hi-mod">${a.modelo}</span>
+          <span class="hi-pat">${oGuion(a.patente)}</span>
+        </div>`;
+      }).join("") : `<div class="hist-vacio">Sin ventas todavía</div>`;
+      return `<div class="hist-mes ${m.enCurso ? "encurso" : ""}">
+        <div class="hist-head">
+          <span class="hist-nombre">${m.mes}${m.enCurso ? ' <span class="badge-mini">EN CURSO</span>' : ''}</span>
+          <span class="hist-total">${n} ${n === 1 ? "unidad" : "unidades"}</span>
+        </div>
+        <div class="hist-lista">${items}</div>
+      </div>`;
+    }).join("");
+    document.getElementById("cuentaHist").textContent = "(" + total + ")";
+    document.getElementById("notaHist").hidden = !hayPend;
+  }
+
+  // Inventario global + vendidos del mes seleccionado (de ventasPorMes). "Vendidos este mes" solo en mes en curso.
   function renderListados(mes) {
-    renderAutos("listaStock", "cuentaStock", DATA.autosEnStock, true);
-    const vendidos = (mes && mes.autosVendidosLista) ? mes.autosVendidosLista : (DATA.autosVendidos || []);
-    renderAutos("listaVendidos", "cuentaVendidos", vendidos, false);
+    renderInventario(DATA.autosEnStock);
+    const wrap = document.getElementById("vendidosMesWrap");
+    if (mes && (mes.enCurso || enCursoMes(mes))) {
+      const vm = (DATA.ventasPorMes || []).find(v => v.mes === mesBase(mes.nombre));
+      renderVentasMes(vm ? vm.autos : []);
+      wrap.hidden = false;
+    } else {
+      wrap.hidden = true;
+    }
   }
 
   /* ===================== ARRANQUE: leer data.json ===================== */
@@ -502,6 +588,7 @@
       idxActual = DATA.meses.length - 1;   // por defecto, el mes más reciente
       poblarSelector();
       render();
+      renderHistorial();
     })
     .catch(err => {
       document.getElementById("kpis").innerHTML =
