@@ -62,9 +62,9 @@
       "cajaLiquida": 1215083,
       "cajaLiquidaNota": "post-compras; faltan entrar USD de 1210/1192/1146 + prenda 989",
       "capitalAutos": 454334544,
-      "autosStock": 31,
-      "autosEnProceso": 4,
-      "autosVendidos": 0,
+      "autosStock": 30,
+      "autosEnProceso": 5,
+      "autosVendidos": 1,
       "comprasMes": 9,
       "montoComprasMes": 129050000,
       "repartoGanancia": 0,
@@ -94,11 +94,10 @@
     {"codigo": 1250, "modelo": "Chevrolet Tracker",   "anio": "2020", "patente": "AE541BW", "estado": "libre"},
     {"codigo": 1251, "modelo": "Toyota RAV4",         "anio": "2010", "patente": "IKV736",  "estado": "libre"},
     {"codigo": 1253, "modelo": "VW Saveiro",          "anio": "2016", "patente": "AA104PT", "estado": "libre"},
-    {"codigo": 1259, "modelo": "Toyota RAV4",         "anio": "2010", "patente": "IPN935",  "estado": "libre"},
     {"codigo": 1260, "modelo": "Moto Rouser/Tornado", "anio": "2018", "patente": "A0710ZV", "estado": "libre"},
     {"codigo": 1265, "modelo": "Fiat Siena",          "anio": "2015", "patente": "OTC592",  "estado": "libre"},
     {"codigo": 1266, "modelo": "Fiat 500",            "anio": "2014", "patente": "NZX523",  "estado": "libre"},
-    {"codigo": 1267, "modelo": "Citroen C3 Aircross", "anio": "2017", "patente": "AC107FR", "estado": "libre"},
+    {"codigo": 1267, "modelo": "Citroen C3 Aircross", "anio": "2017", "patente": "AC107FR", "estado": "en proceso", "pendiente": "solo seña $200 — cobro sin cargar"},
     {"codigo": 1269, "modelo": "Fiat Siena",          "anio": "2013", "patente": "MFO411",  "estado": "libre"},
     {"codigo": 1271, "modelo": "Honda Fit",           "anio": "2012", "patente": "KZB453",  "estado": "libre"},
     {"codigo": 1273, "modelo": "Chevrolet Onix",      "anio": "2015", "patente": "OXY910",  "estado": "libre"},
@@ -116,7 +115,9 @@
     {"codigo": 1301, "modelo": "Ford Focus",          "anio": "",     "patente": "KLL183",  "estado": "libre"}
   ],
   "ventasPorMes": [
-    { "mes": "Septiembre 2026", "enCurso": true, "autos": [] },
+    { "mes": "Septiembre 2026", "enCurso": true, "autos": [
+      {"codigo": 1259, "modelo": "Toyota RAV4",          "patente": "IPN935",  "pendiente": null}
+    ]},
     { "mes": "Agosto 2026", "enCurso": false, "autos": [
       {"codigo": 906,  "modelo": "Citroen C3",           "patente": "LPI685",  "pendiente": null},
       {"codigo": 1078, "modelo": "Peugeot 2008",         "patente": "AF284KZ", "pendiente": null},
