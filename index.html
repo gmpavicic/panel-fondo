@@ -72,6 +72,7 @@
   .kpi.count .k-value { font-size: 26px; }
   .kpi .k-value.verde { color: var(--verde); }
   .kpi .k-value.ambar { color: var(--ambar); }
+  .kpi .k-value .pend-txt { font-size: 13px; font-weight: 600; font-style: italic; color: var(--gris-3); }
 
   /* ===================== BANDA DE LIQUIDEZ (desglose vertical) ===================== */
   .caja-band {
@@ -384,10 +385,11 @@
     document.getElementById("kpiTitle").innerHTML = "Indicadores del fondo · " + mes.nombre + badge;
 
     /* ---- KPIs (solo número, sin variación) ---- */
-    const kpis = [ { label: "Fondo total", val: fmt$(mes.fondoTotal), count: false } ];
-    // Caja y capital en autos: solo en meses en curso (el cierre no los trae)
-    if (mes.cajaLiquida != null)  kpis.push({ label: "Caja líquida",     val: fmt$(mes.cajaLiquida),  count: false });
-    if (mes.capitalAutos != null) kpis.push({ label: "Capital en autos", val: fmt$(mes.capitalAutos), count: false });
+    // Si el monto es null (aún no cerrado), mostramos "pendiente al cierre" en gris.
+    const kval = v => (v == null) ? '<span class="pend-txt">pendiente al cierre</span>' : fmt$(v);
+    const kpis = [ { label: "Fondo total", val: kval(mes.fondoTotal), count: false } ];
+    kpis.push({ label: "Caja líquida",     val: kval(mes.cajaLiquida),  count: false });
+    kpis.push({ label: "Capital en autos", val: kval(mes.capitalAutos), count: false });
     // Rendimiento del mes: solo cuando el mes está cerrado y lo trae
     if (mes.rendimientoMensualPct != null) kpis.push({ label: "Rendimiento (mes)", val: "+" + mes.rendimientoMensualPct.toFixed(2).replace(".", ",") + "%", count: true, color: "verde" });
     kpis.push({ label: "Autos en stock", val: mes.autosStock, count: true });
@@ -468,6 +470,7 @@
     /* ---- Nota del mes: compras y aclaración de caja ---- */
     const notaEl = document.getElementById("mesNota");
     const notas = [];
+    if (mes.actualizadoAl) notas.push(`ℹ️ <b>${mes.actualizadoAl}</b>`);
     if (mes.comprasMes) notas.push(`🛒 <b>Compras del mes:</b> ${mes.comprasMes} autos · ${fmt$(mes.montoComprasMes)} (entran a stock)`);
     if (mes.cajaLiquidaNota) notas.push(`ℹ️ <b>Caja:</b> ${mes.cajaLiquidaNota}`);
     if (notas.length) { notaEl.innerHTML = notas.join("<br>"); notaEl.style.display = "block"; }
@@ -512,9 +515,11 @@
   function renderInventario(lista) {
     const tb = document.getElementById("listaStock");
     document.getElementById("cuentaStock").textContent = lista && lista.length ? "(" + lista.length + ")" : "";
-    tb.innerHTML = (!lista || !lista.length)
+    // Ordenar: "en proceso" arriba, después "libre" (orden estable dentro de cada grupo)
+    const orden = lista ? [...lista].sort((a, b) => (/libre/i.test(a.estado) ? 1 : 0) - (/libre/i.test(b.estado) ? 1 : 0)) : [];
+    tb.innerHTML = (!orden.length)
       ? `<tr><td colspan="5" class="sin-datos">Sin autos cargados</td></tr>`
-      : lista.map(a => `
+      : orden.map(a => `
         <tr class="${a.pendiente ? "pend" : ""}">
           <td><b>${oGuion(a.codigo)}</b>${astPend(a)}</td>
           <td>${oGuion(a.modelo)}</td>
