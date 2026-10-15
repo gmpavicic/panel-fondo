@@ -34,7 +34,8 @@
           "capital": 15870119,
           "pct": 3.37
         }
-      ]
+      ],
+      "dolar": 1545
     },
     {
       "nombre": "Julio 2026",
@@ -70,7 +71,8 @@
           "capital": 15985383,
           "pct": 3.37
         }
-      ]
+      ],
+      "dolar": 1545
     },
     {
       "nombre": "Agosto 2026 (cerrado)",
@@ -110,7 +112,8 @@
           "capital": 9276956,
           "pct": 2.01
         }
-      ]
+      ],
+      "dolar": 1545
     },
     {
       "nombre": "Septiembre 2026 (cerrado)",
@@ -150,7 +153,8 @@
           "capital": 9586461,
           "pct": 2.01
         }
-      ]
+      ],
+      "dolar": 1545
     },
     {
       "nombre": "Octubre 2026 (en curso)",
@@ -189,7 +193,8 @@
           "capital": 9586461,
           "pct": 2.08
         }
-      ]
+      ],
+      "dolar": 1545
     }
   ],
   "autosEnStock": [
