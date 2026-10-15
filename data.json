@@ -160,7 +160,7 @@
       "cajaLiquida": 13483362,
       "capitalAutos": 448454998,
       "autosStock": 33,
-      "autosVendidos": 0,
+      "autosVendidos": 3,
       "repartoGanancia": 0,
       "nota": "Octubre en curso. Mauro retiro $15.000.000. Se asignaron 14 autos al grupo ($199.200.000): baja la liquidez, sube el capital en autos. % recalculados por el retiro.",
       "inversores": [
@@ -406,6 +406,11 @@
           "codigo": "1140",
           "modelo": "T-Cross",
           "patente": "AE163SW"
+        },
+        {
+          "codigo": "1251",
+          "modelo": "RAV4",
+          "patente": "IKV736"
         }
       ]
     },
@@ -467,11 +472,6 @@
           "codigo": "1171",
           "modelo": "Corolla",
           "patente": "AE576WD"
-        },
-        {
-          "codigo": "1251",
-          "modelo": "RAV4",
-          "patente": "IKV736"
         }
       ]
     },
