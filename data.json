@@ -160,13 +160,13 @@
       "nombre": "Octubre 2026 (en curso)",
       "enCurso": true,
       "fondoAnterior": 476938360,
-      "fondoTotal": 461938360,
-      "cajaLiquida": 13483362,
-      "capitalAutos": 448454998,
-      "autosStock": 33,
-      "autosVendidos": 3,
+      "fondoTotal": 466306886,
+      "cajaLiquida": 48041887,
+      "capitalAutos": 418264999,
+      "autosStock": 31,
+      "autosVendidos": 5,
       "repartoGanancia": 0,
-      "nota": "Octubre en curso. Mauro retiro $15.000.000. Se asignaron 14 autos al grupo ($199.200.000): baja la liquidez, sube el capital en autos. % recalculados por el retiro.",
+      "nota": "PARCIAL (mes en curso). 4 autos vendidos y COBRADOS en octubre (1273 Onix, 1140 T-Cross, 1243 Fox, 1250 Tracker): se sacaron de capital en autos y su neto estimado pasa a caja liquida = costo recuperado + 40% inversores (ya netas la comision del vendedor y el 60% agencia). Margen inversores realizado estimado +$4.368.526, aun SIN distribuir. 1251 RAV4 (vendido 18/09) sigue pendiente de cobro $5.075.000, no suma a caja. Stock real 31 autos a costo $418.264.999 (17 del grupo $219.064.999 + 14 asignados $199.200.000). Mauro retiro $15.000.000. Numeros provisorios; el cierre formal se hace con comisiones liquidadas.",
       "inversores": [
         {
           "nombre": "Francisco",
@@ -199,12 +199,6 @@
   ],
   "autosEnStock": [
     {
-      "codigo": "1250",
-      "modelo": "Tracker",
-      "patente": "AE541BW",
-      "estado": "en proceso"
-    },
-    {
       "codigo": "1208",
       "modelo": "Peugeot 207",
       "patente": "JRR412",
@@ -232,12 +226,6 @@
       "codigo": "1229",
       "modelo": "Onix",
       "patente": "PBK848",
-      "estado": "libre"
-    },
-    {
-      "codigo": "1243",
-      "modelo": "VW Fox",
-      "patente": "MQX772",
       "estado": "libre"
     },
     {
@@ -415,7 +403,18 @@
         {
           "codigo": "1251",
           "modelo": "RAV4",
-          "patente": "IKV736"
+          "patente": "IKV736",
+          "pendiente": "Vendido 18/09; falta cobrar $5.075.000 (no suma a caja ni al reparto)"
+        },
+        {
+          "codigo": "1243",
+          "modelo": "VW Fox",
+          "patente": "MQX772"
+        },
+        {
+          "codigo": "1250",
+          "modelo": "Tracker",
+          "patente": "AE541BW"
         }
       ]
     },
