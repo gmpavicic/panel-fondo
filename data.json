@@ -160,13 +160,13 @@
       "nombre": "Octubre 2026 (en curso)",
       "enCurso": true,
       "fondoAnterior": 476938360,
-      "fondoTotal": 466306886,
-      "cajaLiquida": 48041887,
-      "capitalAutos": 418264999,
-      "autosStock": 31,
-      "autosVendidos": 5,
+      "fondoTotal": 497431886,
+      "cajaLiquida": 136266887,
+      "capitalAutos": 361164999,
+      "autosStock": 27,
+      "autosVendidos": 9,
       "repartoGanancia": 0,
-      "nota": "PARCIAL (mes en curso). 4 autos vendidos y COBRADOS en octubre (1273 Onix, 1140 T-Cross, 1243 Fox, 1250 Tracker): se sacaron de capital en autos y su neto estimado pasa a caja liquida = costo recuperado + 40% inversores (ya netas la comision del vendedor y el 60% agencia). Margen inversores realizado estimado +$4.368.526, aun SIN distribuir. 1251 RAV4 (vendido 18/09) sigue pendiente de cobro $5.075.000, no suma a caja. Stock real 31 autos a costo $418.264.999 (17 del grupo $219.064.999 + 14 asignados $199.200.000). Mauro retiro $15.000.000. Numeros provisorios; el cierre formal se hace con comisiones liquidadas.",
+      "nota": "PARCIAL (mes en curso, al 29/10). Revision auditada por codigo contra la hoja AUTOS. 9 ventas del grupo en octubre: 8 vendidas Y COBRADAS (1273 Onix, 1140 T-Cross, 1243 Fox, 1250 Tracker, 1297 March, 1321 Peugeot 208 AC881IG, 1312 Versa, 1216 Peugeot 208 AB847JB) + 1 EN PROCESO (1222 C3 Aircross: solo sena de $3M, falta ~$7,5M). Metodo de liquidez: por cada auto vendido y cobrado, su cobrado pasa a caja liquida y su costo sale de capital en autos; el C3 queda en capital a costo (en proceso). Ademas el 1251 RAV4 (vendido 18/09) YA COBRO $15.425.000 y suma a caja. Caja liquida ficticia ~$136,3M (plata del grupo esperando reasignacion a compras; NO es $13,5M, ese era la foto de mitad de mes antes de los cobros). Part. inversor realizado octubre ~$8,87M (8 autos) / neto post-Pablo ~$7,47M (~1,57%); con el 1251 ~$7,77M. Provisorio: el cierre formal se hace con comisiones liquidadas. Mauro retiro $15.000.000 (ya aplicado).",
       "inversores": [
         {
           "nombre": "Francisco",
@@ -211,16 +211,10 @@
       "estado": "libre"
     },
     {
-      "codigo": "1216",
-      "modelo": "Peugeot 208",
-      "patente": "AB847JB",
-      "estado": "libre"
-    },
-    {
       "codigo": "1222",
       "modelo": "C3 Aircross",
       "patente": "AD241JW",
-      "estado": "libre"
+      "estado": "en proceso"
     },
     {
       "codigo": "1229",
@@ -301,12 +295,6 @@
       "estado": "libre"
     },
     {
-      "codigo": "1297",
-      "modelo": "Nissan March",
-      "patente": "AD980LG",
-      "estado": "libre"
-    },
-    {
       "codigo": "1308",
       "modelo": "Ford Focus",
       "patente": "LDE350",
@@ -322,12 +310,6 @@
       "codigo": "1310",
       "modelo": "Renault Logan",
       "patente": "AE514GP",
-      "estado": "libre"
-    },
-    {
-      "codigo": "1312",
-      "modelo": "Nissan Versa",
-      "patente": "AF132KD",
       "estado": "libre"
     },
     {
@@ -373,12 +355,6 @@
       "estado": "libre"
     },
     {
-      "codigo": "1321",
-      "modelo": "Peugeot 208",
-      "patente": "AC881IG",
-      "estado": "libre"
-    },
-    {
       "codigo": "1326",
       "modelo": "Ford Ecosport",
       "patente": "LFA213",
@@ -404,7 +380,7 @@
           "codigo": "1251",
           "modelo": "RAV4",
           "patente": "IKV736",
-          "pendiente": "Vendido 18/09; falta cobrar $5.075.000 (no suma a caja ni al reparto)"
+          "nota": "Vendido 18/09; COBRADO (saldo 0). Entra al reparto (+$305.023 inversores)."
         },
         {
           "codigo": "1243",
@@ -415,6 +391,32 @@
           "codigo": "1250",
           "modelo": "Tracker",
           "patente": "AE541BW"
+        },
+        {
+          "codigo": "1297",
+          "modelo": "Nissan March",
+          "patente": "AD980LG"
+        },
+        {
+          "codigo": "1321",
+          "modelo": "Peugeot 208",
+          "patente": "AC881IG"
+        },
+        {
+          "codigo": "1312",
+          "modelo": "Nissan Versa",
+          "patente": "AF132KD"
+        },
+        {
+          "codigo": "1216",
+          "modelo": "Peugeot 208",
+          "patente": "AB847JB"
+        },
+        {
+          "codigo": "1222",
+          "modelo": "C3 Aircross",
+          "patente": "AD241JW",
+          "nota": "EN PROCESO: solo sena de $3M cobrada (falta ~$7,5M). No suma al reparto hasta confirmar."
         }
       ]
     },
