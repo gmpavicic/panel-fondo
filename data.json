@@ -157,44 +157,46 @@
       "dolar": 1545
     },
     {
-      "nombre": "Octubre 2026 (en curso)",
-      "enCurso": true,
-      "fondoAnterior": 476938360,
-      "fondoTotal": 497431886,
-      "cajaLiquida": 136266887,
-      "capitalAutos": 361164999,
-      "autosStock": 27,
-      "autosVendidos": 9,
-      "repartoGanancia": 0,
-      "nota": "PARCIAL (mes en curso, al 29/10). Revision auditada por codigo contra la hoja AUTOS. 9 ventas del grupo en octubre: 8 vendidas Y COBRADAS (1273 Onix, 1140 T-Cross, 1243 Fox, 1250 Tracker, 1297 March, 1321 Peugeot 208 AC881IG, 1312 Versa, 1216 Peugeot 208 AB847JB) + 1 EN PROCESO (1222 C3 Aircross: solo sena de $3M, falta ~$7,5M). Metodo de liquidez: por cada auto vendido y cobrado, su cobrado pasa a caja liquida y su costo sale de capital en autos; el C3 queda en capital a costo (en proceso). Ademas el 1251 RAV4 (vendido 18/09) YA COBRO $15.425.000 y suma a caja. Caja liquida ficticia ~$136,3M (plata del grupo esperando reasignacion a compras; NO es $13,5M, ese era la foto de mitad de mes antes de los cobros). Part. inversor realizado octubre ~$8,87M (8 autos) / neto post-Pablo ~$7,47M (~1,57%); con el 1251 ~$7,77M. Provisorio: el cierre formal se hace con comisiones liquidadas. Mauro retiro $15.000.000 (ya aplicado).",
+      "nombre": "Octubre 2026 (cerrado)",
+      "fondoAnterior": 461938360,
+      "fondoTotal": 469695427,
+      "cajaLiquida": 115001279,
+      "capitalAutos": 354694148,
+      "autosStock": 26,
+      "autosVendidos": 10,
+      "repartoGanancia": 7757067,
+      "nota": "CERRADO (cierre formal, 10/11/2026). 9 autos del grupo vendidos y cobrados en octubre + 1251 RAV4 (venta sept, cobrada oct) = 10 autos. DESDE OCTUBRE Pablo NO cobra sueldo fijo: cobra comision por auto, ya descontada dentro del margen de cada auto (~2.207.371 total). Ganancia inversores = PART. INVERSOR de la ficha = NETO repartido 7.757.067. SECUENCIA: el retiro de Mauro (15.000.000) se aplica ANTES de repartir (Mauro pasa de 14,10% a 11,31%), asi octubre se reparte con su % ya reducido. Reparto octubre: Francisco 5.518.168 / Mauro 877.376 / Gaston 623.097 / Gerard 577.446 / Fernando 160.980. Fondo = suma de cuentas corrientes = 469.695.427. Liquidez contable (Maestro) 115.001.279. Fuente real = Libro Fondo Inversores (Maestro general + hoja 'Octubre cerrado'); este panel es orientativo.",
       "inversores": [
         {
           "nombre": "Francisco",
-          "capital": 328610530,
+          "capital": 334128698,
           "pct": 71.14
         },
         {
           "nombre": "Mauro",
-          "capital": 52248309,
+          "capital": 53125685,
           "pct": 11.31
         },
         {
           "nombre": "Gaston",
-          "capital": 37105804,
+          "capital": 37728901,
           "pct": 8.03
         },
         {
           "nombre": "Gerard",
-          "capital": 34387256,
+          "capital": 34964702,
           "pct": 7.44
         },
         {
           "nombre": "Fernando",
-          "capital": 9586461,
+          "capital": 9747441,
           "pct": 2.08
         }
       ],
-      "dolar": 1545
+      "dolar": 1545,
+      "gananciaGrupoBruta": 19392667,
+      "sueldoPablo": 0,
+      "gananciaGrupoNeta": 7757067
     }
   ],
   "autosEnStock": [
@@ -209,12 +211,6 @@
       "modelo": "Onix",
       "patente": "AB408PH",
       "estado": "libre"
-    },
-    {
-      "codigo": "1222",
-      "modelo": "C3 Aircross",
-      "patente": "AD241JW",
-      "estado": "en proceso"
     },
     {
       "codigo": "1229",
