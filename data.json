@@ -2,12 +2,12 @@
  "meses": [
   {
    "nombre": "Junio 2026",
-   "fondoTotal": 471484836,
+   "fondoTotal": 475293969,
    "cajaLiquida": 159582298,
-   "capitalAutos": 311902538,
+   "capitalAutos": 315711671,
    "autosStock": 22,
    "autosVendidos": 9,
-   "repartoGanancia": 8583306,
+   "repartoGanancia": 5914389,
    "inversores": [
     {
      "nombre": "Francisco",
@@ -35,16 +35,21 @@
      "pct": 3.37
     }
    ],
-   "dolar": 1545
+   "dolar": 1545,
+   "fondoAnterior": 469379580,
+   "gananciaGrupoBruta": 18285975,
+   "sueldoPablo": 1400000,
+   "gananciaGrupoNeta": 5914389,
+   "nota": "Reflejado con las correcciones de la ficha (Autos manda). Ganancia inversores = PART INVERSOR de la ficha. Sueldo Pablo FIJO $1.400.000 (en jun/jul/ago Pablo cobraba sueldo fijo, no estaba dentro de cada auto)."
   },
   {
    "nombre": "Julio 2026",
-   "fondoTotal": 474909190,
+   "fondoTotal": 479825266,
    "cajaLiquida": 245888115,
-   "capitalAutos": 229021075,
+   "capitalAutos": 233937151,
    "autosStock": 16,
-   "autosVendidos": 6,
-   "repartoGanancia": 3424355,
+   "autosVendidos": 8,
+   "repartoGanancia": 4531297,
    "inversores": [
     {
      "nombre": "Francisco",
@@ -72,20 +77,25 @@
      "pct": 3.37
     }
    ],
-   "dolar": 1545
+   "dolar": 1545,
+   "fondoAnterior": 475293969,
+   "gananciaGrupoBruta": 14828244,
+   "sueldoPablo": 1400000,
+   "gananciaGrupoNeta": 4531297,
+   "nota": "Correcciones de ficha aplicadas. Incluye 1146 y 1199 (vendidos en julio). Sueldo Pablo FIJO $1.400.000."
   },
   {
    "nombre": "Agosto 2026 (cerrado)",
-   "fondoAnterior": 447909190,
-   "fondoTotal": 462376324,
+   "fondoAnterior": 452825266,
+   "fondoTotal": 467236207,
    "cajaLiquida": 213121326,
-   "capitalAutos": 249254998,
-   "gananciaGrupoBruta": 39667832,
+   "capitalAutos": 254114881,
+   "gananciaGrupoBruta": 39527350,
    "sueldoPablo": 1400000,
-   "gananciaGrupoNeta": 14467134,
+   "gananciaGrupoNeta": 14410941,
    "autosVendidos": 13,
-   "repartoGanancia": 14467134,
-   "nota": "Cierre corregido con la ficha (comisiones pagadas): se repartieron 13 autos vendidos en agosto.",
+   "repartoGanancia": 14410941,
+   "nota": "Correcciones de ficha aplicadas. Se aplicaron retiros por $27.000.000 (Gerard $8M, Fernando $7M, Gaston $12M) antes de repartir. Sueldo Pablo FIJO $1.400.000 (ultimo mes con sueldo fijo).",
    "inversores": [
     {
      "nombre": "Francisco",
@@ -113,20 +123,21 @@
      "pct": 2.01
     }
    ],
-   "dolar": 1545
+   "dolar": 1545,
+   "autosStock": 18
   },
   {
    "nombre": "Septiembre 2026 (cerrado)",
-   "fondoAnterior": 462376324,
-   "fondoTotal": 476938360,
+   "fondoAnterior": 467236207,
+   "fondoTotal": 474630287,
    "cajaLiquida": 227683362,
-   "capitalAutos": 249254998,
-   "gananciaGrupoBruta": 21188539,
-   "sueldoPablo": 1400000,
-   "gananciaGrupoNeta": 7075416,
+   "capitalAutos": 246946925,
+   "gananciaGrupoBruta": 18485202,
+   "sueldoPablo": 0,
+   "gananciaGrupoNeta": 7394080,
    "autosVendidos": 11,
-   "repartoGanancia": 7075416,
-   "nota": "11 autos cerrados (vendido+cobrado+comision pagada). 1251 no entra (falta cobrar).",
+   "repartoGanancia": 7394080,
+   "nota": "Correcciones de ficha aplicadas. SIN sueldo fijo de Pablo: desde septiembre Pablo cobra comision POR AUTO, ya descontada dentro del margen de cada auto en la ficha (~$226k/auto). Ganancia inversores = PART INVERSOR, matchea la ficha.",
    "inversores": [
     {
      "nombre": "Francisco",
@@ -154,54 +165,55 @@
      "pct": 2.01
     }
    ],
-   "dolar": 1545
+   "dolar": 1545,
+   "autosStock": 22
   },
   {
    "nombre": "Octubre 2026 (cerrado)",
-   "fondoAnterior": 461938360,
-   "fondoTotal": 469695427,
+   "fondoAnterior": 459630287,
+   "fondoTotal": 467318575,
    "cajaLiquida": 115001279,
-   "capitalAutos": 354694148,
+   "capitalAutos": 352317296,
    "autosStock": 26,
    "autosVendidos": 10,
-   "repartoGanancia": 7757067,
-   "nota": "CERRADO (cierre formal, 10/11/2026). 9 autos del grupo vendidos y cobrados en octubre + 1251 RAV4 (venta sept, cobrada oct) = 10 autos. DESDE OCTUBRE Pablo NO cobra sueldo fijo: cobra comision por auto, ya descontada dentro del margen de cada auto (~2.207.371 total). Ganancia inversores = PART. INVERSOR de la ficha = NETO repartido 7.757.067. SECUENCIA: el retiro de Mauro (15.000.000) se aplica ANTES de repartir (Mauro pasa de 14,10% a 11,31%), asi octubre se reparte con su % ya reducido. Reparto octubre: Francisco 5.518.168 / Mauro 877.376 / Gaston 623.097 / Gerard 577.446 / Fernando 160.980. Fondo = suma de cuentas corrientes = 469.695.427. Liquidez contable (Maestro) 115.001.279. Fuente real = Libro Fondo Inversores (Maestro general + hoja 'Octubre cerrado'); este panel es orientativo.",
+   "repartoGanancia": 7688288,
+   "nota": "Correcciones de ficha aplicadas. SIN sueldo fijo de Pablo (comision por auto, ~$220k/auto, ya en la ficha). Retiro de Mauro $15M aplicado antes de repartir. Cierre corregido $467.318.575 (antes $469.695.427; -$2.376.852 por las correcciones Autos manda).",
    "inversores": [
     {
      "nombre": "Francisco",
-     "capital": 334128698,
-     "pct": 71.14
+     "capital": 332535287,
+     "pct": 71.16
     },
     {
      "nombre": "Mauro",
-     "capital": 53125685,
-     "pct": 11.31
+     "capital": 52801892,
+     "pct": 11.3
     },
     {
      "nombre": "Gaston",
-     "capital": 37728901,
+     "capital": 37519366,
      "pct": 8.03
     },
     {
      "nombre": "Gerard",
-     "capital": 34964702,
+     "capital": 34778236,
      "pct": 7.44
     },
     {
-     "nombre": "Fernando",
-     "capital": 9747441,
-     "pct": 2.08
+     "nombre": "Turco (Fernando Saad)",
+     "capital": 9683794,
+     "pct": 2.07
     }
    ],
    "dolar": 1545,
-   "gananciaGrupoBruta": 19392667,
+   "gananciaGrupoBruta": 19220719,
    "sueldoPablo": 0,
-   "gananciaGrupoNeta": 7757067
+   "gananciaGrupoNeta": 7688288
   },
   {
    "nombre": "Noviembre 2026 (en progreso)",
    "estado": "en progreso",
-   "fondoAnterior": 469695427,
+   "fondoAnterior": 467318575,
    "fondoTotal": 410743595,
    "cajaLiquida": 80258596,
    "capitalAutos": 330484999,
@@ -209,7 +221,7 @@
    "autosSenados": 7,
    "autosVendidos": 2,
    "repartoGanancia": 0,
-   "nota": "EN PROGRESO. RECALCULADO con las correcciones del cotejar (Autos manda) propagadas a los capitales por periodo (ajuste total -$2.376.852). Mauro SALIO del fondo: pago final $42.801.892 (pendiente, lo cobra a medida que ingresa plata; lo lleva adm general). Para la CAJA/LIQUIDEZ se cuenta a Mauro en CERO: liquidez disponible para comprar autos nuevos = $80.258.596 (Maestro, con la salida de Mauro ya aplicada). Fondo activo 4 inversores (equity) = $412.191.683; la diferencia chica con fondoTotal es el margen de noviembre aun sin repartir. Ventas noviembre cobradas (cuentan liquidez): 1213, 1315. Senados/parciales fuera de stock, NO cuentan liquidez (cobrado < egreso): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (costo inmovilizado $71.400.000). Disponibles libres: 17 autos (costo $259.084.999). Composicion: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% (post retiro $2,325M) / Fernando 2,35%. Ganancia historica del grupo inversor corregida = $64.712.874 (antes $67.089.726). Fuente real = Libro Fondo Inversores. Panel orientativo.",
+   "nota": "EN PROGRESO. RECALCULADO con las correcciones del cotejar (Autos manda) propagadas a los capitales por periodo (ajuste total -$2.376.852). Mauro SALIO del fondo: pago final $42.801.892 (pendiente, lo cobra a medida que ingresa plata; lo lleva adm general). Para la CAJA/LIQUIDEZ se cuenta a Mauro en CERO: liquidez disponible para comprar autos nuevos = $80.258.596 (Maestro, con la salida de Mauro ya aplicada). Cierre octubre corregido $467.318.575. Fondo activo 4 inversores = $412.191.683; la diferencia chica con fondoTotal es el margen de noviembre aun sin repartir. Ventas noviembre cobradas (cuentan liquidez): 1213, 1315. Senados/parciales fuera de stock, NO cuentan liquidez (cobrado < egreso): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (costo inmovilizado $71.400.000). Disponibles libres: 17 autos (costo $259.084.999). Composicion: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% (post retiro $2,325M) / Fernando 2,35%. Ganancia historica del grupo inversor corregida = $64.712.874 (antes $67.089.726). Fuente real = Libro Fondo Inversores. Panel orientativo.",
    "inversores": [
     {
      "nombre": "Francisco",
@@ -239,7 +251,7 @@
     "pct": 0
    },
    "dolar": 1545,
-   "gananciaGrupoBruta": 4300000,
+   "gananciaGrupoBruta": 2902654,
    "sueldoPablo": 0,
    "gananciaGrupoNeta": 0,
    "fondoActivo4": 412191683,
