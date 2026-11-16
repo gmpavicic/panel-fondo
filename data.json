@@ -202,46 +202,48 @@
    "nombre": "Noviembre 2026 (en progreso)",
    "estado": "en progreso",
    "fondoAnterior": 469695427,
-   "fondoTotal": 461670427,
-   "cajaLiquida": 127176279,
-   "capitalAutos": 334494148,
+   "fondoTotal": 410743595,
+   "cajaLiquida": 80258596,
+   "capitalAutos": 330484999,
    "autosStock": 17,
    "autosSenados": 7,
    "autosVendidos": 2,
    "repartoGanancia": 0,
-   "nota": "EN PROGRESO. Mauro SALIO del fondo: su capital de cierre $43.125.685 queda PENDIENTE DE PAGO (sigue retirando lo que le queda) y ya no participa. Fondo ACTIVO (4 inversores) = $414244742. Pendiente de pago a Mauro = $43125685. Margen bruto noviembre (2 ventas cobradas, SIN repartir) = $4300000. Ventas noviembre cobradas (cuentan liquidez): 1213, 1315. Señados/parciales (fuera de stock disponible, NO cuentan liquidez porque lo cobrado es menor al egreso): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (costo inmovilizado $71.400.000). Disponibles libres: 17 autos (costo $259.084.999). Liquidez contable Maestro al dia de hoy: $123.060.488. Retiros aplicados en el periodo: Mauro $10.000.000 + Gerard $2.325.000. Fuente real = Libro Fondo Inversores (Maestro general). Este panel es orientativo.",
+   "nota": "EN PROGRESO. RECALCULADO con las correcciones del cotejar (Autos manda) propagadas a los capitales por periodo (ajuste total -$2.376.852). Mauro SALIO del fondo: pago final $42.801.892 (pendiente, lo cobra a medida que ingresa plata; lo lleva adm general). Para la CAJA/LIQUIDEZ se cuenta a Mauro en CERO: liquidez disponible para comprar autos nuevos = $80.258.596 (Maestro, con la salida de Mauro ya aplicada). Fondo activo 4 inversores (equity) = $412.191.683; la diferencia chica con fondoTotal es el margen de noviembre aun sin repartir. Ventas noviembre cobradas (cuentan liquidez): 1213, 1315. Senados/parciales fuera de stock, NO cuentan liquidez (cobrado < egreso): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (costo inmovilizado $71.400.000). Disponibles libres: 17 autos (costo $259.084.999). Composicion: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% (post retiro $2,325M) / Fernando 2,35%. Ganancia historica del grupo inversor corregida = $64.712.874 (antes $67.089.726). Fuente real = Libro Fondo Inversores. Panel orientativo.",
    "inversores": [
     {
      "nombre": "Francisco",
-     "capital": 334128698,
-     "pct": 80.66
+     "capital": 332535287,
+     "pct": 80.67
     },
     {
      "nombre": "Gaston",
-     "capital": 37728901,
-     "pct": 9.11
+     "capital": 37519366,
+     "pct": 9.1
     },
     {
      "nombre": "Gerard",
-     "capital": 32639702,
-     "pct": 7.88
+     "capital": 32453236,
+     "pct": 7.87
     },
     {
-     "nombre": "Fernando",
-     "capital": 9747441,
+     "nombre": "Turco (Fernando Saad)",
+     "capital": 9683794,
      "pct": 2.35
     }
    ],
    "mauroSalida": {
     "nombre": "Mauro",
-    "capitalCierre": 43125685,
-    "estado": "SALIO - pendiente de pago",
+    "pagoFinalPendiente": 42801892,
+    "estado": "SALIO del fondo - se cuenta en CERO para la caja; pago pendiente lo administra adm general",
     "pct": 0
    },
    "dolar": 1545,
    "gananciaGrupoBruta": 4300000,
    "sueldoPablo": 0,
-   "gananciaGrupoNeta": 0
+   "gananciaGrupoNeta": 0,
+   "fondoActivo4": 412191683,
+   "liquidezDisponibleNuevosAutos": 80258596
   }
  ],
  "autosEnStock": [
