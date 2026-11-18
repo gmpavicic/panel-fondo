@@ -214,14 +214,14 @@
    "nombre": "Noviembre 2026 (en progreso)",
    "estado": "en progreso",
    "fondoAnterior": 467318575,
-   "fondoTotal": 410743595,
-   "cajaLiquida": 468596,
-   "capitalAutos": 410274999,
+   "fondoTotal": 411081549,
+   "cajaLiquida": 26306550,
+   "capitalAutos": 384774999,
    "autosStock": 22,
-   "autosSenados": 7,
-   "autosVendidos": 2,
+   "autosSenados": 4,
+   "autosVendidos": 5,
    "repartoGanancia": 0,
-   "nota": "EN PROGRESO (al 18/11). Mauro YA SALIO y esta pagado/descontado en el Maestro general (no queda pendiente contra la caja). Liquidez del Maestro (col Saldo inv) = $80.258.596; se ASIGNO a 5 autos nuevos (1331,1333,1334,1335,1336, costo $79.790.000), dejando $468.596 de colchon (decision de Gaston: gastar casi toda la liquidez en autos sabiendo que ingresan ventas nuevas). Resultado: caja liquida $468.596, capital en autos $410.274.999 (22 disponibles + 7 senados). Regla mes en curso: cuentan liquidez solo las ventas con cobrado>egreso: 1213 y 1315 (margen inversor $1.161.061, gan bruta $2.902.654). Senados/parciales (cobrado<egreso, NO cuentan, costo inmovilizado $71.400.000): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (todas señas por completar). Composicion 4 activos: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% / Fernando 2,35%. Fondo activo = $412.191.683. Panel orientativo, fuente real = Maestro general.",
+   "nota": "EN PROGRESO (al 18/11). Mauro YA SALIO y esta pagado/descontado en el Maestro general (no queda pendiente contra la caja). Secuencia del mes: (1) la liquidez del Maestro ($80.258.596) se asigno a 5 autos nuevos (1331,1333,1334,1335,1336, costo $79.790.000), dejando $468.596 de colchon; (2) entraron ventas: cuentan liquidez los autos con cobrado>costo = 1213, 1315, y ademas 1301, 1308, 1326 (senados que ya cobraron mas que su costo -> salen de capital y pasan a liquidez, regla de Gaston). Resultado: CAJA LIQUIDA $26.306.550, capital en autos $384.774.999 (22 disponibles + 4 senados). Margen inversor realizado noviembre = $1.499.015 (1213 300.066 + 1315 860.995 + 1301 349.496 + 1326 83.792 + 1308 -95.334). 1308 quedo levemente negativo (cobrado apenas > costo de compra). Senados que siguen sin contar (cobrado<costo, costo inmovilizado $45.900.000): 1229, 1278, 1283, 1307 (senas por completar). Composicion 4 activos: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% / Fernando 2,35%. Fondo activo = $412.191.683. Fuente: Maestro general (ya editado). Panel orientativo.",
    "inversores": [
     {
      "nombre": "Francisco",
@@ -251,11 +251,11 @@
     "pct": 0
    },
    "dolar": 1545,
-   "gananciaGrupoBruta": 2902654,
+   "gananciaGrupoBruta": 3747539,
    "sueldoPablo": 0,
-   "gananciaGrupoNeta": 0,
+   "gananciaGrupoNeta": 1499015,
    "fondoActivo4": 412191683,
-   "liquidezDisponibleNuevosAutos": 468596,
+   "liquidezDisponibleNuevosAutos": 26306550,
    "asignacionNuevosAutos": {
     "total": 80258596,
     "sumaPrecioCompra": 79790000,
@@ -810,6 +810,24 @@
      "modelo": "VW UP!",
      "patente": "PJD653",
      "nota": "Vendido 11/11, cobrado. Cuenta liquidez."
+    },
+    {
+     "codigo": "1301",
+     "modelo": "Ford Focus",
+     "patente": "KLL183",
+     "nota": "Senado que ya cobro mas que su costo -> pasa a liquidez (regla cobrado>costo)."
+    },
+    {
+     "codigo": "1308",
+     "modelo": "Ford Focus",
+     "patente": "LDE350",
+     "nota": "Senado que ya cobro mas que su costo -> pasa a liquidez (regla cobrado>costo)."
+    },
+    {
+     "codigo": "1326",
+     "modelo": "Ford Ecosport",
+     "patente": "LFA213",
+     "nota": "Senado que ya cobro mas que su costo -> pasa a liquidez (regla cobrado>costo)."
     }
    ],
    "senados": [
@@ -829,27 +847,12 @@
      "patente": "AA855GY"
     },
     {
-     "codigo": "1301",
-     "modelo": "Ford Focus",
-     "patente": "KLL183"
-    },
-    {
      "codigo": "1307",
      "modelo": "Fiat Palio",
      "patente": "NAY452"
-    },
-    {
-     "codigo": "1308",
-     "modelo": "Ford Focus",
-     "patente": "LDE350"
-    },
-    {
-     "codigo": "1326",
-     "modelo": "Ford Ecosport",
-     "patente": "LFA213"
     }
    ],
-   "nota": "Señados: parciales (cobrado < egreso), fuera de stock disponible, NO cuentan liquidez."
+   "nota": "Vendidos/cobrados que cuentan liquidez: 1213,1315 + 1301,1308,1326 (cobrado>costo). Señados restantes: cobrado<costo, NO cuentan."
   }
  ]
 }
