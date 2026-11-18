@@ -1,0 +1,808 @@
+{
+ "meses": [
+  {
+   "nombre": "Junio 2026",
+   "fondoTotal": 475293969,
+   "cajaLiquida": 163391431,
+   "capitalAutos": 311902538,
+   "autosStock": 22,
+   "autosVendidos": 9,
+   "repartoGanancia": 5914389,
+   "inversores": [
+    {
+     "nombre": "Francisco",
+     "capital": 306398699,
+     "pct": 64.99
+    },
+    {
+     "nombre": "Mauro",
+     "capital": 62691641,
+     "pct": 13.3
+    },
+    {
+     "nombre": "Gaston",
+     "capital": 46517959,
+     "pct": 9.87
+    },
+    {
+     "nombre": "Gerard",
+     "capital": 40006417,
+     "pct": 8.49
+    },
+    {
+     "nombre": "Fernando",
+     "capital": 15870119,
+     "pct": 3.37
+    }
+   ],
+   "dolar": 1545,
+   "fondoAnterior": 469379580,
+   "gananciaGrupoBruta": 18285975,
+   "sueldoPablo": 1400000,
+   "gananciaGrupoNeta": 5914389,
+   "nota": "Reflejado con las correcciones de la ficha (Autos manda). Ganancia inversores = PART INVERSOR de la ficha. Sueldo Pablo FIJO $1.400.000 (en jun/jul/ago Pablo cobraba sueldo fijo, no estaba dentro de cada auto)."
+  },
+  {
+   "nombre": "Julio 2026",
+   "fondoTotal": 479825266,
+   "cajaLiquida": 250804191,
+   "capitalAutos": 229021075,
+   "autosStock": 16,
+   "autosVendidos": 8,
+   "repartoGanancia": 4531297,
+   "inversores": [
+    {
+     "nombre": "Francisco",
+     "capital": 308624047,
+     "pct": 64.99
+    },
+    {
+     "nombre": "Mauro",
+     "capital": 63146964,
+     "pct": 13.3
+    },
+    {
+     "nombre": "Gaston",
+     "capital": 46855816,
+     "pct": 9.87
+    },
+    {
+     "nombre": "Gerard",
+     "capital": 40296980,
+     "pct": 8.49
+    },
+    {
+     "nombre": "Fernando",
+     "capital": 15985383,
+     "pct": 3.37
+    }
+   ],
+   "dolar": 1545,
+   "fondoAnterior": 475293969,
+   "gananciaGrupoBruta": 14828244,
+   "sueldoPablo": 1400000,
+   "gananciaGrupoNeta": 4531297,
+   "nota": "Correcciones de ficha aplicadas. Incluye 1146 y 1199 (vendidos en julio). Sueldo Pablo FIJO $1.400.000."
+  },
+  {
+   "nombre": "Agosto 2026 (cerrado)",
+   "fondoAnterior": 452825266,
+   "fondoTotal": 467236207,
+   "cajaLiquida": 217981209,
+   "capitalAutos": 249254998,
+   "gananciaGrupoBruta": 39527350,
+   "sueldoPablo": 1400000,
+   "gananciaGrupoNeta": 14410941,
+   "autosVendidos": 13,
+   "repartoGanancia": 14410941,
+   "nota": "Correcciones de ficha aplicadas. Se aplicaron retiros por $27.000.000 (Gerard $8M, Fernando $7M, Gaston $12M) antes de repartir. Sueldo Pablo FIJO $1.400.000 (ultimo mes con sueldo fijo).",
+   "inversores": [
+    {
+     "nombre": "Francisco",
+     "capital": 318624047,
+     "pct": 68.9
+    },
+    {
+     "nombre": "Mauro",
+     "capital": 65146964,
+     "pct": 14.1
+    },
+    {
+     "nombre": "Gaston",
+     "capital": 36000242,
+     "pct": 7.78
+    },
+    {
+     "nombre": "Gerard",
+     "capital": 33347856,
+     "pct": 7.21
+    },
+    {
+     "nombre": "Fernando",
+     "capital": 9276956,
+     "pct": 2.01
+    }
+   ],
+   "dolar": 1545,
+   "autosStock": 18
+  },
+  {
+   "nombre": "Septiembre 2026 (cerrado)",
+   "fondoAnterior": 467236207,
+   "fondoTotal": 474630287,
+   "cajaLiquida": 225375289,
+   "capitalAutos": 249254998,
+   "gananciaGrupoBruta": 18485202,
+   "sueldoPablo": 0,
+   "gananciaGrupoNeta": 7394080,
+   "autosVendidos": 11,
+   "repartoGanancia": 7394080,
+   "nota": "Correcciones de ficha aplicadas. SIN sueldo fijo de Pablo: desde septiembre Pablo cobra comision POR AUTO, ya descontada dentro del margen de cada auto en la ficha (~$226k/auto). Ganancia inversores = PART INVERSOR, matchea la ficha.",
+   "inversores": [
+    {
+     "nombre": "Francisco",
+     "capital": 328610530,
+     "pct": 68.9
+    },
+    {
+     "nombre": "Mauro",
+     "capital": 67248309,
+     "pct": 14.1
+    },
+    {
+     "nombre": "Gaston",
+     "capital": 37105804,
+     "pct": 7.78
+    },
+    {
+     "nombre": "Gerard",
+     "capital": 34387256,
+     "pct": 7.21
+    },
+    {
+     "nombre": "Fernando",
+     "capital": 9586461,
+     "pct": 2.01
+    }
+   ],
+   "dolar": 1545,
+   "autosStock": 22
+  },
+  {
+   "nombre": "Octubre 2026 (cerrado)",
+   "fondoAnterior": 459630287,
+   "fondoTotal": 467318575,
+   "cajaLiquida": 112624427,
+   "capitalAutos": 354694148,
+   "autosStock": 26,
+   "autosVendidos": 10,
+   "repartoGanancia": 7688288,
+   "nota": "Correcciones de ficha aplicadas. SIN sueldo fijo de Pablo (comision por auto, ~$220k/auto, ya en la ficha). Retiro de Mauro $15M aplicado antes de repartir. Cierre corregido $467.318.575 (antes $469.695.427; -$2.376.852 por las correcciones Autos manda).",
+   "inversores": [
+    {
+     "nombre": "Francisco",
+     "capital": 332535287,
+     "pct": 71.16
+    },
+    {
+     "nombre": "Mauro",
+     "capital": 52801892,
+     "pct": 11.3
+    },
+    {
+     "nombre": "Gaston",
+     "capital": 37519366,
+     "pct": 8.03
+    },
+    {
+     "nombre": "Gerard",
+     "capital": 34778236,
+     "pct": 7.44
+    },
+    {
+     "nombre": "Turco (Fernando Saad)",
+     "capital": 9683794,
+     "pct": 2.07
+    }
+   ],
+   "dolar": 1545,
+   "gananciaGrupoBruta": 19220719,
+   "sueldoPablo": 0,
+   "gananciaGrupoNeta": 7688288
+  },
+  {
+   "nombre": "Noviembre 2026 (en progreso)",
+   "estado": "en progreso",
+   "fondoAnterior": 467318575,
+   "fondoTotal": 410743595,
+   "cajaLiquida": 80258596,
+   "capitalAutos": 330484999,
+   "autosStock": 17,
+   "autosSenados": 7,
+   "autosVendidos": 2,
+   "repartoGanancia": 0,
+   "nota": "EN PROGRESO. RECALCULADO con las correcciones del cotejar (Autos manda) propagadas a los capitales por periodo (ajuste total -$2.376.852). Mauro SALIO del fondo: pago final $42.801.892 (pendiente, lo cobra a medida que ingresa plata; lo lleva adm general). Para la CAJA/LIQUIDEZ se cuenta a Mauro en CERO: liquidez disponible para comprar autos nuevos = $80.258.596 (Maestro, con la salida de Mauro ya aplicada). Cierre octubre corregido $467.318.575. Fondo activo 4 inversores = $412.191.683; la diferencia chica con fondoTotal es el margen de noviembre aun sin repartir. Ventas noviembre cobradas (cuentan liquidez): 1213, 1315. Senados/parciales fuera de stock, NO cuentan liquidez (cobrado < egreso): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (costo inmovilizado $71.400.000). Disponibles libres: 17 autos (costo $259.084.999). Composicion: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% (post retiro $2,325M) / Fernando 2,35%. Ganancia historica del grupo inversor corregida = $64.712.874 (antes $67.089.726). Fuente real = Libro Fondo Inversores. Panel orientativo.",
+   "inversores": [
+    {
+     "nombre": "Francisco",
+     "capital": 332535287,
+     "pct": 80.67
+    },
+    {
+     "nombre": "Gaston",
+     "capital": 37519366,
+     "pct": 9.1
+    },
+    {
+     "nombre": "Gerard",
+     "capital": 32453236,
+     "pct": 7.87
+    },
+    {
+     "nombre": "Turco (Fernando Saad)",
+     "capital": 9683794,
+     "pct": 2.35
+    }
+   ],
+   "mauroSalida": {
+    "nombre": "Mauro",
+    "pagoFinalPendiente": 42801892,
+    "estado": "SALIO del fondo - se cuenta en CERO para la caja; pago pendiente lo administra adm general",
+    "pct": 0
+   },
+   "dolar": 1545,
+   "gananciaGrupoBruta": 2902654,
+   "sueldoPablo": 0,
+   "gananciaGrupoNeta": 0,
+   "fondoActivo4": 412191683,
+   "liquidezDisponibleNuevosAutos": 80258596
+  }
+ ],
+ "autosEnStock": [
+  {
+   "codigo": "1208",
+   "modelo": "Peugeot 207",
+   "patente": "JRR412",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1265",
+   "modelo": "Fiat Siena",
+   "patente": "OTC592",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1266",
+   "modelo": "Fiat 500",
+   "patente": "NZX523",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1271",
+   "modelo": "Honda Fit",
+   "patente": "KZB453",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1279",
+   "modelo": "VW Suran",
+   "patente": "AB351YF",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1280",
+   "modelo": "Toyota Yaris",
+   "patente": "AC618VM",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1281",
+   "modelo": "Nissan Kicks",
+   "patente": "AC892CS",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1284",
+   "modelo": "VW Amarok",
+   "patente": "AD217YM",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1287",
+   "modelo": "Renault Sandero",
+   "patente": "PDR967",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1289",
+   "modelo": "Renault Logan",
+   "patente": "AF421JL",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1309",
+   "modelo": "Renault Stepway",
+   "patente": "AE785HO",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1310",
+   "modelo": "Renault Logan",
+   "patente": "AE514GP",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1313",
+   "modelo": "Nissan Kicks",
+   "patente": "AF309SN",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1314",
+   "modelo": "Renault Stepway",
+   "patente": "AE565JC",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1316",
+   "modelo": "Renault Kangoo",
+   "patente": "AD965RA",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1317",
+   "modelo": "Toyota Etios",
+   "patente": "AD890ON",
+   "estado": "libre"
+  },
+  {
+   "codigo": "1318",
+   "modelo": "Nissan Note",
+   "patente": "AA305TQ",
+   "estado": "libre"
+  }
+ ],
+ "ventasPorMes": [
+  {
+   "mes": "Octubre 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1273",
+     "modelo": "Onix",
+     "patente": "OXY910"
+    },
+    {
+     "codigo": "1140",
+     "modelo": "T-Cross",
+     "patente": "AE163SW"
+    },
+    {
+     "codigo": "1251",
+     "modelo": "RAV4",
+     "patente": "IKV736",
+     "nota": "Vendido 18/09; COBRADO (saldo 0). Entra al reparto (+$305.023 inversores)."
+    },
+    {
+     "codigo": "1243",
+     "modelo": "VW Fox",
+     "patente": "MQX772"
+    },
+    {
+     "codigo": "1250",
+     "modelo": "Tracker",
+     "patente": "AE541BW"
+    },
+    {
+     "codigo": "1297",
+     "modelo": "Nissan March",
+     "patente": "AD980LG"
+    },
+    {
+     "codigo": "1321",
+     "modelo": "Peugeot 208",
+     "patente": "AC881IG"
+    },
+    {
+     "codigo": "1312",
+     "modelo": "Nissan Versa",
+     "patente": "AF132KD"
+    },
+    {
+     "codigo": "1216",
+     "modelo": "Peugeot 208",
+     "patente": "AB847JB"
+    },
+    {
+     "codigo": "1222",
+     "modelo": "C3 Aircross",
+     "patente": "AD241JW",
+     "nota": "EN PROCESO: solo sena de $3M cobrada (falta ~$7,5M). No suma al reparto hasta confirmar."
+    }
+   ]
+  },
+  {
+   "mes": "Septiembre 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1259",
+     "modelo": "RAV4",
+     "patente": "IPN935"
+    },
+    {
+     "codigo": "1260",
+     "modelo": "Moto Rouser",
+     "patente": "A0710ZV"
+    },
+    {
+     "codigo": "1267",
+     "modelo": "C3 Aircross",
+     "patente": "AC107FR"
+    },
+    {
+     "codigo": "1253",
+     "modelo": "Saveiro",
+     "patente": "AA104PT"
+    },
+    {
+     "codigo": "1295",
+     "modelo": "Focus",
+     "patente": "KSM015"
+    },
+    {
+     "codigo": "1269",
+     "modelo": "Siena",
+     "patente": "MFO411"
+    },
+    {
+     "codigo": "1288",
+     "modelo": "Pulse",
+     "patente": "AF427YG"
+    },
+    {
+     "codigo": "1225",
+     "modelo": "Picanto",
+     "patente": "NGF682"
+    },
+    {
+     "codigo": "1294",
+     "modelo": "Voyage",
+     "patente": "OIM009"
+    },
+    {
+     "codigo": "1319",
+     "modelo": "Kangoo",
+     "patente": "NSS962"
+    },
+    {
+     "codigo": "1171",
+     "modelo": "Corolla",
+     "patente": "AE576WD"
+    }
+   ]
+  },
+  {
+   "mes": "Agosto 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "906",
+     "modelo": "C3",
+     "patente": "LPI685"
+    },
+    {
+     "codigo": "1078",
+     "modelo": "2008",
+     "patente": "AF284KZ"
+    },
+    {
+     "codigo": "1125",
+     "modelo": "Gol Trend",
+     "patente": "AD981YT"
+    },
+    {
+     "codigo": "1192",
+     "modelo": "Palio",
+     "patente": "PBU283"
+    },
+    {
+     "codigo": "1210",
+     "modelo": "Focus",
+     "patente": "AE041BL"
+    },
+    {
+     "codigo": "1212",
+     "modelo": "C3 Aircross",
+     "patente": "AA103TO"
+    },
+    {
+     "codigo": "1215",
+     "modelo": "Ecosport",
+     "patente": "AE976NX"
+    },
+    {
+     "codigo": "1220",
+     "modelo": "Spin",
+     "patente": "AH508FW"
+    },
+    {
+     "codigo": "1223",
+     "modelo": "207",
+     "patente": "IIR233"
+    },
+    {
+     "codigo": "1224",
+     "modelo": "308",
+     "patente": "AA997SB"
+    },
+    {
+     "codigo": "1248",
+     "modelo": "Sandero",
+     "patente": "AH926ZF"
+    },
+    {
+     "codigo": "1272",
+     "modelo": "Kuga",
+     "patente": "KVV147"
+    },
+    {
+     "codigo": "1277",
+     "modelo": "Partner",
+     "patente": "AB218MV"
+    }
+   ]
+  },
+  {
+   "mes": "Julio 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1097",
+     "modelo": "aporte FIAT PALIO",
+     "patente": ""
+    },
+    {
+     "codigo": "993",
+     "modelo": "PALIO",
+     "patente": ""
+    },
+    {
+     "codigo": "1116",
+     "modelo": "KICKS",
+     "patente": ""
+    },
+    {
+     "codigo": "1169",
+     "modelo": "JEEP RENEGADE",
+     "patente": ""
+    },
+    {
+     "codigo": "1172",
+     "modelo": "RENAULT SANDERO",
+     "patente": ""
+    },
+    {
+     "codigo": "989",
+     "modelo": "Chery QQ",
+     "patente": "JWV094"
+    }
+   ]
+  },
+  {
+   "mes": "Junio 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1076",
+     "modelo": "aporte PEUGEOT 2008",
+     "patente": ""
+    },
+    {
+     "codigo": "1112",
+     "modelo": "KICKS",
+     "patente": ""
+    },
+    {
+     "codigo": "1126",
+     "modelo": "AMAROK",
+     "patente": ""
+    },
+    {
+     "codigo": "1135",
+     "modelo": "TOYOTA COROLLA",
+     "patente": ""
+    },
+    {
+     "codigo": "1157",
+     "modelo": "NISSAN SENTRA",
+     "patente": ""
+    },
+    {
+     "codigo": "1202",
+     "modelo": "CITROEN C3",
+     "patente": "IQH223"
+    },
+    {
+     "codigo": "1207",
+     "modelo": "CHEVROLET PRISMA",
+     "patente": "PEK498"
+    },
+    {
+     "codigo": "1209",
+     "modelo": "RENAULT LOGAN",
+     "patente": "AF668HJ"
+    }
+   ]
+  },
+  {
+   "mes": "Mayo 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1098",
+     "modelo": "aporte FIAT PALIO",
+     "patente": ""
+    },
+    {
+     "codigo": "1131",
+     "modelo": "DUSTER",
+     "patente": ""
+    },
+    {
+     "codigo": "1136",
+     "modelo": "VW POLO",
+     "patente": ""
+    },
+    {
+     "codigo": "1138",
+     "modelo": "RENAULT CAPTUR",
+     "patente": ""
+    },
+    {
+     "codigo": "1149",
+     "modelo": "PEUGEOT 208",
+     "patente": ""
+    },
+    {
+     "codigo": "1160",
+     "modelo": "FIAT CRONOS",
+     "patente": ""
+    },
+    {
+     "codigo": "1161",
+     "modelo": "PEUGEOT 308",
+     "patente": ""
+    },
+    {
+     "codigo": "1168",
+     "modelo": "CHERY QQ",
+     "patente": ""
+    }
+   ]
+  },
+  {
+   "mes": "Abril 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1127",
+     "modelo": "C3 AIR CROSS",
+     "patente": ""
+    }
+   ]
+  },
+  {
+   "mes": "Marzo 2026",
+   "enCurso": false,
+   "autos": [
+    {
+     "codigo": "1102",
+     "modelo": "aporte CITROEN C3",
+     "patente": ""
+    },
+    {
+     "codigo": "1103",
+     "modelo": "aporte FORD ECOSPORT",
+     "patente": ""
+    },
+    {
+     "codigo": "1046",
+     "modelo": "aporte CHERY TIGGO",
+     "patente": ""
+    },
+    {
+     "codigo": "1049",
+     "modelo": "aporte RENAULT SANDERO",
+     "patente": ""
+    },
+    {
+     "codigo": "1016",
+     "modelo": "207",
+     "patente": ""
+    },
+    {
+     "codigo": "1023",
+     "modelo": "FIESTA",
+     "patente": ""
+    },
+    {
+     "codigo": "1072",
+     "modelo": "QQ",
+     "patente": ""
+    },
+    {
+     "codigo": "1119",
+     "modelo": "COROLLA",
+     "patente": ""
+    },
+    {
+     "codigo": "1121",
+     "modelo": "GOLF",
+     "patente": ""
+    },
+    {
+     "codigo": "1128",
+     "modelo": "FOX",
+     "patente": ""
+    }
+   ]
+  },
+  {
+   "mes": "Noviembre 2026",
+   "enCurso": true,
+   "autos": [
+    {
+     "codigo": "1213",
+     "modelo": "Onix",
+     "patente": "AB408PH",
+     "nota": "Vendido 12/11, cobrado. Cuenta liquidez."
+    },
+    {
+     "codigo": "1315",
+     "modelo": "VW UP!",
+     "patente": "PJD653",
+     "nota": "Vendido 11/11, cobrado. Cuenta liquidez."
+    }
+   ],
+   "senados": [
+    {
+     "codigo": "1229",
+     "modelo": "Onix",
+     "patente": "PBK848"
+    },
+    {
+     "codigo": "1278",
+     "modelo": "VW UP",
+     "patente": "AA383TN"
+    },
+    {
+     "codigo": "1283",
+     "modelo": "Renault Duster",
+     "patente": "AA855GY"
+    },
+    {
+     "codigo": "1301",
+     "modelo": "Ford Focus",
+     "patente": "KLL183"
+    },
+    {
+     "codigo": "1307",
+     "modelo": "Fiat Palio",
+     "patente": "NAY452"
+    },
+    {
+     "codigo": "1308",
+     "modelo": "Ford Focus",
+     "patente": "LDE350"
+    },
+    {
+     "codigo": "1326",
+     "modelo": "Ford Ecosport",
+     "patente": "LFA213"
+    }
+   ],
+   "nota": "Señados: parciales (cobrado < egreso), fuera de stock disponible, NO cuentan liquidez."
+  }
+ ]
+}

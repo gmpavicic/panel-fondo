@@ -215,13 +215,13 @@
    "estado": "en progreso",
    "fondoAnterior": 467318575,
    "fondoTotal": 410743595,
-   "cajaLiquida": 80258596,
-   "capitalAutos": 330484999,
-   "autosStock": 17,
+   "cajaLiquida": 468596,
+   "capitalAutos": 410274999,
+   "autosStock": 22,
    "autosSenados": 7,
    "autosVendidos": 2,
    "repartoGanancia": 0,
-   "nota": "EN PROGRESO. RECALCULADO con las correcciones del cotejar (Autos manda) propagadas a los capitales por periodo (ajuste total -$2.376.852). Mauro SALIO del fondo: pago final $42.801.892 (pendiente, lo cobra a medida que ingresa plata; lo lleva adm general). Para la CAJA/LIQUIDEZ se cuenta a Mauro en CERO: liquidez disponible para comprar autos nuevos = $80.258.596 (Maestro, con la salida de Mauro ya aplicada). Cierre octubre corregido $467.318.575. Fondo activo 4 inversores = $412.191.683; la diferencia chica con fondoTotal es el margen de noviembre aun sin repartir. Ventas noviembre cobradas (cuentan liquidez): 1213, 1315. Senados/parciales fuera de stock, NO cuentan liquidez (cobrado < egreso): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (costo inmovilizado $71.400.000). Disponibles libres: 17 autos (costo $259.084.999). Composicion: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% (post retiro $2,325M) / Fernando 2,35%. Ganancia historica del grupo inversor corregida = $64.712.874 (antes $67.089.726). Fuente real = Libro Fondo Inversores. Panel orientativo.",
+   "nota": "EN PROGRESO (al 18/11). Mauro YA SALIO y esta pagado/descontado en el Maestro general (no queda pendiente contra la caja). Liquidez del Maestro (col Saldo inv) = $80.258.596; se ASIGNO a 5 autos nuevos (1331,1333,1334,1335,1336, costo $79.790.000), dejando $468.596 de colchon (decision de Gaston: gastar casi toda la liquidez en autos sabiendo que ingresan ventas nuevas). Resultado: caja liquida $468.596, capital en autos $410.274.999 (22 disponibles + 7 senados). Regla mes en curso: cuentan liquidez solo las ventas con cobrado>egreso: 1213 y 1315 (margen inversor $1.161.061, gan bruta $2.902.654). Senados/parciales (cobrado<egreso, NO cuentan, costo inmovilizado $71.400.000): 1229, 1278, 1283, 1301, 1307, 1308, 1326 (todas señas por completar). Composicion 4 activos: Francisco 80,67% / Gaston 9,10% / Gerard 7,87% / Fernando 2,35%. Fondo activo = $412.191.683. Panel orientativo, fuente real = Maestro general.",
    "inversores": [
     {
      "nombre": "Francisco",
@@ -255,7 +255,19 @@
    "sueldoPablo": 0,
    "gananciaGrupoNeta": 0,
    "fondoActivo4": 412191683,
-   "liquidezDisponibleNuevosAutos": 80258596
+   "liquidezDisponibleNuevosAutos": 468596,
+   "asignacionNuevosAutos": {
+    "total": 80258596,
+    "sumaPrecioCompra": 79790000,
+    "colchon": 468596,
+    "codigos": [
+     "1331",
+     "1333",
+     "1334",
+     "1335",
+     "1336"
+    ]
+   }
   }
  ],
  "autosEnStock": [
@@ -360,6 +372,41 @@
    "modelo": "Nissan Note",
    "patente": "AA305TQ",
    "estado": "libre"
+  },
+  {
+   "codigo": "1331",
+   "modelo": "Honda Fit",
+   "patente": "AB571UD",
+   "estado": "libre",
+   "nota": "Asignado 18/11 con liquidez de octubre"
+  },
+  {
+   "codigo": "1333",
+   "modelo": "Renault Kangoo",
+   "patente": "AC796QW",
+   "estado": "libre",
+   "nota": "Asignado 18/11 con liquidez de octubre"
+  },
+  {
+   "codigo": "1334",
+   "modelo": "VW Suran",
+   "patente": "AC689CY",
+   "estado": "libre",
+   "nota": "Asignado 18/11 con liquidez de octubre"
+  },
+  {
+   "codigo": "1335",
+   "modelo": "Toyota Yaris",
+   "patente": "AE712UD",
+   "estado": "libre",
+   "nota": "Asignado 18/11 con liquidez de octubre"
+  },
+  {
+   "codigo": "1336",
+   "modelo": "Ford EcoSport",
+   "patente": "AE139JI",
+   "estado": "libre",
+   "nota": "Asignado 18/11 con liquidez de octubre"
   }
  ],
  "ventasPorMes": [

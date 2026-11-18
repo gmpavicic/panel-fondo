@@ -1,0 +1,71 @@
+{
+  "corrida": "2026-11-18",
+  "tipo": "termometro_provisorio_mes_en_curso",
+  "mes_en_curso": "noviembre 2026 (en curso, dia 18 de 30)",
+  "fecha_hoy": "2026-11-18",
+  "cambio_estructural": "MAURO SALIO DEL FONDO y YA ESTA PAGADO/descontado en el Maestro general (retiros 15M + 10M + salida final 42.801.892). No queda pendiente contra la caja. Fondo pasa a 4 inversores.",
+  "metodo": "Fuente de verdad = Maestro general (1ChNa, gid 1962812297), col 'Saldo inv' = liquidez neta del fondo. Regla de Gaston mes en curso: cobrado>costo -> vendido (cuenta liquidez/margen); cobrado<=costo -> senado/parcial (no cuenta, costo inmovilizado como capital en autos).",
+  "composicion_fondo": {
+    "fondo_activo_4_inversores": 412191683,
+    "inversores": [
+      {"nombre": "Francisco", "capital": 332535287, "pct": 80.67},
+      {"nombre": "Gaston", "capital": 37519366, "pct": 9.10},
+      {"nombre": "Gerard", "capital": 32453236, "pct": 7.87},
+      {"nombre": "Turco (Fernando Saad)", "capital": 9683794, "pct": 2.35},
+      {"nombre": "Mauro", "capital": 0, "pct": 0.0, "nota": "SALIO y PAGADO"}
+    ]
+  },
+  "liquidez_y_asignacion": {
+    "liquidez_maestro_antes": 80258596,
+    "autos_nuevos_asignados": [
+      {"codigo":"1331","modelo":"Honda Fit","patente":"AB571UD","costo":19990000},
+      {"codigo":"1333","modelo":"Renault Kangoo","patente":"AC796QW","costo":12600000},
+      {"codigo":"1334","modelo":"VW Suran","patente":"AC689CY","costo":13500000},
+      {"codigo":"1335","modelo":"Toyota Yaris","patente":"AE712UD","costo":17700000},
+      {"codigo":"1336","modelo":"Ford EcoSport","patente":"AE139JI","costo":16000000}
+    ],
+    "suma_autos_nuevos": 79790000,
+    "caja_liquida_final": 468596,
+    "nota_colchon": "El gap de $468.596 es colchon intencional (Gaston: gastar casi toda la liquidez en autos sabiendo que ingresan ventas nuevas)."
+  },
+  "ventas_grupo_noviembre": {
+    "realizadas_cuentan": [
+      {"codigo":"1213","modelo":"Chevrolet Onix","patente":"AB408PH","fecha":"12/11","costo":9900000,"ingreso":11500000,"ganancia_inv":300066,"gan_bruta":750166},
+      {"codigo":"1315","modelo":"VW Up!","patente":"PJD653","fecha":"11/11","costo":10300000,"ingreso":13000000,"ganancia_inv":860995,"gan_bruta":2152488}
+    ],
+    "subtotal_realizadas": {"ganancia_inv": 1161061, "gan_bruta": 2902654},
+    "senados_no_cuentan": ["1229","1278","1283","1301","1307","1308","1326"],
+    "senados_costo_inmovilizado": 71400000,
+    "nota_senados": "Senas por completar (confirmado por Gaston). 1278 tiene pactado $15,62M. Al cierre, si alguna se completa por debajo del costo, es perdida real."
+  },
+  "fondo_y_liquidez": {
+    "fondo_activo_4": 412191683,
+    "fondo_total_panel": 410743595,
+    "caja_liquida": 468596,
+    "capital_en_autos": 410274999,
+    "detalle_capital": "22 disponibles ($338.874.999, incluye 5 nuevos) + 7 senados ($71.400.000) = 29 autos.",
+    "nota": "Diferencia chica entre fondo activo (412.191.683) y fondo total panel (410.743.595) = margen de noviembre aun sin repartir."
+  },
+  "rendimiento_provisorio": {
+    "ganancia_inv_realizada": 1161061,
+    "base_fondo": 412191683,
+    "rendimiento_pct": 0.28,
+    "nota": "Solo 2 ventas cerradas al dia 18; 7 senas por completar que pueden sumar al cierre. Rendimiento bajo porque es mitad de mes."
+  },
+  "stock_autos": 29,
+  "maestro_editado": false,
+  "maestro_motivo_no_edicion": "Sin tab de noviembre. Opcional (pedir OK): agregar las 5 filas de stock de los autos nuevos al 'Maestro general'. Celdas cambiadas: NINGUNA.",
+  "pendientes": {
+    "senas": "Confirmar completamiento y precio final de 1229, 1283, 1301, 1307, 1308, 1326.",
+    "comisiones": "Confirmar comisiones de noviembre pagadas para cierre formal.",
+    "maestro_general_autos_nuevos": "Agregar (opcional, con OK) las 5 filas de stock para que Saldo inv total baje a $468.596.",
+    "cierre_noviembre": "Primeros dias de diciembre; crear tab 'Noviembre cerrado'."
+  },
+  "base_para_proxima_corrida": {
+    "fondo_activo_4": 412191683,
+    "caja_liquida": 468596,
+    "capital_en_autos": 410274999,
+    "stock_autos": 29,
+    "pct": {"Francisco": 80.67, "Gaston": 9.10, "Gerard": 7.87, "Turco": 2.35, "Mauro": 0.0}
+  }
+}
